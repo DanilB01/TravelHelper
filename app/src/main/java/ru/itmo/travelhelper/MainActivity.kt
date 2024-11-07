@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.itmo.travelhelper.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private val viewBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
