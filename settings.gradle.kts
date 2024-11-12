@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TravelHelper"
 include(":app")
+include(":data")
+include(":domain")
