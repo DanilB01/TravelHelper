@@ -1,19 +1,18 @@
-package ru.itmo.travelhelper.domain.repositories
+package repositories
 
-import ru.itmo.travelhelper.data.mappers.HotelMapper
-import ru.itmo.travelhelper.data.remote.HotelApiService
-import ru.itmo.travelhelper.domain.models.Hotel
+import mappers.HotelMapper
+import remote.HotelApiService
 
 interface HotelRepository {
-    suspend fun getHotels(): List<Hotel>
+    suspend fun getHotels(): List<models.Hotel>
 }
 
 class HotelRepositoryImpl(
-    private val apiService: HotelApiService,
-    private val mapper: HotelMapper
+    private val apiService: remote.HotelApiService,
+    private val mapper: mappers.HotelMapper
 ) : HotelRepository {
 
-    override suspend fun getHotels(): List<Hotel> {
+    override suspend fun getHotels(): List<models.Hotel> {
         // Получаем список объектов HotelApiModel из API
         val apiModels = apiService.getHotels()
 

@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.domain.models
+package models
 
 data class Hotel(
     val name: String,

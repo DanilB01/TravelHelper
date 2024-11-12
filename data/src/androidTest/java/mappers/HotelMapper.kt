@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.data.mappers
+package mappers
 
 import ru.itmo.travelhelper.data.remote.HotelApiModel
 import ru.itmo.travelhelper.domain.models.Hotel

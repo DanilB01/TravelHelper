@@ -1,9 +1,9 @@
-package ru.itmo.travelhelper.ui.presenter
+package ru.itmo.travelhelper.presenter
 
-import ru.itmo.travelhelper.domain.usecases.GetHotelsUseCase
-import ru.itmo.travelhelper.ui.view.HomeView
+import usecases.GetHotelsUseCase
+import ru.itmo.travelhelper.view.HomeView
 
-class HomePresenter(private val view: HomeView, private val getHotelsUseCase: GetHotelsUseCase) {
+class HomePresenter(private val view: HomeView, private val getHotelsUseCase: usecases.GetHotelsUseCase) {
     suspend fun loadHotels() {
         view.showLoading()
         // Логика для загрузки данных

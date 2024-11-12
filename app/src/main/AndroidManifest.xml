@@ -19,7 +19,7 @@
             android:name=".ui.screens.HotelDetailsScreen"
             android:exported="false" />
         <activity
-            android:name=".ui.screens.HomeScreen"
+            android:name=".screens.HomeScreen"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.data.remote
+package remote
 
 data class HotelApiModel(
     val hotel_name: String,
