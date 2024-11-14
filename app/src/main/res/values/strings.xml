@@ -1,10 +1,29 @@
 <resources>
     <string name="app_name">TravelHelper</string>
+    <string-array name="init_array_titles">
+        <item>Добро пожаловать</item>
+        <item>Авиабилеты</item>
+        <item>Отели</item>
+        <item>Маршруты</item>
+    </string-array>
+    <string-array name="init_array_texts">
+        <item>Откройте для себя удобный и продуманный планировщик путешествий. Мы поможем собрать всё в одном месте! </item>
+        <item>Легко выбирайте и бронируйте лучшие авиабилеты для вашего маршрута</item>
+        <item>Найдите и забронируйте идеальное жилье, от уютных хостелов до роскошных отелей</item>
+        <item>Исследуйте город с нами: концерты, выставки, парки, памятники, рестораны и многое другое для вашего идеального отдыха!</item>
+    </string-array>
+
+    <string-array name="init_array_buttons">
+        <item>Далее</item>
+        <item>Начать</item>
+    </string-array>
+
 
     <string name="init_title_1">Добро пожаловать</string>
     <string name="init_title_2">Авиабилеты</string>
     <string name="init_title_3">Отели</string>
     <string name="init_title_4">Маршруты</string>
+
 
     <string name="init_text_1">Откройте для себя удобный и продуманный планировщик путешествий. Мы поможем собрать всё в одном месте! </string>
     <string name="init_text_2">Легко выбирайте и бронируйте лучшие авиабилеты для вашего маршрута</string>

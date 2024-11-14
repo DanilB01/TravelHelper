@@ -58,7 +58,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="35dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/init_title_1"
+            tools:text="@string/init_title_1"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageInit" />
@@ -71,7 +71,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="52dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/init_text_1"
+            tools:text="@string/init_text_1"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,14 +94,13 @@
             android:id="@+id/radioButton1_Init"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:checked="true"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton"/>
 
         <RadioButton
             android:id="@+id/radioButton2_Init"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton"/>
 
         <RadioButton
             android:id="@+id/radioButton3_Init"
@@ -122,7 +121,7 @@
             android:layout_height="58dp"
             android:background="@drawable/share_rounded_init_button"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/init_button_next"
+            tools:text="@string/init_button_next"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp" />

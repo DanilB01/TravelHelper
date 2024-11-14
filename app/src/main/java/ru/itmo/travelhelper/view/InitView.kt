@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.view
 
 interface InitView {
-    fun setNextScreen()
+    fun showInitTextAndImage(initScreenNumber: Int)
+    fun getCurentInitScreenNumber()
 }
