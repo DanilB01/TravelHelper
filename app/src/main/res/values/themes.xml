@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.TravelHelper" parent="Base.Theme.TravelHelper" />
+
+    <style name="Theme.TravelHelper.Init" parent="Theme.TravelHelper"/>
+
+    <style name="Theme.TravelHelper.Init.RadioButton" parent="Theme.TravelHelper">
+        <item name="colorControlNormal">@color/init_button_bg</item>
+        <item name="colorControlActivated">@color/init_button_bg</item>
+    </style>
 </resources>

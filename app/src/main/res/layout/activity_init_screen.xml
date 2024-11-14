@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/init_main_bg"
+    tools:context=".screens.InitScreen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageCloseButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/init_close_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/share_rounded_init_container"
+        app:layout_constraintTop_toBottomOf="@+id/headerConstraintLayout"
+        tools:layout_editor_absoluteX="20dp">
+
+
+        <ImageView
+            android:id="@+id/imageInit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="72dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/init_picture_1" />
+
+        <TextView
+            android:id="@+id/titleTextInit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/init_title_1"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageInit" />
+
+        <TextView
+            android:id="@+id/mainTextInit"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="52dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/init_text_1"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextInit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton1_Init"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2_Init"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton3_Init"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton4_Init"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="17dp"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
+
+        <android.widget.Button
+            android:id="@+id/nextButtonInit"
+            android:layout_width="136dp"
+            android:layout_height="58dp"
+            android:background="@drawable/share_rounded_init_button"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/init_button_next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
