@@ -1,4 +1,4 @@
-package local.user_travel.ticket
+package local.user_travel.tickets
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
