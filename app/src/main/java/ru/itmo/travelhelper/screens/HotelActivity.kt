@@ -3,17 +3,17 @@ package ru.itmo.travelhelper.screens
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.itmo.travelhelper.R
-import models.Hotel
-import ru.itmo.travelhelper.presenter.HomePresenter
-import ru.itmo.travelhelper.view.HomeView
+import ru.itmo.domain.models.Hotel
+import ru.itmo.travelhelper.presenter.HotelPresenter
+import ru.itmo.travelhelper.view.HotelView
 
-class HomeScreen : AppCompatActivity(), HomeView {
-    private lateinit var presenter: HomePresenter
+class HotelActivity : AppCompatActivity(), HotelView {
+    private val presenter: HotelPresenter by lazy { HotelPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
-        presenter.loadHotels()
+        presenter.setupView()
     }
 
     override fun showLoading() {
@@ -24,7 +24,7 @@ class HomeScreen : AppCompatActivity(), HomeView {
         // Скрыть индикатор загрузки
     }
 
-    override fun showHotels(hotels: List<models.Hotel>) {
+    override fun showHotels(hotels: List<Hotel>) {
         // Отобразить список отелей
     }
 

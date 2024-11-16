@@ -1,7 +1,7 @@
-package mappers
+package ru.itmo.data.mappers
 
-import ru.itmo.travelhelper.data.remote.HotelApiModel
-import ru.itmo.travelhelper.domain.models.Hotel
+import ru.itmo.data.remote.hotel.HotelApiModel
+import ru.itmo.domain.models.Hotel
 
 class HotelMapper {
     fun mapFromApiModel(apiModel: HotelApiModel): Hotel {
