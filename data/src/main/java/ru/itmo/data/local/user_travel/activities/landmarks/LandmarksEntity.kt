@@ -1,4 +1,4 @@
-package local.user_travel.activities.landmarks
+package ru.itmo.data.local.user_travel.activities.landmarks
 
 
 import androidx.room.Entity

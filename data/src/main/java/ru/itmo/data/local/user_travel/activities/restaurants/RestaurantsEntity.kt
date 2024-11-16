@@ -1,4 +1,4 @@
-package local.user_travel.activities.restaurants
+package ru.itmo.data.local.user_travel.activities.restaurants
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

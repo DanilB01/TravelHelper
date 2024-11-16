@@ -1,4 +1,4 @@
-package local.user_travel.hotels
+package ru.itmo.data.local.user_travel.hotels
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,4 +1,4 @@
-package local.user_travel.activities.events
+package ru.itmo.data.local.user_travel.activities.events
 
 
 import androidx.room.Entity
