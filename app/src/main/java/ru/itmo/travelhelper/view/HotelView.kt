@@ -1,10 +1,10 @@
 package ru.itmo.travelhelper.view
 
-import models.Hotel
+import ru.itmo.domain.models.Hotel
 
-interface HomeView {
+interface HotelView {
     fun showLoading()
     fun hideLoading()
-    fun showHotels(hotels: List<models.Hotel>)
+    fun showHotels(hotels: List<Hotel>)
     fun showError(message: String)
 }
