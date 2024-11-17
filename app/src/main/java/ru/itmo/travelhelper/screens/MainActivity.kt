@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val SPLASH_DELAY = 2000
-        private const val TAG = "MainActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
