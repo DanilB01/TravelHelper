@@ -36,15 +36,18 @@ android {
 dependencies {
     implementation(project(":domain"))
 
+    // Android
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)
-
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    // Room
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
