@@ -3,6 +3,10 @@
     <style name="Base.Theme.TravelHelper" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="Theme.TravelHelper" parent="Base.Theme.TravelHelper" />
 
