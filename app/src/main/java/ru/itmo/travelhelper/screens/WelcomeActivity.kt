@@ -1,6 +1,7 @@
 package ru.itmo.travelhelper.screens
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
@@ -31,10 +32,23 @@ class WelcomeActivity : AppCompatActivity(), InitView {
         welcomePresenter.setNextScreen(currentScreenInitNumber)
 
         binding.nextButtonInit.setOnClickListener {
-            if (currentScreenInitNumber < 3) {welcomePresenter.setNextScreen(++currentScreenInitNumber)}
-
+            if (currentScreenInitNumber < 3) {
+                welcomePresenter.setNextScreen(++currentScreenInitNumber)
+            } else {
+                startMainActivity()
+            }
         }
 
+        binding.imageCloseButton.setOnClickListener {
+            startMainActivity()
+        }
+
+    }
+
+    private fun startMainActivity() {
+        val intentMainActivity = Intent(this, MainActivity::class.java)
+        startActivity(intentMainActivity)
+        finish()
     }
 
     override fun showNextTitleAndTextInit(initScreenNumber: Int) {
@@ -56,9 +70,9 @@ class WelcomeActivity : AppCompatActivity(), InitView {
         val buttonArray = resources.getStringArray(R.array.init_array_buttons)
         binding.nextButtonInit.text = buttonArray[if (initScreenNumber < 3) 0 else 1]
 
-        val radioButtonResource = resources.getIdentifier("radioButton${initScreenNumber+1}_Init", "id", packageName)
-        val radioButton = findViewById<RadioButton>(radioButtonResource)
-        radioButton.isChecked = true
+        binding.welcomeRadioGroup.check(
+            resources.getIdentifier("welcomeRadioButton${initScreenNumber+1}", "id", packageName)
+        )
     }
 
 }

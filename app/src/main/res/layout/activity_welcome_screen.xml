@@ -80,7 +80,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/welcomeRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -91,32 +92,33 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton1_Init"
+            android:id="@+id/welcomeRadioButton1"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:enabled="false"
+            android:checked="true"
+            android:clickable="false"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton"/>
 
         <RadioButton
-            android:id="@+id/radioButton2_Init"
+            android:id="@+id/welcomeRadioButton2"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:enabled="false"
+            android:clickable="false"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton"/>
 
         <RadioButton
-            android:id="@+id/radioButton3_Init"
+            android:id="@+id/welcomeRadioButton3"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:enabled="false"
+            android:clickable="false"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
 
         <RadioButton
-            android:id="@+id/radioButton4_Init"
+            android:id="@+id/welcomeRadioButton4"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="17dp"
-            android:enabled="false"
+            android:clickable="false"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton" />
 
         <android.widget.Button
@@ -129,6 +131,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp" />
-    </LinearLayout>
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
