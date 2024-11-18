@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TravelHelper</string>
+    <string name="app_name">Flymora</string>
     <string-array name="init_array_titles">
         <item>Добро пожаловать</item>
         <item>Авиабилеты</item>
