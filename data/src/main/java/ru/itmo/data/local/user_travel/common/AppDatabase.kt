@@ -8,10 +8,10 @@ import ru.itmo.data.local.user_travel.activities.landmarks.LandmarksDAO
 import ru.itmo.data.local.user_travel.activities.landmarks.LandmarksEntity
 import ru.itmo.data.local.user_travel.activities.restaurants.RestaurantsDAO
 import ru.itmo.data.local.user_travel.activities.restaurants.RestaurantsEntity
-import local.user_travel.hotels.HotelsDAO
-import local.user_travel.hotels.HotelsEntity
-import local.user_travel.tickets.TicketsDAO
-import local.user_travel.tickets.TicketsEntity
+import ru.itmo.data.local.user_travel.hotels.HotelsDAO
+import ru.itmo.data.local.user_travel.hotels.HotelsEntity
+import ru.itmo.data.local.user_travel.tickets.TicketsDAO
+import ru.itmo.data.local.user_travel.tickets.TicketsEntity
 
 @Database(
     entities = [
