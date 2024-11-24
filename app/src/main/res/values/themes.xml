@@ -8,12 +8,15 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
     <style name="Theme.TravelHelper" parent="Base.Theme.TravelHelper" />
 
     <style name="Theme.TravelHelper.Init" parent="Theme.TravelHelper"/>
 
     <style name="Theme.TravelHelper.Init.RadioButton" parent="Theme.TravelHelper.Init">
         <item name="colorPrimary">@color/init_button_bg</item>
+    </style>
+
+    <style name="Theme.TravelHelper.Splash" parent="Base.Theme.TravelHelper">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>
