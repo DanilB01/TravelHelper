@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.itmo.data.repositories.HotelRepositoryImpl
-import ru.itmo.domain.usecases.GetHotelsUseCase
+import ru.itmo.domain.usecases.hotelUseCases.GetHotelsUseCase
 import ru.itmo.travelhelper.view.HotelView
 
 class HotelPresenter(private val view: HotelView) {
