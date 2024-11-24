@@ -9,7 +9,7 @@ interface FlightTicketsView {
     fun getAirportsByCityName(city_name: String): List<String>
     fun getCitiesByCountryName(country_name: String): List<String>
     fun getCountries(countriesData: List<CountryModel>)
-    fun getCitiesMap(citiesData: Map<String, List<CityModel>>)
-    fun getAirportMap(airportsData: Map<String, List<AirportModel>>)
+    fun getCitiesMap(citiesData: Map<CountryModel, List<CityModel>>)
+    fun getAirportMap(airportsData: Map<CityModel, List<AirportModel>>)
 
 }

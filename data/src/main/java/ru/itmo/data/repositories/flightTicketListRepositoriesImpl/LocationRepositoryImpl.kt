@@ -54,15 +54,18 @@ class LocationRepositoryImpl: LocationRepository {
 
     }
 
-    override suspend fun getCities(): Map<String, List<CityModel>> {
+    override suspend fun getCities(): Map<CountryModel, List<CityModel>> {
         // TODO("add getting cities from service")
-        return cities_data.mapValues { entry -> entry.value.map { city -> CityModel(city) } }
-
+        return cities_data
+            .mapValues { entry -> entry.value.map { city -> CityModel(city) } }
+            .mapKeys { entry -> CountryModel(entry.key) }
     }
 
-    override suspend fun getAirports(): Map<String, List<AirportModel>> {
+    override suspend fun getAirports(): Map<CityModel, List<AirportModel>> {
         // TODO("add getting airports from service")
-        return airports_data.mapValues { entry -> entry.value.map { airport -> AirportModel(airport) } }
+        return airports_data
+            .mapValues { entry -> entry.value.map { airport -> AirportModel(airport) } }
+            .mapKeys { entry -> CityModel(entry.key) }
     }
 
 

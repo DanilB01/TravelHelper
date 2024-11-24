@@ -210,15 +210,20 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
     }
 
     override fun getCountries(countriesData: List<CountryModel>) {
-        this.countries_data = countriesData.map { country -> country.countryName }
+        this.countries_data = countriesData
+            .map { country -> country.countryName }
     }
 
-    override fun getCitiesMap(citiesData: Map<String, List<CityModel>>) {
-        this.cities_data = citiesData.mapValues { entry -> entry.value.map { city -> city.cityName } }
+    override fun getCitiesMap(citiesData: Map<CountryModel, List<CityModel>>) {
+        this.cities_data = citiesData
+            .mapValues { entry -> entry.value.map { city -> city.cityName } }
+            .mapKeys { keyName -> keyName.key.countryName }
     }
 
-    override fun getAirportMap(airportsData: Map<String, List<AirportModel>>) {
-        this.airports_data = airportsData.mapValues { entry -> entry.value.map { airport -> airport.airportName } }
+    override fun getAirportMap(airportsData: Map<CityModel, List<AirportModel>>) {
+        this.airports_data = airportsData
+            .mapValues { entry -> entry.value.map { airport -> airport.airportName } }
+            .mapKeys { keyName -> keyName.key.cityName }
     }
 
 

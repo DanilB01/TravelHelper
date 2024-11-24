@@ -11,11 +11,11 @@ class GetLocationUseCase(private val locationRepository: LocationRepository) {
         return locationRepository.getCountries()
     }
 
-    suspend fun getCityData(): Map<String, List<CityModel>> {
+    suspend fun getCityData(): Map<CountryModel, List<CityModel>> {
         return locationRepository.getCities()
     }
 
-    suspend fun getAirportData(): Map<String, List<AirportModel>> {
+    suspend fun getAirportData(): Map<CityModel, List<AirportModel>> {
         return locationRepository.getAirports()
     }
 

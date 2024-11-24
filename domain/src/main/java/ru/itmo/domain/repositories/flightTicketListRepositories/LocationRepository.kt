@@ -7,6 +7,6 @@ import ru.itmo.domain.models.flightTicketListModels.CountryModel
 
 interface LocationRepository {
     suspend fun getCountries(): List<CountryModel>
-    suspend fun getCities(): Map<String, List<CityModel>>
-    suspend fun getAirports(): Map<String, List<AirportModel>>
+    suspend fun getCities(): Map<CountryModel, List<CityModel>>
+    suspend fun getAirports(): Map<CityModel, List<AirportModel>>
 }
