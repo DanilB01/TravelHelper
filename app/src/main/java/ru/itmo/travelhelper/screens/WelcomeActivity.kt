@@ -10,7 +10,8 @@ import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityWelcomeScreenBinding
 import ru.itmo.travelhelper.presenter.WelcomePresenter
 import ru.itmo.travelhelper.view.InitView
-
+import ru.itmo.data.prefs.FirstLaunchCheckerRepositoryImpl
+import ru.itmo.domain.usecases.CompleteFirstLaunchUseCase
 
 
 class WelcomeActivity : AppCompatActivity(), InitView {
@@ -36,11 +37,13 @@ class WelcomeActivity : AppCompatActivity(), InitView {
                 welcomePresenter.setNextScreen(++currentScreenInitNumber)
             } else {
                 startMainActivity()
+                CompleteFirstLaunchUseCase(FirstLaunchCheckerRepositoryImpl(this@WelcomeActivity)).execute()
             }
         }
 
         binding.imageCloseButton.setOnClickListener {
             startMainActivity()
+            CompleteFirstLaunchUseCase(FirstLaunchCheckerRepositoryImpl(this@WelcomeActivity)).execute()
         }
 
     }
