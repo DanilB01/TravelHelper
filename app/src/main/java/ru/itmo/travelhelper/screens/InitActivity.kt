@@ -3,6 +3,7 @@ package ru.itmo.travelhelper.screens
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.itmo.travelhelper.screens.flightTicketsScreen.FlightTicketsActivity
 
 
 class InitActivity : AppCompatActivity() {

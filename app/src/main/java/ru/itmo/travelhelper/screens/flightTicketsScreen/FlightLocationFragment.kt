@@ -1,27 +1,29 @@
-package ru.itmo.travelhelper.screens
+package ru.itmo.travelhelper.screens.flightTicketsScreen
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import ru.itmo.domain.models.flightTicketListModels.AirportModel
 import ru.itmo.domain.models.flightTicketListModels.CityModel
 import ru.itmo.domain.models.flightTicketListModels.CountryModel
-import ru.itmo.travelhelper.databinding.ActivityFlightTicketsBinding
+import ru.itmo.travelhelper.databinding.FragmentFlightLocationBinding
 import ru.itmo.travelhelper.presenter.FlightTicketsPresenter
 import ru.itmo.travelhelper.view.FlightTicketsView
 
-class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
 
-
-    private val binding by lazy { ActivityFlightTicketsBinding.inflate(layoutInflater) }
+class FlightLocationFragment : Fragment(), FlightTicketsView {
+    lateinit var binding: FragmentFlightLocationBinding
     private val presenter: FlightTicketsPresenter by lazy { FlightTicketsPresenter(this) }
+
 
     private lateinit var adapterCountry: ListAdapter
     private lateinit var adapterCity: ListAdapter
@@ -31,13 +33,48 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
     lateinit var cities_data: Map<String, List<String>>
     lateinit var airports_data: Map<String, List<String>>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+
+    private val dataFlightModel: DataFlightModel by activityViewModels ()
+
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentFlightLocationBinding.inflate(inflater)
+        return binding.root
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = FlightLocationFragment()
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         presenter.setupView()
 
+        dataFlightModel.locationDataMessage.observe(activity as LifecycleOwner, { locationDataList ->
+            if (locationDataList.all { it.isNotEmpty() }) {
+                binding.countyLocationPickerButtonFlightTickets.text = locationDataList[0]
+                binding.countyLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                binding.countryTitleText.visibility = View.VISIBLE
+                binding.countryTitleText.text = "Страна"
 
+                binding.cityLocationPickerButtonFlightTickets.text = locationDataList[1]
+                binding.cityLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                binding.cityTitleText.visibility = View.VISIBLE
+                binding.cityTitleText.text = "Город"
 
+                binding.airportLocationPickerButtonFlightTickets.text = locationDataList[2]
+                binding.airportLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                binding.airportTitleText.visibility = View.VISIBLE
+                binding.airportTitleText.text = "Аэропорт"
+
+            }
+
+        })
 
         adapterCountry = ListAdapter(this, emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
@@ -51,6 +88,7 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
                 binding.cityLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать город"
                 binding.cityLocationPickerButtonFlightTickets.visibility = View.VISIBLE
 
+                dataFlightModel.locationDataMessage.value?.set(0, selectedItem)
 
             }
         })
@@ -88,6 +126,10 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
             binding.layoutCountrySearchField.visibility = View.VISIBLE
             binding.countryTitleText.text = "Выберите страну"
 
+            dataFlightModel.locationDataMessage.value?.set(0, "")
+            dataFlightModel.locationDataMessage.value?.set(1, "")
+            dataFlightModel.locationDataMessage.value?.set(2, "")
+
         }
 
 
@@ -107,6 +149,8 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
                 binding.airportTitleText.visibility = View.VISIBLE
                 binding.airportLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать аэропорт"
                 binding.airportLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+
+                dataFlightModel.locationDataMessage.value?.set(1, selectedItem)
             }
         })
 
@@ -141,6 +185,9 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
             binding.layoutCitySearchField.visibility = View.VISIBLE
             binding.cityTitleText.text = "Выберите город"
 
+            dataFlightModel.locationDataMessage.value?.set(1, "")
+            dataFlightModel.locationDataMessage.value?.set(2, "")
+
 
         }
 
@@ -158,6 +205,8 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
                 binding.airportLocationPickerButtonFlightTickets.text = selectedItem
                 binding.airportLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                 binding.airportTitleText.text = "Аэропорт"
+
+                dataFlightModel.locationDataMessage.value?.set(2, selectedItem)
             }
         })
 
@@ -187,9 +236,12 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
             binding.editTextSearchAirport.text.clear()
             binding.layoutAirportSearchField.visibility = View.VISIBLE
             binding.airportTitleText.text = "Выберите аэропорт"
+
+            dataFlightModel.locationDataMessage.value?.set(2, "")
         }
 
-        }
+    }
+
 
     interface OnItemClickListener {
         fun onItemClicked(selectedItem: String)
@@ -237,14 +289,22 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
 }
 
 
+
+
+
+
+
+
 interface UpdateListInterface {
     fun updateList(filteredItems: MutableList<String>)
 }
 
 
-class ListAdapter(context: Context,
-                         private val items: List<String>,
-                         private val itemClickListener: FlightTicketsActivity.OnItemClickListener) : BaseAdapter(), UpdateListInterface {
+class ListAdapter(
+    context: FlightLocationFragment,
+    private val items: List<String>,
+    private val itemClickListener: FlightLocationFragment.OnItemClickListener
+) : BaseAdapter(), UpdateListInterface {
 
     private var filteredItems = items.toMutableList()
 
@@ -281,4 +341,3 @@ class ListAdapter(context: Context,
         return view
     }
 }
-

@@ -12,4 +12,5 @@ interface FlightTicketsView {
     fun getCitiesMap(citiesData: Map<CountryModel, List<CityModel>>)
     fun getAirportMap(airportsData: Map<CityModel, List<AirportModel>>)
 
+
 }
