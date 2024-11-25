@@ -23,9 +23,9 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
     private val binding by lazy { ActivityFlightTicketsBinding.inflate(layoutInflater) }
     private val presenter: FlightTicketsPresenter by lazy { FlightTicketsPresenter(this) }
 
-    private lateinit var adapterCountry: CountryListAdapter
-    private lateinit var adapterCity: CityListAdapter
-    private lateinit var adapterAirport: AirportListAdapter
+    private lateinit var adapterCountry: ListAdapter
+    private lateinit var adapterCity: ListAdapter
+    private lateinit var adapterAirport: ListAdapter
 
     lateinit var countries_data: List<String>
     lateinit var cities_data: Map<String, List<String>>
@@ -39,7 +39,7 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
 
 
 
-        adapterCountry = CountryListAdapter(this, emptyList(), object : OnItemClickListener {
+        adapterCountry = ListAdapter(this, emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutCountrySearchField.visibility = View.GONE
                 binding.countyLocationPickerButtonFlightTickets.text = selectedItem
@@ -96,7 +96,7 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
 
 
 
-        adapterCity = CityListAdapter(this, emptyList(), object : OnItemClickListener {
+        adapterCity = ListAdapter(this, emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutCitySearchField.visibility = View.GONE
                 binding.cityLocationPickerButtonFlightTickets.text = selectedItem
@@ -152,7 +152,7 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
 
 
 
-        adapterAirport = AirportListAdapter(this, emptyList(), object : OnItemClickListener {
+        adapterAirport = ListAdapter(this, emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutAirportSearchField.visibility = View.GONE
                 binding.airportLocationPickerButtonFlightTickets.text = selectedItem
@@ -227,8 +227,6 @@ class FlightTicketsActivity() : AppCompatActivity(), FlightTicketsView {
     }
 
 
-
-
     override fun getAirportsByCityName(city_name: String): List<String> {
         return airports_data[city_name]!!
     }
@@ -244,7 +242,7 @@ interface UpdateListInterface {
 }
 
 
-class CountryListAdapter(context: Context,
+class ListAdapter(context: Context,
                          private val items: List<String>,
                          private val itemClickListener: FlightTicketsActivity.OnItemClickListener) : BaseAdapter(), UpdateListInterface {
 
@@ -284,86 +282,3 @@ class CountryListAdapter(context: Context,
     }
 }
 
-
-class CityListAdapter(context: Context,
-                         private val items: List<String>,
-                         private val itemClickListener: FlightTicketsActivity.OnItemClickListener) : BaseAdapter(), UpdateListInterface {
-
-    private var filteredItems = items.toMutableList()
-
-    override fun getCount(): Int {
-        return filteredItems.size
-    }
-
-    override fun getItem(position: Int): Any? {
-        return null
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun updateList(filteredItems: MutableList<String>) {
-        this.filteredItems = filteredItems
-        notifyDataSetChanged()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: TextView = if (convertView == null) {
-            LayoutInflater.from(parent?.context).inflate(android.R.layout.simple_list_item_1, parent, false) as TextView
-        } else {
-            convertView as TextView
-        }
-
-
-        view.setOnClickListener {
-            itemClickListener.onItemClicked(filteredItems[position])
-        }
-
-        view.text = filteredItems[position]
-        return view
-    }
-}
-
-
-
-
-class AirportListAdapter(context: Context,
-                      private val items: List<String>,
-                      private val itemClickListener: FlightTicketsActivity.OnItemClickListener) : BaseAdapter(), UpdateListInterface {
-
-    private var filteredItems = items.toMutableList()
-
-    override fun getCount(): Int {
-        return filteredItems.size
-    }
-
-    override fun getItem(position: Int): Any? {
-        return null
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun updateList(filteredItems: MutableList<String>) {
-        this.filteredItems = filteredItems
-        notifyDataSetChanged()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: TextView = if (convertView == null) {
-            LayoutInflater.from(parent?.context).inflate(android.R.layout.simple_list_item_1, parent, false) as TextView
-        } else {
-            convertView as TextView
-        }
-
-
-        view.setOnClickListener {
-            itemClickListener.onItemClicked(filteredItems[position])
-        }
-
-        view.text = filteredItems[position]
-        return view
-    }
-}
