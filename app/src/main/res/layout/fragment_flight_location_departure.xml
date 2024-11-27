@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.flightTicketsScreen.FlightDepartureLocationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/departureTitleText"
+            android:text="@string/flight_tickets_departure_place_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/roboto_medium"/>
+
+        <TextView
+            android:id="@+id/countryDepartureTitleText"
+            android:text="@string/flight_tickets_country_search_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/departureTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"/>
+
+
+        <android.widget.Button
+            android:id="@+id/countryDepartureLocationPickerButtonFlightTickets"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryDepartureTitleText"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="@string/flight_tickets_country_search_button_text"
+            android:gravity="start"
+            android:fontFamily="@font/roboto_regular"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:paddingVertical="13dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/white"
+            android:background="@drawable/share_rounded_picker_location_button"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutCountryDepartureSearchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryDepartureTitleText"
+            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:visibility="gone">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchCountryDeparture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchCountryDeparture"
+                app:srcCompat="@drawable/flight_tickets_return_country_search_field_button" />
+
+            <EditText
+                android:id="@+id/editTextSearchCountryDeparture"
+                android:layout_width="250dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="52dp"
+                android:hint="@string/flight_tickets_hint_country_search"
+                android:background="@android:color/transparent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:height="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageButton
+                android:id="@+id/clearCountryDepartureSearchFieldButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchCountryDeparture"
+                app:layout_constraintStart_toEndOf="@+id/editTextSearchCountryDeparture"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchCountryDeparture"
+                android:layout_marginTop="3dp"
+                app:srcCompat="@drawable/flight_tickets_clear_country_search_field_button" />
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/layoutDividerCountryDeparture"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearchCountryDeparture"/>
+
+            <ListView
+                android:id="@+id/countryDepartureListView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+
+                android:layout_marginEnd="25dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/layoutDividerCountryDeparture" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:id="@+id/cityDepartureTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/flight_tickets_city_search_title"
+            android:textSize="23sp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryDepartureLocationPickerButtonFlightTickets"
+            android:visibility="gone"/>
+
+        <android.widget.Button
+            android:id="@+id/cityDepartureLocationPickerButtonFlightTickets"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cityDepartureTitleText"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="@string/flight_tickets_city_search_button_text"
+            android:gravity="start"
+            android:fontFamily="@font/roboto_regular"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:paddingVertical="13dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/white"
+            android:background="@drawable/share_rounded_picker_location_button"
+            android:visibility="gone"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutCityDepartureSearchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cityDepartureTitleText"
+            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:visibility="gone">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchCityDeparture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchCityDeparture"
+                app:srcCompat="@drawable/flight_tickets_return_country_search_field_button" />
+
+            <EditText
+                android:id="@+id/editTextSearchCityDeparture"
+                android:layout_width="250dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="52dp"
+                android:hint="@string/flight_tickets_hint_city_search"
+                android:background="@android:color/transparent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:height="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageButton
+                android:id="@+id/clearCityDepartureSearchFieldButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchCityDeparture"
+                app:layout_constraintStart_toEndOf="@+id/editTextSearchCityDeparture"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchCityDeparture"
+                android:layout_marginTop="3dp"
+                app:srcCompat="@drawable/flight_tickets_clear_country_search_field_button" />
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/layoutDividerCityDeparture"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearchCityDeparture"/>
+
+            <ListView
+                android:id="@+id/cityDepartureListView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+
+
+                app:layout_constraintTop_toBottomOf="@+id/layoutDividerCityDeparture" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/airportDepartureTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/flight_tickets_city_search_title"
+            android:textSize="23sp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cityDepartureLocationPickerButtonFlightTickets"
+            android:visibility="gone"/>
+
+        <android.widget.Button
+            android:id="@+id/airportDepartureLocationPickerButtonFlightTickets"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/airportDepartureTitleText"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="@string/flight_tickets_city_search_button_text"
+            android:gravity="start"
+            android:fontFamily="@font/roboto_regular"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:paddingVertical="13dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/white"
+            android:background="@drawable/share_rounded_picker_location_button"
+            android:visibility="gone"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutAirportDepartureSearchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/airportDepartureTitleText"
+            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:visibility="gone">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchAirportDeparture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchAirportDeparture"
+                app:srcCompat="@drawable/flight_tickets_return_country_search_field_button" />
+
+            <EditText
+                android:id="@+id/editTextSearchAirportDeparture"
+                android:layout_width="250dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="52dp"
+                android:hint="@string/flight_tickets_hint_city_search"
+                android:background="@android:color/transparent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:height="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageButton
+                android:id="@+id/clearAirportDepartureSearchFieldButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearchAirportDeparture"
+                app:layout_constraintStart_toEndOf="@+id/editTextSearchAirportDeparture"
+                app:layout_constraintTop_toTopOf="@+id/editTextSearchAirportDeparture"
+                android:layout_marginTop="3dp"
+                app:srcCompat="@drawable/flight_tickets_clear_country_search_field_button" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/layoutDividerAirportDeparture"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearchAirportDeparture"/>
+
+            <ListView
+                android:id="@+id/airportDepartureListView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+
+                android:layout_marginEnd="25dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/layoutDividerAirportDeparture" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

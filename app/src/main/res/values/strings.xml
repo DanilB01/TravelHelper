@@ -34,7 +34,8 @@
 
 
 
-
+    <string name="flight_tickets_arrival_place_title">Куда:</string>
+    <string name="flight_tickets_departure_place_title">Откуда:</string>
 
     <string name="flight_tickets_country_search_title">Выберите страну</string>
     <string name="flight_tickets_hint_country_search">Введите страну для поиска</string>

@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
-import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.FragmentFlightDateBinding
-import ru.itmo.travelhelper.databinding.FragmentFlightLocationBinding
 
 
 class FlightDateFragment : Fragment() {
@@ -20,7 +18,7 @@ class FlightDateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFlightDateBinding.inflate(inflater)
         return binding.root
     }
@@ -31,9 +29,16 @@ class FlightDateFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        dataFlightModel.locationDataMessage.observe(activity as LifecycleOwner, { locationDataList ->
-            if (locationDataList.all { it.isNotEmpty() }) {
-                binding.locationDataText.text = locationDataList.joinToString(", ")
+        dataFlightModel.locationArrivalDataMessage.observe(activity as LifecycleOwner, { locationArrivalDataList ->
+            if (locationArrivalDataList.all { it.isNotEmpty() }) {
+                binding.locationArrivalDataText.text = locationArrivalDataList.joinToString(", ")
+            }
+
+        })
+
+        dataFlightModel.locationDepartureDataMessage.observe(activity as LifecycleOwner, { locationDepartureDataList ->
+            if (locationDepartureDataList.all { it.isNotEmpty() }) {
+                binding.locationDepartureDataText.text = locationDepartureDataList.joinToString(", ")
             }
 
         })
