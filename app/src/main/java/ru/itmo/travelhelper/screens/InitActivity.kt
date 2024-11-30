@@ -3,7 +3,7 @@ package ru.itmo.travelhelper.screens
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.itmo.travelhelper.screens.flightTicketsScreen.FlightTicketsActivity
+import ru.itmo.travelhelper.screens.flightScreens.FlightActivity
 
 
 class InitActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class InitActivity : AppCompatActivity() {
         }
         else {
 //            val intentMainActivity = Intent(this, MainActivity::class.java)
-            val intentMainActivity = Intent(this, FlightTicketsActivity::class.java)
+            val intentMainActivity = Intent(this, FlightActivity::class.java)
             startActivity(intentMainActivity)
         }
         finish()
