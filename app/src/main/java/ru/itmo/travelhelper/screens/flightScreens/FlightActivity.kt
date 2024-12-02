@@ -101,7 +101,8 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                 openFragment(chooseFragment(currentFragmentNumber))
                 supportFragmentManager.setFragmentResult("requestFlightToArrivalFromActivity",
                     bundleOf(
-                        "ArrivalDataListFromAct" to presenter.giveArrivalData(),))
+                        "ArrivalDataListFromAct" to presenter.giveArrivalData(),
+                        "DepartureDataListFromAct" to presenter.giveDepartureData(),))
             }
         }
 
