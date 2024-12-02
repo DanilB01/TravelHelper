@@ -225,8 +225,6 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
     }
 
 
-
-
     private fun filter(text: String, list_data: List<String>, adapterName: UpdateListInterface) {
         val filteredList = mutableListOf<String>()
 

@@ -407,8 +407,5 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
         }
     }
 
-
-
-
 }
 
