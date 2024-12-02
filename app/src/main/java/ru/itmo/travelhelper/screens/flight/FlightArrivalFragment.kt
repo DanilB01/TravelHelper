@@ -3,6 +3,7 @@ package ru.itmo.travelhelper.screens.flight
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -99,7 +100,8 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
 
             showListAdapterWhenOnClicked("country")
-            adapterCountryArr.updateList(countries_data.toMutableList())
+            filter("", countries_data, adapterCountryArr, 0)
+
 
             presenter.updateExactIndexSavedArrivalData("",0)
             presenter.updateExactIndexSavedArrivalData("",1)
@@ -136,8 +138,8 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
             hideBlockOfView("airport")
 
             showListAdapterWhenOnClicked("city")
-            adapterCityArr.updateList(cities_data[presenter.giveArrivalData()[0]]?.toMutableList()
-                ?: mutableListOf("ERROR DATA"))
+            filter("", cities_data[presenter.giveArrivalData()[0]]!!, adapterCityArr, 1)
+
 
             presenter.updateExactIndexSavedArrivalData("",1)
             presenter.updateExactIndexSavedArrivalData("",2)
@@ -172,8 +174,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
         binding.airportArrivalLocationPickerButtonFlightTickets.setOnClickListener {
 
             showListAdapterWhenOnClicked("airport")
-            adapterAirportArr.updateList(airports_data[presenter.giveArrivalData()[1]]?.toMutableList()
-                ?: mutableListOf("ERROR DATA"))
+            filter("", airports_data[presenter.giveArrivalData()[1]]!!, adapterAirportArr, 2)
 
             presenter.updateExactIndexSavedArrivalData("",2)
             parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool",
