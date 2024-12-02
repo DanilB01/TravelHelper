@@ -1,6 +1,5 @@
 package ru.itmo.travelhelper.screens.flightScreens
 
-import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,25 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import ru.itmo.domain.models.flightTicketListModels.AirportModel
 import ru.itmo.domain.models.flightTicketListModels.CityModel
 import ru.itmo.domain.models.flightTicketListModels.CountryModel
 import ru.itmo.travelhelper.databinding.FragmentFlightLocationArrivalBinding
-import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterArrivalFragment
+import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterArrival
 import ru.itmo.travelhelper.view.flightViews.FlightArrivalFragmentView
 
 
 class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
     lateinit var binding: FragmentFlightLocationArrivalBinding
-    private val presenter: FlightPresenterArrivalFragment by lazy { FlightPresenterArrivalFragment(this ) }
+    private val presenter: FlightPresenterArrival by lazy { FlightPresenterArrival(this ) }
 
 
-    private lateinit var adapterCountry: ListAdapterArrival
-    private lateinit var adapterCity: ListAdapterArrival
-    private lateinit var adapterAirport: ListAdapterArrival
+    private lateinit var adapterCountryArr: ListAdapter
+    private lateinit var adapterCityArr: ListAdapter
+    private lateinit var adapterAirportArr: ListAdapter
 
     lateinit var countries_data: List<String>
     lateinit var cities_data: Map<String, List<String>>
@@ -68,22 +65,11 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
         }
 
 
-
-
-
-
-
-        adapterCountry = ListAdapterArrival(this, emptyList(), object : OnItemClickListener {
+        adapterCountryArr = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutCountryArrivalSearchField.visibility = View.GONE
-                binding.countryArrivalLocationPickerButtonFlightTickets.text = selectedItem
-                binding.countryArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.countryArrivalTitleText.text = "Страна"
+                showBlockWhenOnClicked("country", selectedItem)
 
-                binding.cityArrivalTitleText.text = "Выберите город"
-                binding.cityArrivalTitleText.visibility = View.VISIBLE
-                binding.cityArrivalLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать город"
-                binding.cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                showNextBlockWhenOnClicked("city")
 
                 presenter.updateExactIndexSavedArrivalData(selectedItem,0)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool", bundleOf("isArrivalFull" to false))
@@ -92,7 +78,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
         })
 
-        binding.countryArrivalListView.adapter = adapterCountry
+        binding.countryArrivalListView.adapter = adapterCountryArr
 
         binding.editTextSearchCountryArrival.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -100,31 +86,20 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(editable: Editable?) {
-                filter(editable.toString(), countries_data, adapterCountry, 0)
+                filter(editable.toString(), countries_data, adapterCountryArr, 0)
             }
         })
 
         binding.clearCountryArrivalSearchFieldButton.setOnClickListener {
             binding.editTextSearchCountryArrival.text.clear()
-            filter("", countries_data, adapterCountry, 0)
+            filter("", countries_data, adapterCountryArr, 0)
         }
 
         binding.countryArrivalLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.cityArrivalTitleText.visibility = View.GONE
-            binding.cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutCityArrivalSearchField.visibility = View.GONE
+            hideBlockOfView("city")
+            hideBlockOfView("airport")
 
-
-            binding.airportArrivalTitleText.visibility = View.GONE
-            binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutAirportArrivalSearchField.visibility = View.GONE
-
-
-            binding.countryArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchCountryArrival.text.clear()
-            binding.layoutCountryArrivalSearchField.visibility = View.VISIBLE
-            binding.countryArrivalTitleText.text = "Выберите страну"
-
+            showListAdapterWhenOnClicked("country")
 
             presenter.updateExactIndexSavedArrivalData("",0)
             presenter.updateExactIndexSavedArrivalData("",1)
@@ -134,24 +109,18 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
         }
 
 
-        adapterCity = ListAdapterArrival(this, emptyList(), object : OnItemClickListener {
+        adapterCityArr = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutCityArrivalSearchField.visibility = View.GONE
-                binding.cityArrivalLocationPickerButtonFlightTickets.text = selectedItem
-                binding.cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.cityArrivalTitleText.text = "Город"
+                showBlockWhenOnClicked("city", selectedItem)
 
-                binding.airportArrivalTitleText.text = "Выберите аэропорт"
-                binding.airportArrivalTitleText.visibility = View.VISIBLE
-                binding.airportArrivalLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать аэропорт"
-                binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                showNextBlockWhenOnClicked("airport")
 
                 presenter.updateExactIndexSavedArrivalData(selectedItem,1)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool", bundleOf("isArrivalFull" to false))
             }
         })
 
-        binding.cityArrivalListView.adapter = adapterCity
+        binding.cityArrivalListView.adapter = adapterCityArr
 
         binding.editTextSearchCityArrival.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -161,26 +130,21 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
             override fun afterTextChanged(editable: Editable?) {
                 val countryNameInButton: String = binding.countryArrivalLocationPickerButtonFlightTickets.text.toString()
                 val currentCountryCities: List<String> = getCitiesByCountryName(countryNameInButton)
-                filter(editable.toString(), currentCountryCities, adapterCity, 1)
+                filter(editable.toString(), currentCountryCities, adapterCityArr, 1)
             }
         })
 
         binding.clearCityArrivalSearchFieldButton.setOnClickListener {
             binding.editTextSearchCityArrival.text.clear()
             val countryNameInButton: String = binding.countryArrivalLocationPickerButtonFlightTickets.text.toString()
-            val currentCountryCities: List<String> = cities_data[countryNameInButton]!!
-            filter("", currentCountryCities, adapterCity, 1)
+            val currentCountryCities: List<String> = getCitiesByCountryName(countryNameInButton)
+            filter("", currentCountryCities, adapterCityArr, 1)
         }
 
         binding.cityArrivalLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.airportArrivalTitleText.visibility = View.GONE
-            binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutAirportArrivalSearchField.visibility = View.GONE
+            hideBlockOfView("airport")
 
-            binding.cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchCityArrival.text.clear()
-            binding.layoutCityArrivalSearchField.visibility = View.VISIBLE
-            binding.cityArrivalTitleText.text = "Выберите город"
+            showListAdapterWhenOnClicked("city")
 
 
             presenter.updateExactIndexSavedArrivalData("",1)
@@ -192,12 +156,9 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
 
 
-        adapterAirport = ListAdapterArrival(this, emptyList(), object : OnItemClickListener {
+        adapterAirportArr = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutAirportArrivalSearchField.visibility = View.GONE
-                binding.airportArrivalLocationPickerButtonFlightTickets.text = selectedItem
-                binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.airportArrivalTitleText.text = "Аэропорт"
+                showBlockWhenOnClicked("airport", selectedItem)
 
                 presenter.updateExactIndexSavedArrivalData(selectedItem,2)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool", bundleOf("isArrivalFull" to true))
@@ -205,7 +166,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
         })
 
-        binding.airportArrivalListView.adapter = adapterAirport
+        binding.airportArrivalListView.adapter = adapterAirportArr
 
         binding.editTextSearchAirportArrival.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -215,22 +176,19 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
             override fun afterTextChanged(editable: Editable?) {
                 val cityNameInButton: String = binding.cityArrivalLocationPickerButtonFlightTickets.text.toString()
                 val currentCityAirports: List<String> = getAirportsByCityName(cityNameInButton)
-                filter(editable.toString(), currentCityAirports, adapterAirport, 2)
+                filter(editable.toString(), currentCityAirports, adapterAirportArr, 2)
             }
         })
 
         binding.clearAirportArrivalSearchFieldButton.setOnClickListener {
             binding.editTextSearchAirportArrival.text.clear()
             val cityNameInButton: String = binding.cityArrivalLocationPickerButtonFlightTickets.text.toString()
-            val currentCityAirports: List<String> = airports_data[cityNameInButton]!!
-            filter("", currentCityAirports, adapterAirport, 2)
+            val currentCityAirports: List<String> = getAirportsByCityName(cityNameInButton)
+            filter("", currentCityAirports, adapterAirportArr, 2)
         }
 
         binding.airportArrivalLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchAirportArrival.text.clear()
-            binding.layoutAirportArrivalSearchField.visibility = View.VISIBLE
-            binding.airportArrivalTitleText.text = "Выберите аэропорт"
+            showListAdapterWhenOnClicked("airport")
 
 
             presenter.updateExactIndexSavedArrivalData("",2)
@@ -240,12 +198,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
     }
 
 
-    interface OnItemClickListener {
-        fun onItemClicked(selectedItem: String)
-    }
-
-
-    private fun filter(text: String, list_data: List<String>, adapterName: UpdateListInterfaceArrival, location_data_id: Int) {
+    private fun filter(text: String, list_data: List<String>, adapterName: UpdateListInterface, location_data_id: Int) {
         val filteredList = mutableListOf<String>()
         val DepartureDataList = localDepartureDataList
         val ArrivalDataList = presenter.giveArrivalData()
@@ -262,6 +215,8 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
         adapterName.updateList(filteredList)
     }
+
+
 
     override fun getCountries(countriesData: List<CountryModel>) {
         this.countries_data = countriesData
@@ -293,17 +248,12 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
     override fun setSavedArrivalData(locationDataList: MutableList<String>) {
         val DepartureDataList = localDepartureDataList
 
-        binding.countryArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-        binding.countryArrivalTitleText.visibility = View.VISIBLE
-        binding.countryArrivalTitleText.text = "Страна"
+        showBlockWhenSetSaving("country")
 
         if (locationDataList[0] != "") {
             binding.countryArrivalLocationPickerButtonFlightTickets.text = locationDataList[0]
 
-
-            binding.cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-            binding.cityArrivalTitleText.visibility = View.VISIBLE
-            binding.cityArrivalTitleText.text = "Город"
+            showBlockWhenSetSaving("city")
 
             if (locationDataList[1] != "" &&
                 !(DepartureDataList[1] == locationDataList[1] &&
@@ -311,9 +261,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
                 binding.cityArrivalLocationPickerButtonFlightTickets.text = locationDataList[1]
 
-                binding.airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.airportArrivalTitleText.visibility = View.VISIBLE
-                binding.airportArrivalTitleText.text = "Аэропорт"
+                showBlockWhenSetSaving("airport")
 
                 if (locationDataList[2] != "") {
                     binding.airportArrivalLocationPickerButtonFlightTickets.text = locationDataList[2]
@@ -340,57 +288,127 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
     }
 
-
-
-
-
-}
-
-
-
-
-interface UpdateListInterfaceArrival {
-    fun updateList(filteredItems: MutableList<String>)
-}
-
-class ListAdapterArrival(
-    context: FlightArrivalFragment,
-    private val items: List<String>,
-    private val itemClickListener: FlightArrivalFragment.OnItemClickListener
-) : BaseAdapter(), UpdateListInterfaceArrival {
-
-    private var filteredItems = items.toMutableList()
-
-    override fun getCount(): Int {
-        return filteredItems.size
-    }
-
-    override fun getItem(position: Int): Any? {
-        return null
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun updateList(filteredItems: MutableList<String>) {
-        this.filteredItems = filteredItems
-        notifyDataSetChanged()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: TextView = if (convertView == null) {
-            LayoutInflater.from(parent?.context).inflate(R.layout.simple_list_item_1, parent, false) as TextView
-        } else {
-            convertView as TextView
+    private fun hideBlockOfView(typeView: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    countryArrivalTitleText.visibility = View.GONE
+                    countryArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    layoutCountryArrivalSearchField.visibility = View.GONE }
+            }
+            "city" -> {
+                with(binding) {
+                    cityArrivalTitleText.visibility = View.GONE
+                    cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    layoutCityArrivalSearchField.visibility = View.GONE }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportArrivalTitleText.visibility = View.GONE
+                    airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    layoutAirportArrivalSearchField.visibility = View.GONE }
+            }
         }
-
-
-        view.setOnClickListener {
-            itemClickListener.onItemClicked(filteredItems[position])
-        }
-
-        view.text = filteredItems[position]
-        return view
     }
+
+
+    private fun showBlockWhenSetSaving(typeView: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    countryArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    countryArrivalTitleText.visibility = View.VISIBLE
+                    countryArrivalTitleText.text = "Страна" }
+            }
+            "city" -> {
+                with(binding) {
+                    cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    cityArrivalTitleText.visibility = View.VISIBLE
+                    cityArrivalTitleText.text = "Город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    airportArrivalTitleText.visibility = View.VISIBLE
+                    airportArrivalTitleText.text = "Аэропорт" }
+            }
+        }
+    }
+
+    private fun showBlockWhenOnClicked(typeView: String, selectedItem: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    layoutCountryArrivalSearchField.visibility = View.GONE
+                    countryArrivalLocationPickerButtonFlightTickets.text = selectedItem
+                    countryArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    countryArrivalTitleText.text = "Страна" }
+            }
+            "city" -> {
+                with(binding) {
+                    layoutCityArrivalSearchField.visibility = View.GONE
+                    cityArrivalLocationPickerButtonFlightTickets.text = selectedItem
+                    cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    cityArrivalTitleText.text = "Город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    layoutAirportArrivalSearchField.visibility = View.GONE
+                    airportArrivalLocationPickerButtonFlightTickets.text = selectedItem
+                    airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    airportArrivalTitleText.text = "Аэропорт" }
+            }
+        }
+    }
+
+
+    private fun showListAdapterWhenOnClicked(typeView: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    countryArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchCountryArrival.text.clear()
+                    layoutCountryArrivalSearchField.visibility = View.VISIBLE
+                    countryArrivalTitleText.text = "Выберите страну" }
+            }
+            "city" -> {
+                with(binding) {
+                    cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchCityArrival.text.clear()
+                    layoutCityArrivalSearchField.visibility = View.VISIBLE
+                    cityArrivalTitleText.text = "Выберите город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchAirportArrival.text.clear()
+                    layoutAirportArrivalSearchField.visibility = View.VISIBLE
+                    airportArrivalTitleText.text = "Выберите аэропорт" }
+            }
+        }
+    }
+
+    private fun showNextBlockWhenOnClicked(typeView: String) {
+        when (typeView) {
+            "city" -> {
+                with(binding) {
+                    cityArrivalTitleText.text = "Выберите город"
+                    cityArrivalTitleText.visibility = View.VISIBLE
+                    cityArrivalLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать город"
+                    cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportArrivalTitleText.text = "Выберите аэропорт"
+                    airportArrivalTitleText.visibility = View.VISIBLE
+                    airportArrivalLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать аэропорт"
+                    airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE }
+            }
+        }
+    }
+
+
+
+
 }
+

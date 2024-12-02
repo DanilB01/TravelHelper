@@ -4,7 +4,7 @@ package ru.itmo.travelhelper.presenter.flightPresentors
 
 import ru.itmo.travelhelper.screens.flightScreens.FlightDateFragment
 
-class FlightPresenterDateFragment(private val view: FlightDateFragment) {
+class FlightPresenterDate(private val view: FlightDateFragment) {
     private var savedDateData = mutableListOf("","","")
 
 
@@ -19,11 +19,5 @@ class FlightPresenterDateFragment(private val view: FlightDateFragment) {
     fun giveDateData(): MutableList<String> {
         return savedDateData
     }
-
-
-
-
-
-
 
 }

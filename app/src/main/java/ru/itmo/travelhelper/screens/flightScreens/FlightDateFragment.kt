@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.itmo.travelhelper.databinding.FragmentFlightDateBinding
-import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterDateFragment
+import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterDate
 
 
 class FlightDateFragment : Fragment() {
-    private val presenter: FlightPresenterDateFragment by lazy { FlightPresenterDateFragment(this) }
+    private val presenter: FlightPresenterDate by lazy { FlightPresenterDate(this) }
     lateinit var binding: FragmentFlightDateBinding
 
 
@@ -42,10 +42,6 @@ class FlightDateFragment : Fragment() {
             binding.locationDepartureDataText.text = localDepartureDataList.joinToString(", ")
 
         }
-
-
-
-
 
     }
 }

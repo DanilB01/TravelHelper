@@ -6,21 +6,19 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityFlightTicketsMainBinding
-import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterActivity
+import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenter
 import ru.itmo.travelhelper.view.flightViews.FlightActivityView
 
 class FlightActivity() : AppCompatActivity(), FlightActivityView {
 
 
     private val binding by lazy { ActivityFlightTicketsMainBinding.inflate(layoutInflater) }
-    private val presenter: FlightPresenterActivity by lazy { FlightPresenterActivity(this) }
+    private val presenter: FlightPresenter by lazy { FlightPresenter(this) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-
 
 
 
@@ -42,7 +40,6 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             result.getStringArrayList("DepartureListData")
                 ?.let { presenter.updateGlobalSavedDepartureData(it.toMutableList()) }
         }
-
 
 
 
@@ -125,7 +122,6 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             .replace(R.id.placeHolderForFragmentsFlightTickets, frag)
             .commit()
     }
-
 
 
 }

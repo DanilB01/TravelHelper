@@ -4,11 +4,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.itmo.data.repositories.flightTicketListRepositoriesImpl.LocationRepositoryImpl
-import ru.itmo.domain.usecases.flightTicketListUseCases.GetLocationUseCase
+import ru.itmo.domain.usecases.flightTicketListUseCases.GetAirportUseCase
+import ru.itmo.domain.usecases.flightTicketListUseCases.GetCityUseCase
+import ru.itmo.domain.usecases.flightTicketListUseCases.GetCountryUseCase
 import ru.itmo.travelhelper.screens.flightScreens.FlightDepartureFragment
 
-class FlightPresenterDepartureFragment(private val view: FlightDepartureFragment) {
-    private val getLocationUseCase = GetLocationUseCase(LocationRepositoryImpl())
+class FlightPresenterDeparture(private val view: FlightDepartureFragment) {
+    private val getCountryUseCase = GetCountryUseCase(LocationRepositoryImpl())
+    private val getCityUseCase = GetCityUseCase(LocationRepositoryImpl())
+    private val getAirportUseCase = GetAirportUseCase(LocationRepositoryImpl())
     private var savedDepartureData = mutableListOf("","","")
 
     fun setupView() {
@@ -19,9 +23,9 @@ class FlightPresenterDepartureFragment(private val view: FlightDepartureFragment
 
 
     private suspend fun loadLocationData() {
-        val countriesData = getLocationUseCase.getCountryData()
-        val citiesData = getLocationUseCase.getCityData()
-        val airportsData = getLocationUseCase.getAirportData()
+        val countriesData = getCountryUseCase.execute()
+        val citiesData = getCityUseCase.execute()
+        val airportsData = getAirportUseCase.execute()
 
         view.getCountries(countriesData)
         view.getCitiesMap(citiesData)
@@ -40,11 +44,5 @@ class FlightPresenterDepartureFragment(private val view: FlightDepartureFragment
     fun giveDepartureData(): MutableList<String> {
         return savedDepartureData
     }
-
-
-
-
-
-
 
 }

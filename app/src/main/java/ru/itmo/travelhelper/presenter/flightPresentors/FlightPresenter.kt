@@ -3,7 +3,7 @@ package ru.itmo.travelhelper.presenter.flightPresentors
 
 import ru.itmo.travelhelper.view.flightViews.FlightActivityView
 
-class FlightPresenterActivity(private val view: FlightActivityView) {
+class FlightPresenter(private val view: FlightActivityView) {
     var globalSavedArrivalData = mutableListOf("","","")
     var globalSavedDepartureData = mutableListOf("","","")
     var globalSavedDateData = mutableListOf("","","")
@@ -21,7 +21,6 @@ class FlightPresenterActivity(private val view: FlightActivityView) {
     fun giveDateData(): MutableList<String> {
         return globalSavedDateData
     }
-
 
 
     fun updateGlobalSavedArrivalData(dataToSave: MutableList<String>) {
@@ -43,6 +42,5 @@ class FlightPresenterActivity(private val view: FlightActivityView) {
     fun updateIsArrivalFull(dataToSave: Boolean) {
         this.isArrivalFull = dataToSave
     }
-
 
 }

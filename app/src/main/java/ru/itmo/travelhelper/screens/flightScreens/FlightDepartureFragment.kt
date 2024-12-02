@@ -6,26 +6,24 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import ru.itmo.domain.models.flightTicketListModels.AirportModel
 import ru.itmo.domain.models.flightTicketListModels.CityModel
 import ru.itmo.domain.models.flightTicketListModels.CountryModel
 import ru.itmo.travelhelper.databinding.FragmentFlightLocationDepartureBinding
-import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterDepartureFragment
+import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterDeparture
 import ru.itmo.travelhelper.view.flightViews.FlightDepartureFragmentView
 
 
 class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
     lateinit var binding: FragmentFlightLocationDepartureBinding
-    private val presenter: FlightPresenterDepartureFragment by lazy { FlightPresenterDepartureFragment(this) }
+    private val presenter: FlightPresenterDeparture by lazy { FlightPresenterDeparture(this) }
 
 
-    private lateinit var adapterCountry: ListAdapterDeparture
-    private lateinit var adapterCity: ListAdapterDeparture
-    private lateinit var adapterAirport: ListAdapterDeparture
+    private lateinit var adapterCountryDep: ListAdapter
+    private lateinit var adapterCityDep: ListAdapter
+    private lateinit var adapterAirportDep: ListAdapter
 
     lateinit var countries_data: List<String>
     lateinit var cities_data: Map<String, List<String>>
@@ -38,8 +36,6 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         // Отправляем данные при закрытии фрагмента
         parentFragmentManager.setFragmentResult("requestFlightToActivityFromDeparture", bundleOf("DepartureListData" to presenter.giveDepartureData()))
     }
-
-
 
 
     override fun onCreateView(
@@ -58,8 +54,6 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         parentFragmentManager.setFragmentResultListener("requestFlightToDepartureFromActivity", this) { _, result ->
             result.getStringArrayList("DepartureDataListFromAct")?.let { presenter.updateFullSavedDepartureData(it.toMutableList()) }
@@ -67,10 +61,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
         }
 
-
-
-
-        adapterCountry = ListAdapterDeparture(this, emptyList(), object : OnItemClickListener {
+        adapterCountryDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutCountryDepartureSearchField.visibility = View.GONE
                 binding.countryDepartureLocationPickerButtonFlightTickets.text = selectedItem
@@ -88,7 +79,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             }
         })
 
-        binding.countryDepartureListView.adapter = adapterCountry
+        binding.countryDepartureListView.adapter = adapterCountryDep
 
         binding.editTextSearchCountryDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -96,13 +87,13 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(editable: Editable?) {
-                filter(editable.toString(), countries_data, adapterCountry)
+                filter(editable.toString(), countries_data, adapterCountryDep)
             }
         })
 
         binding.clearCountryDepartureSearchFieldButton.setOnClickListener {
             binding.editTextSearchCountryDeparture.text.clear()
-            filter("", countries_data, adapterCountry)
+            filter("", countries_data, adapterCountryDep)
         }
 
         binding.countryDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
@@ -129,8 +120,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
 
 
-
-        adapterCity = ListAdapterDeparture(this, emptyList(), object : OnItemClickListener {
+        adapterCityDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutCityDepartureSearchField.visibility = View.GONE
                 binding.cityDepartureLocationPickerButtonFlightTickets.text = selectedItem
@@ -147,7 +137,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             }
         })
 
-        binding.cityDepartureListView.adapter = adapterCity
+        binding.cityDepartureListView.adapter = adapterCityDep
 
         binding.editTextSearchCityDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -157,7 +147,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             override fun afterTextChanged(editable: Editable?) {
                 val countryNameInButton: String = binding.countryDepartureLocationPickerButtonFlightTickets.text.toString()
                 val currentCountryCities: List<String> = getCitiesByCountryName(countryNameInButton)
-                filter(editable.toString(), currentCountryCities, adapterCity)
+                filter(editable.toString(), currentCountryCities, adapterCityDep)
             }
         })
 
@@ -165,7 +155,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             binding.editTextSearchCityDeparture.text.clear()
             val countryNameInButton: String = binding.countryDepartureLocationPickerButtonFlightTickets.text.toString()
             val currentCountryCities: List<String> = cities_data[countryNameInButton]!!
-            filter("", currentCountryCities, adapterCity)
+            filter("", currentCountryCities, adapterCityDep)
         }
 
         binding.cityDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
@@ -185,8 +175,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
 
 
-
-        adapterAirport = ListAdapterDeparture(this, emptyList(), object : OnItemClickListener {
+        adapterAirportDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 binding.layoutAirportDepartureSearchField.visibility = View.GONE
                 binding.airportDepartureLocationPickerButtonFlightTickets.text = selectedItem
@@ -202,7 +191,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
         })
 
-        binding.airportDepartureListView.adapter = adapterAirport
+        binding.airportDepartureListView.adapter = adapterAirportDep
 
         binding.editTextSearchAirportDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -212,7 +201,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             override fun afterTextChanged(editable: Editable?) {
                 val cityNameInButton: String = binding.cityDepartureLocationPickerButtonFlightTickets.text.toString()
                 val currentCityAirports: List<String> = getAirportsByCityName(cityNameInButton)
-                filter(editable.toString(), currentCityAirports, adapterAirport)
+                filter(editable.toString(), currentCityAirports, adapterAirportDep)
             }
         })
 
@@ -220,7 +209,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
             binding.editTextSearchAirportDeparture.text.clear()
             val cityNameInButton: String = binding.cityDepartureLocationPickerButtonFlightTickets.text.toString()
             val currentCityAirports: List<String> = airports_data[cityNameInButton]!!
-            filter("", currentCityAirports, adapterAirport)
+            filter("", currentCityAirports, adapterAirportDep)
         }
 
         binding.airportDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
@@ -236,11 +225,9 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
     }
 
 
-    interface OnItemClickListener {
-        fun onItemClicked(selectedItem: String)
-    }
 
-    private fun filter(text: String, list_data: List<String>, adapterName: UpdateListInterfaceDeparture) {
+
+    private fun filter(text: String, list_data: List<String>, adapterName: UpdateListInterface) {
         val filteredList = mutableListOf<String>()
 
         if (text.isNotEmpty()) {
@@ -292,10 +279,6 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
     }
 
-    override fun giveDepartureData(): MutableList<String> {
-        return presenter.giveDepartureData()
-    }
-
 
     override fun getAirportsByCityName(city_name: String): List<String> {
         return airports_data[city_name]!!
@@ -309,48 +292,5 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 }
 
 
-interface UpdateListInterfaceDeparture {
-    fun updateList(filteredItems: MutableList<String>)
-}
-
-class ListAdapterDeparture(
-    context: FlightDepartureFragment,
-    private val items: List<String>,
-    private val itemClickListener: FlightDepartureFragment.OnItemClickListener
-) : BaseAdapter(), UpdateListInterfaceDeparture {
-
-    private var filteredItems = items.toMutableList()
-
-    override fun getCount(): Int {
-        return filteredItems.size
-    }
-
-    override fun getItem(position: Int): Any? {
-        return null
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun updateList(filteredItems: MutableList<String>) {
-        this.filteredItems = filteredItems
-        notifyDataSetChanged()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: TextView = if (convertView == null) {
-            LayoutInflater.from(parent?.context).inflate(android.R.layout.simple_list_item_1, parent, false) as TextView
-        } else {
-            convertView as TextView
-        }
 
 
-        view.setOnClickListener {
-            itemClickListener.onItemClicked(filteredItems[position])
-        }
-
-        view.text = filteredItems[position]
-        return view
-    }
-}
