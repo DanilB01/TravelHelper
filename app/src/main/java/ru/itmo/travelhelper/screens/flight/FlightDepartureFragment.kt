@@ -16,7 +16,7 @@ import ru.itmo.travelhelper.presenter.flight.FlightDeparturePresenter
 import ru.itmo.travelhelper.view.flight.FlightDepartureView
 
 
-class FlightDeparture : Fragment(), FlightDepartureView {
+class FlightDepartureFragment : Fragment(), FlightDepartureView {
     lateinit var binding: FragmentFlightLocationDepartureBinding
     private val presenter: FlightDeparturePresenter by lazy { FlightDeparturePresenter(this) }
 
@@ -33,8 +33,14 @@ class FlightDeparture : Fragment(), FlightDepartureView {
     override fun onDestroy() {
         super.onDestroy()
 
-        // Отправляем данные при закрытии фрагмента
+        // Отправляем данные в активити при закрытии фрагмента
         parentFragmentManager.setFragmentResult("requestFlightToActivityFromDeparture", bundleOf("DepartureListData" to presenter.giveDepartureData()))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        //Подгрузка данных с data
+        presenter.setupView()
+        super.onCreate(savedInstanceState)
     }
 
 
@@ -43,37 +49,27 @@ class FlightDeparture : Fragment(), FlightDepartureView {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFlightLocationDepartureBinding.inflate(inflater)
-        presenter.setupView()
         return binding.root
 
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = FlightDeparture()
+        fun newInstance() = FlightDepartureFragment()
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        //Получение данных с активити
         parentFragmentManager.setFragmentResultListener("requestFlightToDepartureFromActivity", this) { _, result ->
             result.getStringArrayList("DepartureDataListFromAct")?.let { presenter.updateFullSavedDepartureData(it.toMutableList()) }
             setSavedDepartureData(presenter.giveDepartureData())
-
         }
 
-        adapterCountryDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("country", selectedItem)
+        //Адаптер для страны
 
-                showNextBlockWhenOnClicked("city")
-
-                presenter.updateExactIndexSavedDepartureData(selectedItem,0)
-                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
-
-            }
-        })
-
-        binding.countryDepartureListView.adapter = adapterCountryDep
+        launchCountryAdapter()
 
         binding.editTextSearchCountryDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -95,27 +91,19 @@ class FlightDeparture : Fragment(), FlightDepartureView {
             hideBlockOfView("airport")
 
             showListAdapterWhenOnClicked("country")
+            adapterCountryDep.updateList(countries_data.toMutableList())
 
             presenter.updateExactIndexSavedDepartureData("",0)
             presenter.updateExactIndexSavedDepartureData("",1)
             presenter.updateExactIndexSavedDepartureData("",2)
-            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
+            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                bundleOf("isDepartureFull" to false))
 
         }
 
+        //Адаптер для города
 
-        adapterCityDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("city", selectedItem)
-
-                showNextBlockWhenOnClicked("airport")
-
-                presenter.updateExactIndexSavedDepartureData(selectedItem,1)
-                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
-            }
-        })
-
-        binding.cityDepartureListView.adapter = adapterCityDep
+        launchCityAdapter()
 
         binding.editTextSearchCityDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -140,27 +128,19 @@ class FlightDeparture : Fragment(), FlightDepartureView {
             hideBlockOfView("airport")
 
             showListAdapterWhenOnClicked("city")
+            adapterCityDep.updateList(cities_data[presenter.giveDepartureData()[0]]?.toMutableList()
+                ?: mutableListOf("ERROR DATA"))
 
             presenter.updateExactIndexSavedDepartureData("",1)
             presenter.updateExactIndexSavedDepartureData("",2)
-            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
+            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                bundleOf("isDepartureFull" to false))
 
         }
 
+        //Адаптер для аэропорта
 
-        adapterAirportDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("airport", selectedItem)
-
-                presenter.updateExactIndexSavedDepartureData(selectedItem,2)
-
-                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to true))
-
-            }
-
-        })
-
-        binding.airportDepartureListView.adapter = adapterAirportDep
+        launchAirportAdapter()
 
         binding.editTextSearchAirportDeparture.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -183,51 +163,113 @@ class FlightDeparture : Fragment(), FlightDepartureView {
 
         binding.airportDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
             showListAdapterWhenOnClicked("airport")
+            adapterAirportDep.updateList(airports_data[presenter.giveDepartureData()[1]]?.toMutableList()
+                ?: mutableListOf("ERROR DATA"))
 
             presenter.updateExactIndexSavedDepartureData("",2)
-            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
+            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                bundleOf("isDepartureFull" to false))
         }
 
     }
 
 
+
+    //Функция создания адаптера для страны
+    private fun launchCountryAdapter() {
+        adapterCountryDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+            override fun onItemClicked(selectedItem: String) {
+                showBlockWhenOnClicked("country", selectedItem)
+
+                showNextBlockWhenOnClicked("city")
+
+
+                presenter.updateExactIndexSavedDepartureData(selectedItem,0)
+                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                    bundleOf("isDepartureFull" to false))
+
+            }
+        })
+
+        binding.countryDepartureListView.adapter = adapterCountryDep
+    }
+
+    //Функция создания адаптера для города
+    private fun launchCityAdapter() {
+        adapterCityDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+            override fun onItemClicked(selectedItem: String) {
+                showBlockWhenOnClicked("city", selectedItem)
+
+                showNextBlockWhenOnClicked("airport")
+
+                presenter.updateExactIndexSavedDepartureData(selectedItem,1)
+                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                    bundleOf("isDepartureFull" to false))
+            }
+        })
+
+        binding.cityDepartureListView.adapter = adapterCityDep
+    }
+
+    //Функция создания адаптера для аэропорта
+    private fun launchAirportAdapter() {
+        adapterAirportDep = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+            override fun onItemClicked(selectedItem: String) {
+                showBlockWhenOnClicked("airport", selectedItem)
+
+                presenter.updateExactIndexSavedDepartureData(selectedItem,2)
+
+                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
+                    bundleOf("isDepartureFull" to true))
+
+            }
+
+        })
+
+        binding.airportDepartureListView.adapter = adapterAirportDep
+    }
+
+
+    //Функция фильтрации текста в адаптере
     private fun filter(text: String, list_data: List<String>, adapterName: FlightUpdateListInterface) {
         val filteredList = mutableListOf<String>()
 
-        if (text.isNotEmpty()) {
-            for (item in list_data) {
-                if (item.contains(text, ignoreCase = true)) {
+        for (item in list_data) {
+            if (item.contains(text, ignoreCase = true)) {
                     filteredList.add(item)
-                }
             }
         }
+
 
         adapterName.updateList(filteredList)
     }
 
+    //Функция получения списка стран
     override fun getCountries(countriesData: List<CountryModel>) {
         this.countries_data = countriesData
             .map { country -> country.countryName }
     }
 
+    //Функция получения словаря городов
     override fun getCitiesMap(citiesData: Map<CountryModel, List<CityModel>>) {
         this.cities_data = citiesData
             .mapValues { entry -> entry.value.map { city -> city.cityName } }
             .mapKeys { keyName -> keyName.key.countryName }
     }
 
+    //Функция получения словаря аэропортов
     override fun getAirportMap(airportsData: Map<CityModel, List<AirportModel>>) {
         this.airports_data = airportsData
             .mapValues { entry -> entry.value.map { airport -> airport.airportName } }
             .mapKeys { keyName -> keyName.key.cityName }
     }
 
-
+    //Функция установки сохраненных данных вылета
     override fun setSavedDepartureData(locationDataList: MutableList<String>) {
         if (locationDataList.all { it.isNotEmpty() }) {
             binding.countryDepartureLocationPickerButtonFlightTickets.text = locationDataList[0]
             binding.countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-            binding.countryDepartureListView.visibility = View.VISIBLE
+            binding.countryDepartureTitleText.visibility = View.VISIBLE
             binding.countryDepartureTitleText.text = "Страна"
 
             binding.cityDepartureLocationPickerButtonFlightTickets.text = locationDataList[1]
@@ -243,15 +285,18 @@ class FlightDeparture : Fragment(), FlightDepartureView {
         }
     }
 
-
+    //Функция получения списка аэропортов по имени города
     override fun getAirportsByCityName(city_name: String): List<String> {
         return airports_data[city_name]!!
     }
 
+    //Функция получения списка городов по имени страны
     override fun getCitiesByCountryName(country_name: String): List<String> {
         return cities_data[country_name]!!
     }
 
+
+    //Функция скрытия блока View
     private fun hideBlockOfView(typeView: String) {
         when (typeView) {
             "city" -> {
@@ -269,30 +314,7 @@ class FlightDeparture : Fragment(), FlightDepartureView {
         }
     }
 
-
-    private fun showBlockWhenSetSaving(typeView: String) {
-        when (typeView) {
-            "country" -> {
-                with(binding) {
-                    countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                    countryDepartureTitleText.visibility = View.VISIBLE
-                    countryDepartureTitleText.text = "Страна" }
-            }
-            "city" -> {
-                with(binding) {
-                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                    cityDepartureTitleText.visibility = View.VISIBLE
-                    cityDepartureTitleText.text = "Город" }
-            }
-            "airport" -> {
-                with(binding) {
-                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                    airportDepartureTitleText.visibility = View.VISIBLE
-                    airportDepartureTitleText.text = "Аэропорт" }
-            }
-        }
-    }
-
+    //Функция отображения текущего блока при клике на текущий
     private fun showBlockWhenOnClicked(typeView: String, selectedItem: String) {
         when (typeView) {
             "country" -> {
@@ -319,7 +341,7 @@ class FlightDeparture : Fragment(), FlightDepartureView {
         }
     }
 
-
+    //Функция отображения адаптера при клике
     private fun showListAdapterWhenOnClicked(typeView: String) {
         when (typeView) {
             "country" -> {
@@ -346,6 +368,7 @@ class FlightDeparture : Fragment(), FlightDepartureView {
         }
     }
 
+    //Функция отображения следующего блока при клике на текущий
     private fun showNextBlockWhenOnClicked(typeView: String) {
         when (typeView) {
             "city" -> {

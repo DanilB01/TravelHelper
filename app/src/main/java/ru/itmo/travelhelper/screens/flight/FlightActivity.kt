@@ -111,7 +111,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
     private fun chooseFragment(idFragment: Int): Fragment {
         var fragmentChosen: Fragment = FlightArrivalFragment.newInstance()
         when (idFragment) {
-            0 -> fragmentChosen = FlightDeparture.newInstance()
+            0 -> fragmentChosen = FlightDepartureFragment.newInstance()
             1 -> fragmentChosen = FlightArrivalFragment.newInstance()
             2 -> fragmentChosen = FlightDateFragment.newInstance()
         }

@@ -34,10 +34,11 @@ class FlightDateFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //Получение данных с активити
         parentFragmentManager.setFragmentResultListener("requestFlightToDateFromActivity", this) { _, result ->
             result.getStringArrayList("DateDataListFromAct")?.let { presenter.updateFullSavedDateData(it.toMutableList()) }
-            localDepartureDataList = result.getStringArrayList("DepartureDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
-            localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
+            this.localDepartureDataList = result.getStringArrayList("DepartureDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
+            this.localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             binding.locationArrivalDataText.text = localArrivalDataList.joinToString(", ")
             binding.locationDepartureDataText.text = localDepartureDataList.joinToString(", ")
 

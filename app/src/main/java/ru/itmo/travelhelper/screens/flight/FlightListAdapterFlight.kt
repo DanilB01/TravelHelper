@@ -16,8 +16,8 @@ interface FlightUpdateListInterface {
 
 class FlightListAdapterFlight(
     private val items: List<String>,
-    private val itemClickListener: FlightOnItemClickListener
-) : BaseAdapter(), FlightUpdateListInterface {
+    private val itemClickListener: FlightOnItemClickListener)
+    : BaseAdapter(), FlightUpdateListInterface {
 
     private var filteredItems = items.toMutableList()
 
