@@ -63,15 +63,9 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
         adapterCountryDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutCountryDepartureSearchField.visibility = View.GONE
-                binding.countryDepartureLocationPickerButtonFlightTickets.text = selectedItem
-                binding.countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.countryDepartureTitleText.text = "Страна"
+                showBlockWhenOnClicked("country", selectedItem)
 
-                binding.cityDepartureTitleText.text = "Выберите город"
-                binding.cityDepartureTitleText.visibility = View.VISIBLE
-                binding.cityDepartureLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать город"
-                binding.cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                showNextBlockWhenOnClicked("city")
 
                 presenter.updateExactIndexSavedDepartureData(selectedItem,0)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
@@ -97,20 +91,10 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
 
         binding.countryDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.cityDepartureTitleText.visibility = View.GONE
-            binding.cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutCityDepartureSearchField.visibility = View.GONE
+            hideBlockOfView("city")
+            hideBlockOfView("airport")
 
-
-            binding.airportDepartureTitleText.visibility = View.GONE
-            binding.airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutAirportDepartureSearchField.visibility = View.GONE
-
-
-            binding.countryDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchCountryDeparture.text.clear()
-            binding.layoutCountryDepartureSearchField.visibility = View.VISIBLE
-            binding.countryDepartureTitleText.text = "Выберите страну"
+            showListAdapterWhenOnClicked("country")
 
             presenter.updateExactIndexSavedDepartureData("",0)
             presenter.updateExactIndexSavedDepartureData("",1)
@@ -122,15 +106,9 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
         adapterCityDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutCityDepartureSearchField.visibility = View.GONE
-                binding.cityDepartureLocationPickerButtonFlightTickets.text = selectedItem
-                binding.cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.cityDepartureTitleText.text = "Город"
+                showBlockWhenOnClicked("city", selectedItem)
 
-                binding.airportDepartureTitleText.text = "Выберите аэропорт"
-                binding.airportDepartureTitleText.visibility = View.VISIBLE
-                binding.airportDepartureLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать аэропорт"
-                binding.airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                showNextBlockWhenOnClicked("airport")
 
                 presenter.updateExactIndexSavedDepartureData(selectedItem,1)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
@@ -159,14 +137,9 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
 
         binding.cityDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.airportDepartureTitleText.visibility = View.GONE
-            binding.airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.layoutAirportDepartureSearchField.visibility = View.GONE
+            hideBlockOfView("airport")
 
-            binding.cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchCityDeparture.text.clear()
-            binding.layoutCityDepartureSearchField.visibility = View.VISIBLE
-            binding.cityDepartureTitleText.text = "Выберите город"
+            showListAdapterWhenOnClicked("city")
 
             presenter.updateExactIndexSavedDepartureData("",1)
             presenter.updateExactIndexSavedDepartureData("",2)
@@ -177,13 +150,9 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
         adapterAirportDep = ListAdapter(emptyList(), object : OnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
-                binding.layoutAirportDepartureSearchField.visibility = View.GONE
-                binding.airportDepartureLocationPickerButtonFlightTickets.text = selectedItem
-                binding.airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
-                binding.airportDepartureTitleText.text = "Аэропорт"
+                showBlockWhenOnClicked("airport", selectedItem)
 
                 presenter.updateExactIndexSavedDepartureData(selectedItem,2)
-
 
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to true))
 
@@ -213,10 +182,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
         }
 
         binding.airportDepartureLocationPickerButtonFlightTickets.setOnClickListener() {
-            binding.airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-            binding.editTextSearchAirportDeparture.text.clear()
-            binding.layoutAirportDepartureSearchField.visibility = View.VISIBLE
-            binding.airportDepartureTitleText.text = "Выберите аэропорт"
+            showListAdapterWhenOnClicked("airport")
 
             presenter.updateExactIndexSavedDepartureData("",2)
             parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool", bundleOf("isDepartureFull" to false))
@@ -284,6 +250,119 @@ class FlightDepartureFragment : Fragment(), FlightDepartureFragmentView {
 
     override fun getCitiesByCountryName(country_name: String): List<String> {
         return cities_data[country_name]!!
+    }
+
+    private fun hideBlockOfView(typeView: String) {
+        when (typeView) {
+            "city" -> {
+                with(binding) {
+                    cityDepartureTitleText.visibility = View.GONE
+                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
+                    layoutCityDepartureSearchField.visibility = View.GONE }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportDepartureTitleText.visibility = View.GONE
+                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
+                    layoutAirportDepartureSearchField.visibility = View.GONE }
+            }
+        }
+    }
+
+
+    private fun showBlockWhenSetSaving(typeView: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    countryDepartureTitleText.visibility = View.VISIBLE
+                    countryDepartureTitleText.text = "Страна" }
+            }
+            "city" -> {
+                with(binding) {
+                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    cityDepartureTitleText.visibility = View.VISIBLE
+                    cityDepartureTitleText.text = "Город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    airportDepartureTitleText.visibility = View.VISIBLE
+                    airportDepartureTitleText.text = "Аэропорт" }
+            }
+        }
+    }
+
+    private fun showBlockWhenOnClicked(typeView: String, selectedItem: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    layoutCountryDepartureSearchField.visibility = View.GONE
+                    countryDepartureLocationPickerButtonFlightTickets.text = selectedItem
+                    countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    countryDepartureTitleText.text = "Страна" }
+            }
+            "city" -> {
+                with(binding) {
+                    layoutCityDepartureSearchField.visibility = View.GONE
+                    cityDepartureLocationPickerButtonFlightTickets.text = selectedItem
+                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    cityDepartureTitleText.text = "Город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    layoutAirportDepartureSearchField.visibility = View.GONE
+                    airportDepartureLocationPickerButtonFlightTickets.text = selectedItem
+                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
+                    airportDepartureTitleText.text = "Аэропорт" }
+            }
+        }
+    }
+
+
+    private fun showListAdapterWhenOnClicked(typeView: String) {
+        when (typeView) {
+            "country" -> {
+                with(binding) {
+                    countryDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchCountryDeparture.text.clear()
+                    layoutCountryDepartureSearchField.visibility = View.VISIBLE
+                    countryDepartureTitleText.text = "Выберите страну" }
+            }
+            "city" -> {
+                with(binding) {
+                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchCityDeparture.text.clear()
+                    layoutCityDepartureSearchField.visibility = View.VISIBLE
+                    cityDepartureTitleText.text = "Выберите город" }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
+                    editTextSearchAirportDeparture.text.clear()
+                    layoutAirportDepartureSearchField.visibility = View.VISIBLE
+                    airportDepartureTitleText.text = "Выберите аэропорт" }
+            }
+        }
+    }
+
+    private fun showNextBlockWhenOnClicked(typeView: String) {
+        when (typeView) {
+            "city" -> {
+                with(binding) {
+                    cityDepartureTitleText.text = "Выберите город"
+                    cityDepartureTitleText.visibility = View.VISIBLE
+                    cityDepartureLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать город"
+                    cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE }
+            }
+            "airport" -> {
+                with(binding) {
+                    airportDepartureTitleText.text = "Выберите аэропорт"
+                    airportDepartureTitleText.visibility = View.VISIBLE
+                    airportDepartureLocationPickerButtonFlightTickets.text = "Нажмите, чтобы выбрать аэропорт"
+                    airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE }
+            }
+        }
     }
 
 

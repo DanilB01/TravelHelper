@@ -290,12 +290,6 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalFragmentView {
 
     private fun hideBlockOfView(typeView: String) {
         when (typeView) {
-            "country" -> {
-                with(binding) {
-                    countryArrivalTitleText.visibility = View.GONE
-                    countryArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-                    layoutCountryArrivalSearchField.visibility = View.GONE }
-            }
             "city" -> {
                 with(binding) {
                     cityArrivalTitleText.visibility = View.GONE
