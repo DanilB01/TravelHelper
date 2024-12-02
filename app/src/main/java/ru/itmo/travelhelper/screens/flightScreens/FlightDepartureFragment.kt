@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import ru.itmo.domain.models.flightTicketListModels.AirportModel
-import ru.itmo.domain.models.flightTicketListModels.CityModel
-import ru.itmo.domain.models.flightTicketListModels.CountryModel
+import ru.itmo.domain.models.flightModels.AirportModel
+import ru.itmo.domain.models.flightModels.CityModel
+import ru.itmo.domain.models.flightModels.CountryModel
 import ru.itmo.travelhelper.databinding.FragmentFlightLocationDepartureBinding
 import ru.itmo.travelhelper.presenter.flightPresentors.FlightPresenterDeparture
 import ru.itmo.travelhelper.view.flightViews.FlightDepartureFragmentView

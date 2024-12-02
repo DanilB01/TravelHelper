@@ -1,10 +1,10 @@
 package ru.itmo.data.repositories.flightTicketListRepositoriesImpl
 
 
-import ru.itmo.domain.models.flightTicketListModels.AirportModel
-import ru.itmo.domain.models.flightTicketListModels.CityModel
-import ru.itmo.domain.models.flightTicketListModels.CountryModel
-import ru.itmo.domain.repositories.flightTicketListRepositories.LocationRepository
+import ru.itmo.domain.models.flightModels.AirportModel
+import ru.itmo.domain.models.flightModels.CityModel
+import ru.itmo.domain.models.flightModels.CountryModel
+import ru.itmo.domain.repositories.flightRepositories.LocationRepository
 
 class LocationRepositoryImpl: LocationRepository {
     // TODO: Add service implementation

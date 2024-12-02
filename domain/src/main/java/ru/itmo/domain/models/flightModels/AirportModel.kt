@@ -1,4 +1,4 @@
-package ru.itmo.domain.models.flightTicketListModels
+package ru.itmo.domain.models.flightModels
 
 data class AirportModel(
     val airportName: String,

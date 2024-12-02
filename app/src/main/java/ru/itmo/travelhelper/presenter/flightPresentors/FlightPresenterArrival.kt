@@ -4,9 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.itmo.data.repositories.flightTicketListRepositoriesImpl.LocationRepositoryImpl
-import ru.itmo.domain.usecases.flightTicketListUseCases.GetAirportUseCase
-import ru.itmo.domain.usecases.flightTicketListUseCases.GetCityUseCase
-import ru.itmo.domain.usecases.flightTicketListUseCases.GetCountryUseCase
+import ru.itmo.domain.usecases.flightUseCases.GetAirportUseCase
+import ru.itmo.domain.usecases.flightUseCases.GetCityUseCase
+import ru.itmo.domain.usecases.flightUseCases.GetCountryUseCase
 import ru.itmo.travelhelper.screens.flightScreens.FlightArrivalFragment
 
 class FlightPresenterArrival(private val view: FlightArrivalFragment) {

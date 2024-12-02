@@ -1,8 +1,8 @@
 package ru.itmo.travelhelper.view.flightViews
 
-import ru.itmo.domain.models.flightTicketListModels.AirportModel
-import ru.itmo.domain.models.flightTicketListModels.CityModel
-import ru.itmo.domain.models.flightTicketListModels.CountryModel
+import ru.itmo.domain.models.flightModels.AirportModel
+import ru.itmo.domain.models.flightModels.CityModel
+import ru.itmo.domain.models.flightModels.CountryModel
 
 interface FlightDepartureFragmentView {
 
