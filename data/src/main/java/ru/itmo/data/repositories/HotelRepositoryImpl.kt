@@ -2,9 +2,8 @@ package ru.itmo.data.repositories
 
 import ru.itmo.data.mappers.HotelMapper
 import ru.itmo.data.remote.hotel.HotelApiModel
-import ru.itmo.data.remote.hotel.HotelApiService
 import ru.itmo.domain.models.hotelModels.Hotel
-import ru.itmo.domain.repositories.hotelRepositories.HotelRepository
+import ru.itmo.domain.repositories.hotel.HotelRepository
 
 class HotelRepositoryImpl: HotelRepository {
     // TODO: Add service implementation
