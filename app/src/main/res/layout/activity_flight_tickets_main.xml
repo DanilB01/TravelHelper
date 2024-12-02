@@ -8,7 +8,7 @@
     tools:context=".screens.flight.FlightActivity"
     android:background="@color/background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/placeHolderForFragmentsFlightTickets"
         android:layout_width="match_parent"
         android:layout_height="0dp"
