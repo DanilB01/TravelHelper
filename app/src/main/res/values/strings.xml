@@ -32,8 +32,6 @@
     <string name="init_button_start">Начать</string>
 
 
-
-
     <string name="flight_tickets_arrival_place_title">Куда:</string>
     <string name="flight_tickets_departure_place_title">Откуда:</string>
 
@@ -46,12 +44,16 @@
     <string name="flight_tickets_city_search_button_text">Нажмите, чтобы выбрать город</string>
 
 
-
     <string name="flight_tickets_airport_search_title">Выберите аэропорт</string>
     <string name="flight_tickets_hint_airport_search">Введите аэропорт для поиска</string>
     <string name="flight_tickets_airport_search_button_text">Нажмите, чтобы выбрать аэропорт</string>
 
-
+    <string name="titleTextFlightLocations">Место вылета и прилета</string>
+    <string name="titleTextChoseDate">Выберите даты</string>
+    <string name="textFlightThere">Туда</string>
+    <string name="hintTypeDate">Введите дату</string>
+    <string name="textFlightReturn">Обратно</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -42,9 +42,10 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         //Подгрузка данных с data
         presenter.setupView()
-        super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(

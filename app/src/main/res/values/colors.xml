@@ -8,6 +8,7 @@
     <color name="flight_tickets_picker_location_button_bg">#556B8F</color>
     <color name="flight_tickets_button_back_border">#70787C</color>
     <color name="flight_tickets_button_back_text">#01687D</color>
+    <color name="flight_tickets_edit_text_date_picker">#485E92</color>
     <color name="init_block_bg">#FFFFFF</color>
     <color name="init_block_border">#CAC4D0</color>
     <color name="init_button_bg">#556B8F</color>

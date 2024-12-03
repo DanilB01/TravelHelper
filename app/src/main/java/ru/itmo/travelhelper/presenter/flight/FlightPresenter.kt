@@ -9,6 +9,7 @@ class FlightPresenter(private val view: FlightActivityView) {
     var globalSavedDateData = mutableListOf("","","")
     var isDepartureFull: Boolean = false
     var isArrivalFull: Boolean = false
+    var isDateFull: Boolean = false
 
     fun giveArrivalData(): MutableList<String> {
         return globalSavedArrivalData
@@ -41,6 +42,10 @@ class FlightPresenter(private val view: FlightActivityView) {
 
     fun updateIsArrivalFull(dataToSave: Boolean) {
         this.isArrivalFull = dataToSave
+    }
+
+    fun updateIsDateFull(dataToSave: Boolean) {
+        this.isDateFull = dataToSave
     }
 
 }

@@ -36,6 +36,10 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             presenter.updateIsArrivalFull(result.getBoolean("isArrivalFull"))
         }
 
+        supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromDateBool", this) { _, result ->
+            presenter.updateIsDateFull(result.getBoolean("isDateFull"))
+        }
+
         supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromDeparture", this) { _, result ->
             result.getStringArrayList("DepartureListData")
                 ?.let { presenter.updateGlobalSavedDepartureData(it.toMutableList()) }
@@ -81,8 +85,9 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                 }
             }
 
-            else if (currentFragmentNumber == 2) {
-                // TODO go to 3 screen list of appropriate tickets
+            else if (currentFragmentNumber == 2 && presenter.isDateFull) {
+                currentFragmentNumber++
+                openFragment(chooseFragment(currentFragmentNumber))
             }
 
         }
@@ -104,6 +109,10 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                         "ArrivalDataListFromAct" to presenter.giveArrivalData(),
                         "DepartureDataListFromAct" to presenter.giveDepartureData(),))
             }
+            else if (currentFragmentNumber == 3) {
+                currentFragmentNumber--
+                openFragment(chooseFragment(currentFragmentNumber))
+            }
         }
 
     }
@@ -114,6 +123,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             0 -> fragmentChosen = FlightDepartureFragment.newInstance()
             1 -> fragmentChosen = FlightArrivalFragment.newInstance()
             2 -> fragmentChosen = FlightDateFragment.newInstance()
+            3 -> fragmentChosen = FlightTicketsFragment.newInstance()
         }
         return fragmentChosen
     }

@@ -1,47 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.flight.FlightDateFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleTextLocations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleTextFlightLocations"
+            android:textSize="23sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
         <TextView
             android:id="@+id/locationDepartureDataText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginTop="50dp"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/share_rounded_picker_location_button"
             android:textColor="@color/white"
             android:paddingVertical="8dp"
             android:paddingHorizontal="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="TestText"
-            />
+            app:layout_constraintTop_toBottomOf="@id/titleTextLocations"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/roboto_regular"
+            tools:text="TestText"/>
+
+
 
 
         <TextView
             android:id="@+id/locationArrivalDataText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginTop="30dp"
+            android:textSize="16sp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/share_rounded_picker_location_button"
             android:textColor="@color/white"
             android:paddingVertical="8dp"
             android:paddingHorizontal="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintTop_toBottomOf="@+id/locationDepartureDataText"
+            tools:text="TestText"/>
 
-            tools:text="TestText" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/titleTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleTextChoseDate"
+            android:textSize="23sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationArrivalDataText"/>
 
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textDateThere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textFlightThere"
+            android:textSize="21sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="56dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextDate"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDateThere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="2dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
+            app:layout_constraintStart_toEndOf="@id/textDateThere"
+            app:layout_constraintTop_toTopOf="@+id/textDateThere"
+            android:orientation="horizontal"
+            android:layout_marginStart="56dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets">
+        <EditText
+            android:id="@+id/editTextDateThere"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintTypeDate"
+            android:textSize="18sp"
+            android:inputType="date"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
+            app:layout_constraintStart_toEndOf="@id/textDateThere"
+            app:layout_constraintTop_toTopOf="@+id/textDateThere"
+            android:background="@android:color/transparent"/>
+        <ImageButton
+            android:id="@+id/imgButtonOpenDatePickerThere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/open_date_picker_icon"
+            android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/datePickerThere"
+            android:visibility="gone"
+            android:layout_width="240dp"
+            android:layout_height="390dp"
+            android:layout_marginTop="20dp"
+            android:calendarViewShown="false"
+            android:maxDate="31.12.2100"
+            android:minDate="01.01.1970"
+            android:theme="@style/Theme.TravelHelper"
+            app:layout_constraintEnd_toEndOf="@+id/layoutDateThere"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere" />
+
+
+        <CheckBox
+            android:id="@+id/radioButtonDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datePickerThere" />
+
+        <TextView
+            android:id="@+id/textDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/textFlightReturn"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/radioButtonDateReturn"
+            app:layout_constraintStart_toEndOf="@id/radioButtonDateReturn"
+            app:layout_constraintTop_toTopOf="@+id/radioButtonDateReturn" />
+
+        <LinearLayout
+            android:id="@+id/layoutDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="2dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateReturn"
+            app:layout_constraintStart_toEndOf="@id/textDateReturn"
+            app:layout_constraintTop_toTopOf="@+id/textDateReturn"
+            android:layout_marginStart="18dp"
+            android:orientation="horizontal"
+            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets"
+            android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editTextDateReturn"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/hintTypeDate"
+                    android:textSize="18sp"
+                    android:inputType="date"/>
+                <ImageButton
+                    android:id="@+id/imgButtonOpenDatePickerReturn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/open_date_picker_icon"
+                    android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+
+        <DatePicker
+            android:id="@+id/datePickerReturn"
+            android:visibility="gone"
+            android:layout_width="240dp"
+            android:layout_height="390dp"
+            android:layout_marginTop="20dp"
+            android:calendarViewShown="false"
+            android:maxDate="31.12.2100"
+            android:minDate="01.01.1970"
+            android:theme="@style/Theme.TravelHelper"
+            app:layout_constraintEnd_toEndOf="@+id/layoutDateReturn"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn" />
+
+
+        <Button
+            android:id="@+id/testButtonDate"
+            android:text="Check date correctness and send to act"
+            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="30dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
