@@ -98,22 +98,16 @@ class FlightDateFragment : Fragment() {
         }
 
 
-
-
-
-
-
-
-
     }
 
     private fun checkEditTextValidDate(): Boolean {
         val dataThere = binding.editTextDateThere.text.toString()
         val dataReturn = binding.editTextDateReturn.text.toString()
         val currentDate = Date()
-        if ( ! isValidDate(dataThere) || currentDate > SimpleDateFormat("dd.MM.yyyy").parse(dataThere)) {
-            return false }
-        if (isValidDate(dataThere) && ! binding.radioButtonDateReturn.isChecked) {
+        if (!isValidDate(dataThere) || currentDate > SimpleDateFormat("dd.MM.yyyy").parse(dataThere)) {
+            return false
+        }
+        if (isValidDate(dataThere) && !binding.radioButtonDateReturn.isChecked) {
             return true }
 
         if (isValidDate(dataReturn) && compareDates(dataReturn, dataThere)) {

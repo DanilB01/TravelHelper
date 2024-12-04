@@ -21,9 +21,9 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
     private val presenter: FlightArrivalPresenter by lazy { FlightArrivalPresenter(this ) }
 
 
-    private lateinit var adapterCountryArr: FlightListAdapterFlight
-    private lateinit var adapterCityArr: FlightListAdapterFlight
-    private lateinit var adapterAirportArr: FlightListAdapterFlight
+    private lateinit var adapterCountryArr: FlightLocationsListAdapter
+    private lateinit var adapterCityArr: FlightLocationsListAdapter
+    private lateinit var adapterAirportArr: FlightLocationsListAdapter
 
     lateinit var countries_data: List<String>
     lateinit var cities_data: Map<String, List<String>>
@@ -186,7 +186,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для страны
     private fun launchCountryAdapter() {
-        adapterCountryArr = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+        adapterCountryArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 showBlockWhenOnClicked("country", selectedItem)
 
@@ -203,7 +203,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для города
     private fun launchCityAdapter() {
-        adapterCityArr = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+        adapterCityArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 showBlockWhenOnClicked("city", selectedItem)
 
@@ -220,7 +220,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для аэропорта
     private fun launchAirportAdapter() {
-        adapterAirportArr = FlightListAdapterFlight(emptyList(), object : FlightOnItemClickListener {
+        adapterAirportArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
             override fun onItemClicked(selectedItem: String) {
                 showBlockWhenOnClicked("airport", selectedItem)
 
@@ -352,7 +352,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
 
     // Функция фильтрации текста в адаптере
-    private fun filter(text: String, list_data: List<String>, adapterName: FlightUpdateListInterface, location_data_id: Int) {
+    private fun filter(text: String, list_data: List<String>, adapterName: FlightLocationsUpdateListInterface, location_data_id: Int) {
         val filteredList = mutableListOf<String>()
         val DepartureDataList = this.localDepartureDataList
         val ArrivalDataList = presenter.giveArrivalData()

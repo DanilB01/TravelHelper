@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-interface FlightOnItemClickListener {
+interface FlightLocationsOnItemClickListener {
     fun onItemClicked(selectedItem: String)
 }
 
-interface FlightUpdateListInterface {
+interface FlightLocationsUpdateListInterface {
     fun updateList(filteredItems: MutableList<String>)
 }
 
-class FlightListAdapterFlight(
+class FlightLocationsListAdapter(
     private val items: List<String>,
-    private val itemClickListener: FlightOnItemClickListener)
-    : BaseAdapter(), FlightUpdateListInterface {
+    private val itemClickListener: FlightLocationsOnItemClickListener)
+    : BaseAdapter(), FlightLocationsUpdateListInterface {
 
     private var filteredItems = items.toMutableList()
 
