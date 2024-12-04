@@ -1,6 +1,6 @@
 package ru.itmo.travelhelper.view
 
-import ru.itmo.domain.models.Hotel
+import ru.itmo.domain.models.hotelModels.Hotel
 
 interface HotelView {
     fun showLoading()

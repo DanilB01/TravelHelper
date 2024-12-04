@@ -16,4 +16,10 @@
     <style name="Theme.TravelHelper.Init.RadioButton" parent="Theme.TravelHelper.Init">
         <item name="colorPrimary">@color/init_button_bg</item>
     </style>
+
+    <style name="CustomSnackbarTheme" parent="Theme.TravelHelper.Init">
+        <item name="backgroundTint">@android:color/black</item>
+        <item name="elevation">6dp</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
 </resources>
