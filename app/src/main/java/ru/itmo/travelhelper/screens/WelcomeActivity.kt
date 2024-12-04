@@ -9,8 +9,6 @@ import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityWelcomeScreenBinding
 import ru.itmo.travelhelper.presenter.WelcomePresenter
 import ru.itmo.travelhelper.view.InitView
-import ru.itmo.data.prefs.LocalStorageImpl
-
 
 class WelcomeActivity : AppCompatActivity(), InitView {
     private lateinit var welcomePresenter: WelcomePresenter

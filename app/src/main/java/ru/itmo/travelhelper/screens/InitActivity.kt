@@ -3,8 +3,6 @@ package ru.itmo.travelhelper.screens
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.itmo.data.prefs.LocalStorageImpl
-import ru.itmo.domain.usecases.CheckFirstLaunchUseCase
 import ru.itmo.travelhelper.presenter.InitPresenter
 
 
