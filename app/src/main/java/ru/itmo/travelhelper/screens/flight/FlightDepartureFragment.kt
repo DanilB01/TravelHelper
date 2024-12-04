@@ -307,13 +307,15 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
                 with(binding) {
                     cityDepartureTitleText.visibility = View.GONE
                     cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-                    layoutCityDepartureSearchField.visibility = View.GONE }
+                    layoutCityDepartureSearchField.visibility = View.GONE
+                    cityDepartureListView.visibility = View.GONE}
             }
             "airport" -> {
                 with(binding) {
                     airportDepartureTitleText.visibility = View.GONE
                     airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
-                    layoutAirportDepartureSearchField.visibility = View.GONE }
+                    layoutAirportDepartureSearchField.visibility = View.GONE
+                    airportDepartureListView.visibility = View.GONE }
             }
         }
     }
@@ -324,6 +326,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
             "country" -> {
                 with(binding) {
                     layoutCountryDepartureSearchField.visibility = View.GONE
+                    countryDepartureListView.visibility = View.GONE
                     countryDepartureLocationPickerButtonFlightTickets.text = selectedItem
                     countryDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     countryDepartureTitleText.text = "Страна" }
@@ -331,6 +334,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
             "city" -> {
                 with(binding) {
                     layoutCityDepartureSearchField.visibility = View.GONE
+                    cityDepartureListView.visibility = View.GONE
                     cityDepartureLocationPickerButtonFlightTickets.text = selectedItem
                     cityDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     cityDepartureTitleText.text = "Город" }
@@ -338,6 +342,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
             "airport" -> {
                 with(binding) {
                     layoutAirportDepartureSearchField.visibility = View.GONE
+                    airportDepartureListView.visibility = View.GONE
                     airportDepartureLocationPickerButtonFlightTickets.text = selectedItem
                     airportDepartureLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     airportDepartureTitleText.text = "Аэропорт" }
@@ -353,6 +358,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
                     countryDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchCountryDeparture.text.clear()
                     layoutCountryDepartureSearchField.visibility = View.VISIBLE
+                    countryDepartureListView.visibility = View.VISIBLE
                     countryDepartureTitleText.text = "Выберите страну" }
             }
             "city" -> {
@@ -360,6 +366,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
                     cityDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchCityDeparture.text.clear()
                     layoutCityDepartureSearchField.visibility = View.VISIBLE
+                    cityDepartureListView.visibility = View.VISIBLE
                     cityDepartureTitleText.text = "Выберите город" }
             }
             "airport" -> {
@@ -367,6 +374,7 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
                     airportDepartureLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchAirportDeparture.text.clear()
                     layoutAirportDepartureSearchField.visibility = View.VISIBLE
+                    airportDepartureListView.visibility = View.VISIBLE
                     airportDepartureTitleText.text = "Выберите аэропорт" }
             }
         }

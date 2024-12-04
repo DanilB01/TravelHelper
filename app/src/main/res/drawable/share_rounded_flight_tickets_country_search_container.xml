@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/flight_tickets_country_search_block_bg"/>
-    <corners android:radius="22dp"/>
+    <corners android:topLeftRadius="22dp" android:topRightRadius="22dp"/>
 
 </shape>

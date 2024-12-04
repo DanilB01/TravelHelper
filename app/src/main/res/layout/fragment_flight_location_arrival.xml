@@ -109,15 +109,17 @@
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchCountryArrival"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/countryArrivalListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:layout_marginEnd="25dp"
-
-                app:layout_constraintTop_toBottomOf="@+id/layoutDividerCountryArrival" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/countryArrivalListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCountryArrivalSearchField" />
 
 
 
@@ -211,14 +213,17 @@
                 android:layout_height="1dp"
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchCityArrival"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cityArrivalListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/layoutDividerCityArrival" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cityArrivalListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCityArrivalSearchField" />
 
         <TextView
             android:id="@+id/airportArrivalTitleText"
@@ -309,12 +314,19 @@
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchAirportArrival"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/airportArrivalListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/layoutDividerAirportArrival" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/airportArrivalListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/layoutAirportArrivalSearchField"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

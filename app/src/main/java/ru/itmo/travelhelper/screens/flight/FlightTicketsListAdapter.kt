@@ -35,7 +35,7 @@ class FlightTicketsListAdapter(
 
     override fun onBindViewHolder(holder: FlightTicketsViewHolder, position: Int) {
         holder.textCompanyNameItem.text = items[position][0]
-        holder.textCostItem.text = items[position][1]
+        holder.textCostItem.text = formatNumber(items[position][1].dropLast(1))+"₽"
 
         // Добавляем обработчик нажатия на каждый элемент
         holder.itemView.setOnClickListener {
@@ -50,5 +50,9 @@ class FlightTicketsListAdapter(
     override fun updateList(filteredItems: List<List<String>>) {
         this.items = filteredItems
         notifyDataSetChanged()
+    }
+
+    private fun formatNumber(numberStr: String): String {
+        return numberStr.reversed().chunked(3).joinToString(" ").reversed()
     }
 }

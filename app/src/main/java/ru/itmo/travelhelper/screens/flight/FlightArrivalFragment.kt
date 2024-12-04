@@ -245,13 +245,15 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
                 with(binding) {
                     cityArrivalTitleText.visibility = View.GONE
                     cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-                    layoutCityArrivalSearchField.visibility = View.GONE }
+                    layoutCityArrivalSearchField.visibility = View.GONE
+                    cityArrivalListView.visibility = View.GONE }
             }
             "airport" -> {
                 with(binding) {
                     airportArrivalTitleText.visibility = View.GONE
                     airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
-                    layoutAirportArrivalSearchField.visibility = View.GONE }
+                    layoutAirportArrivalSearchField.visibility = View.GONE
+                    airportArrivalListView.visibility = View.GONE }
             }
         }
     }
@@ -286,6 +288,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
             "country" -> {
                 with(binding) {
                     layoutCountryArrivalSearchField.visibility = View.GONE
+                    countryArrivalListView.visibility = View.GONE
                     countryArrivalLocationPickerButtonFlightTickets.text = selectedItem
                     countryArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     countryArrivalTitleText.text = "Страна" }
@@ -293,6 +296,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
             "city" -> {
                 with(binding) {
                     layoutCityArrivalSearchField.visibility = View.GONE
+                    cityArrivalListView.visibility = View.GONE
                     cityArrivalLocationPickerButtonFlightTickets.text = selectedItem
                     cityArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     cityArrivalTitleText.text = "Город" }
@@ -300,6 +304,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
             "airport" -> {
                 with(binding) {
                     layoutAirportArrivalSearchField.visibility = View.GONE
+                    airportArrivalListView.visibility = View.GONE
                     airportArrivalLocationPickerButtonFlightTickets.text = selectedItem
                     airportArrivalLocationPickerButtonFlightTickets.visibility = View.VISIBLE
                     airportArrivalTitleText.text = "Аэропорт" }
@@ -315,6 +320,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
                     countryArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchCountryArrival.text.clear()
                     layoutCountryArrivalSearchField.visibility = View.VISIBLE
+                    countryArrivalListView.visibility = View.VISIBLE
                     countryArrivalTitleText.text = "Выберите страну" }
             }
             "city" -> {
@@ -322,6 +328,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
                     cityArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchCityArrival.text.clear()
                     layoutCityArrivalSearchField.visibility = View.VISIBLE
+                    cityArrivalListView.visibility = View.VISIBLE
                     cityArrivalTitleText.text = "Выберите город" }
             }
             "airport" -> {
@@ -329,6 +336,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
                     airportArrivalLocationPickerButtonFlightTickets.visibility = View.GONE
                     editTextSearchAirportArrival.text.clear()
                     layoutAirportArrivalSearchField.visibility = View.VISIBLE
+                    airportArrivalListView.visibility = View.VISIBLE
                     airportArrivalTitleText.text = "Выберите аэропорт" }
             }
         }
