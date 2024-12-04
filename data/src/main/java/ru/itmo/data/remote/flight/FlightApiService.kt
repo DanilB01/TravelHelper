@@ -30,7 +30,7 @@ fun main() {
     val departureAirport = "SVO" // Код аэропорта (например, Шереметьево для Москвы)
 
     val call = api.getFlights(
-        accessKey = "506e16e900089e0a99e84403009dae3f",
+        accessKey = "8a453b1219250435a7fba41188cdcbd2",
         departureAirport = departureAirport,
         flightStatus = "scheduled",
         limit = 10
