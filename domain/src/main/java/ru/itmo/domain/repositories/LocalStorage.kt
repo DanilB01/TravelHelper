@@ -1,7 +1,7 @@
 package ru.itmo.domain.repositories
 
 
-interface FirstLaunchCheckerRepository {
+interface LocalStorage {
     fun isFirstLaunch(): Boolean
     fun setFirstLaunchCompleted()
 }

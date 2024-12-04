@@ -1,11 +1,11 @@
 package ru.itmo.domain.usecases
 
 
-import ru.itmo.domain.repositories.FirstLaunchCheckerRepository
+import ru.itmo.domain.repositories.LocalStorage
 
 
-class CheckFirstLaunchUseCase(private val firstLaunchCheckerRepository: FirstLaunchCheckerRepository) {
+class CheckFirstLaunchUseCase(private val localStorage: LocalStorage) {
     fun execute() : Boolean{
-        return firstLaunchCheckerRepository.isFirstLaunch()
+        return localStorage.isFirstLaunch()
     }
 }
