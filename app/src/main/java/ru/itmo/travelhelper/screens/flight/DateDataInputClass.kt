@@ -43,7 +43,6 @@ class DateInputMask(private val editText: EditText) : TextWatcher {
         }
 
         if (s?.length!! > 0 && ((s?.length) != 3 && (s?.length) != 6) && s!![s.length-1] == '.') {
-            Log.i("dot",s.toString()+" "+s.length.toString())
             s.delete(s.length-1,s.length)
 
         }

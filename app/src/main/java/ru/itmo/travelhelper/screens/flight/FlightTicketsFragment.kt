@@ -12,7 +12,6 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import ru.itmo.travelhelper.databinding.FragmentFlightTicketsBinding
@@ -71,7 +70,7 @@ class FlightTicketsFragment : Fragment() {
 
     }
     private fun showCurrentValueSnackbar(progress: Int) {
-        val snackbar = Snackbar.make(binding.root, formatNumber(progress.toString()), Snackbar.LENGTH_SHORT)
+        val snackbar = Snackbar.make(binding.root, formatNumber(progress.toString()), Snackbar.ANIMATION_MODE_SLIDE)
         val params = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
         params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         params.setMargins(530, 155, 0, 0)
@@ -89,8 +88,7 @@ class FlightTicketsFragment : Fragment() {
 
     private fun filterData(progress: Int) {
         val filteredList = dataList.filter { it[1].dropLast(1).toInt() <= progress }
-        adapter.items = filteredList
-        adapter.notifyDataSetChanged()
+        adapter.updateList(filteredList)
     }
 
     private fun formatNumber(numberStr: String): String {

@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/locationDepartureDataText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/locationArrivalDataText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="25dp"

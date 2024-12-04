@@ -3,54 +3,51 @@ package ru.itmo.travelhelper.screens.flight
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import ru.itmo.travelhelper.R
 
 interface FlightLocationsOnItemClickListener {
-    fun onItemClicked(selectedItem: String)
+    fun onItemClicked(selectedItem: Int)
 }
 
 interface FlightLocationsUpdateListInterface {
-    fun updateList(filteredItems: MutableList<String>)
+    fun updateList(filteredItems: List<String>)
 }
 
+
 class FlightLocationsListAdapter(
-    private val items: List<String>,
+    var items: List<String>,
     private val itemClickListener: FlightLocationsOnItemClickListener)
-    : BaseAdapter(), FlightLocationsUpdateListInterface {
+    : RecyclerView.Adapter<FlightLocationsListAdapter.FlightLocationViewHolder>(), FlightLocationsUpdateListInterface {
 
-    private var filteredItems = items.toMutableList()
 
-    override fun getCount(): Int {
-        return filteredItems.size
+    class FlightLocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val locationName: TextView = itemView.findViewById(R.id.textLocationNameListItem)
+
     }
 
-    override fun getItem(position: Int): Any? {
-        return null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightLocationViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.flight_location_list_item, parent, false)
+        return FlightLocationViewHolder(view)
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    override fun onBindViewHolder(holder: FlightLocationViewHolder, position: Int) {
+        holder.locationName.text = items[position]
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClicked(position)
+        }
     }
 
-    override fun updateList(filteredItems: MutableList<String>) {
-        this.filteredItems = filteredItems
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    override fun updateList(filteredItems: List<String>) {
+        this.items = filteredItems
         notifyDataSetChanged()
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: TextView = if (convertView == null) {
-            LayoutInflater.from(parent?.context).inflate(android.R.layout.simple_list_item_1, parent, false) as TextView
-        } else {
-            convertView as TextView
-        }
 
-
-        view.setOnClickListener {
-            itemClickListener.onItemClicked(filteredItems[position])
-        }
-
-        view.text = filteredItems[position]
-        return view
-    }
 }

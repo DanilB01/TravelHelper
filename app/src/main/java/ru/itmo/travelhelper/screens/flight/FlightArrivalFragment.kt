@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.itmo.domain.models.flight.AirportModel
 import ru.itmo.domain.models.flight.CityModel
 import ru.itmo.domain.models.flight.CountryModel
@@ -186,13 +187,14 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для страны
     private fun launchCountryAdapter() {
+        binding.countryArrivalListView.layoutManager = LinearLayoutManager(context)
         adapterCountryArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("country", selectedItem)
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("country", adapterCountryArr.items[selectedItem])
 
                 showNextBlockWhenOnClicked("city")
 
-                presenter.updateExactIndexSavedArrivalData(selectedItem,0)
+                presenter.updateExactIndexSavedArrivalData(adapterCountryArr.items[selectedItem],0)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool",
                     bundleOf("isArrivalFull" to false))
             }
@@ -203,13 +205,14 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для города
     private fun launchCityAdapter() {
+        binding.cityArrivalListView.layoutManager = LinearLayoutManager(context)
         adapterCityArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("city", selectedItem)
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("city", adapterCityArr.items[selectedItem])
 
                 showNextBlockWhenOnClicked("airport")
 
-                presenter.updateExactIndexSavedArrivalData(selectedItem,1)
+                presenter.updateExactIndexSavedArrivalData(adapterCityArr.items[selectedItem],1)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool",
                     bundleOf("isArrivalFull" to false))
             }
@@ -220,11 +223,12 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     //Функция создания адаптера для аэропорта
     private fun launchAirportAdapter() {
+        binding.airportArrivalListView.layoutManager = LinearLayoutManager(context)
         adapterAirportArr = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("airport", selectedItem)
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("airport", adapterAirportArr.items[selectedItem])
 
-                presenter.updateExactIndexSavedArrivalData(selectedItem,2)
+                presenter.updateExactIndexSavedArrivalData(adapterAirportArr.items[selectedItem],2)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrivalBool",
                     bundleOf("isArrivalFull" to true))
             }

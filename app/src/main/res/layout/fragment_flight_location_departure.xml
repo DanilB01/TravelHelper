@@ -108,7 +108,7 @@
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchCountryDeparture"/>
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/countryDepartureListView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -210,12 +210,10 @@
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchCityDeparture"/>
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cityDepartureListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-
                 app:layout_constraintTop_toBottomOf="@+id/layoutDividerCityDeparture" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -312,7 +310,7 @@
                 app:dividerColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSearchAirportDeparture"/>
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/airportDepartureListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

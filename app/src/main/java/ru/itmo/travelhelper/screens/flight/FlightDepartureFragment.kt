@@ -3,11 +3,13 @@ package ru.itmo.travelhelper.screens.flight
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.itmo.domain.models.flight.AirportModel
 import ru.itmo.domain.models.flight.CityModel
 import ru.itmo.domain.models.flight.CountryModel
@@ -178,14 +180,13 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
 
     //Функция создания адаптера для страны
     private fun launchCountryAdapter() {
+        binding.countryDepartureListView.layoutManager = LinearLayoutManager(context)
         adapterCountryDep = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("country", selectedItem)
-
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("country", adapterCountryDep.items[selectedItem])
                 showNextBlockWhenOnClicked("city")
 
-
-                presenter.updateExactIndexSavedDepartureData(selectedItem,0)
+                presenter.updateExactIndexSavedDepartureData(adapterCountryDep.items[selectedItem],0)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
                     bundleOf("isDepartureFull" to false))
 
@@ -197,13 +198,14 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
 
     //Функция создания адаптера для города
     private fun launchCityAdapter() {
+        binding.cityDepartureListView.layoutManager = LinearLayoutManager(context)
         adapterCityDep = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("city", selectedItem)
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("city", adapterCityDep.items[selectedItem])
 
                 showNextBlockWhenOnClicked("airport")
 
-                presenter.updateExactIndexSavedDepartureData(selectedItem,1)
+                presenter.updateExactIndexSavedDepartureData(adapterCityDep.items[selectedItem],1)
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
                     bundleOf("isDepartureFull" to false))
             }
@@ -214,11 +216,12 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
 
     //Функция создания адаптера для аэропорта
     private fun launchAirportAdapter() {
+        binding.airportDepartureListView.layoutManager = LinearLayoutManager(context)
         adapterAirportDep = FlightLocationsListAdapter(emptyList(), object : FlightLocationsOnItemClickListener {
-            override fun onItemClicked(selectedItem: String) {
-                showBlockWhenOnClicked("airport", selectedItem)
+            override fun onItemClicked(selectedItem: Int) {
+                showBlockWhenOnClicked("airport", adapterAirportDep.items[selectedItem])
 
-                presenter.updateExactIndexSavedDepartureData(selectedItem,2)
+                presenter.updateExactIndexSavedDepartureData(adapterAirportDep.items[selectedItem],2)
 
                 parentFragmentManager.setFragmentResult("requestFlightToActivityFromDepartureBool",
                     bundleOf("isDepartureFull" to true))
@@ -241,8 +244,8 @@ class FlightDepartureFragment : Fragment(), FlightDepartureView {
             }
         }
 
+        adapterName.updateList(filteredList.toList())
 
-        adapterName.updateList(filteredList)
     }
 
     //Функция получения списка стран
