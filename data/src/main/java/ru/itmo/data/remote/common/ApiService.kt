@@ -1,13 +1,14 @@
 package ru.itmo.data.remote.common
 
 import FlightsResponse
+import HotelSearchResponse
 import ru.itmo.data.remote.flight.createFlightApiService
 import ru.itmo.data.remote.hotel.createHotelApiService
 import ru.itmo.data.remote.common.createAuthApiService
 import retrofit2.Response
 import ru.itmo.data.remote.hotel.HotelResponse
 import ru.itmo.data.remote.hotel.HotelSearchApiService
-import ru.itmo.data.remote.hotel.HotelSearchResponse
+
 import ru.itmo.data.remote.hotel.createHotelSearchApiService
 
 fun main() {
@@ -67,7 +68,6 @@ fun main() {
                     val hotelResponse = responseHotels.body()
                     hotelResponse?.data?.forEach { hotel ->
                         println("Отель: ${hotel.name}")
-                        println("Адрес: ${hotel.address}")
                         println("hotelId: ${hotel.hotelId}")
 
                         // Запрашиваем цену проживания для каждого hotelId
@@ -78,16 +78,16 @@ fun main() {
                             adults = 1,
                             checkInDate = "2024-12-05",
                             checkOutDate = "2024-12-12",
-                            currency = "RUS"
+                            currency = "RUB"
 
                         )
 
                         val hotelSearchResponse: Response<HotelSearchResponse> = hotelSearchCall.execute()
-                        println("hotelId: ${hotel.hotelId}")
                         if (hotelSearchResponse.isSuccessful) {
                             val hotelSearch = hotelSearchResponse.body()
                             val offers = hotelSearch?.data?.firstOrNull()?.offers
                             if (offers != null && offers.isNotEmpty()) {
+                                println("hotelId: ${hotel.hotelId}")
                                 val price = offers[0].price.total
                                 val currency = offers[0].price.currency
                                 println("Цена за проживание: $price $currency")
