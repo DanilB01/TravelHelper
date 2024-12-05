@@ -52,10 +52,10 @@
     <string name="titleTextChoseDate">Выберите даты</string>
     <string name="textFlightThere">Туда</string>
     <string name="hintTypeDate">Выберите дату</string>
+    <string name="buttonFlightTextDate">Нажмите, чтобы выбрать дату</string>
     <string name="textFlightReturn">Обратно</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
 
 
 </resources>

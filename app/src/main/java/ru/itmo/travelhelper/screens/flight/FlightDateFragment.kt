@@ -57,19 +57,42 @@ class FlightDateFragment : Fragment() {
 
         binding.datePickerThere.visibility = View.GONE
         binding.datePickerReturn.visibility = View.GONE
-        binding.layoutDateReturn.visibility = View.GONE
-        binding.dateFormatHintReturnText.visibility = View.GONE
 
 
+        binding.buttonStartPickDateThere.setOnClickListener {
+            binding.buttonStartPickDateThere.visibility = View.GONE
+            binding.layoutDateThere.visibility = View.VISIBLE
+            binding.dateFormatHintThereText.visibility = View.VISIBLE
+            binding.datePickerThere.visibility = View.VISIBLE
+        }
+
+        binding.buttonStartPickDateReturn.setOnClickListener {
+            binding.buttonStartPickDateReturn.visibility = View.GONE
+            binding.layoutDateReturn.visibility = View.VISIBLE
+            binding.dateFormatHintReturnText.visibility = View.VISIBLE
+            binding.datePickerReturn.visibility = View.VISIBLE
+        }
 
 
         binding.datePickerThere.setOnDateChangeListener { _, year, month, day ->
             binding.buttonPickDateThere.setText("$day.${month+1}.$year")
+            binding.buttonStartPickDateThere.setText("$day.${month+1}.$year")
             sendIsDateFullToAct()
+
+            binding.buttonStartPickDateThere.visibility = View.VISIBLE
+            binding.layoutDateThere.visibility = View.GONE
+            binding.dateFormatHintThereText.visibility = View.GONE
+            binding.datePickerThere.visibility = View.GONE
         }
         binding.datePickerReturn.setOnDateChangeListener { _, year, month, day ->
             binding.buttonPickDateReturn.setText("$day.${month+1}.$year")
+            binding.buttonStartPickDateReturn.setText("$day.${month+1}.$year")
             sendIsDateFullToAct()
+
+            binding.buttonStartPickDateReturn.visibility = View.VISIBLE
+            binding.layoutDateReturn.visibility = View.GONE
+            binding.dateFormatHintReturnText.visibility = View.GONE
+            binding.datePickerReturn.visibility = View.GONE
         }
 
         val dateThereClickListener = View.OnClickListener {
