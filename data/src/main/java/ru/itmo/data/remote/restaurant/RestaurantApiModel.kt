@@ -74,16 +74,6 @@ data class Icon(
     val tip: Tip
 )
 
-data class Tip(
-    val id: String,
-    val created_at: String,
-    val text: String,
-    val url: String,
-    val lang: String,
-    val agree_count: Int,
-    val disagree_count: Int
-)
-
 data class Location(
     val address: String?,
     val address_extended: String?,
@@ -277,4 +267,25 @@ data class GeoBounds(
 data class Circle(
     val center: Coordinate,
     val radius: Int
+)
+
+data class PhotoResponse(
+    val id: String,
+    val created_at: String,
+    val prefix: String,
+    val suffix: String,
+    val width: Int,
+    val height: Int,
+    val classifications: List<String>,
+    val tip: Tip
+)
+
+data class Tip(
+    val id: String,
+    val created_at: String,
+    val text: String,
+    val url: String,
+    val lang: String,
+    val agree_count: Int,
+    val disagree_count: Int
 )
