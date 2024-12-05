@@ -3,15 +3,12 @@ package ru.itmo.travelhelper.screens
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityWelcomeScreenBinding
 import ru.itmo.travelhelper.presenter.WelcomePresenter
 import ru.itmo.travelhelper.view.InitView
-
-
 
 class WelcomeActivity : AppCompatActivity(), InitView {
     private lateinit var welcomePresenter: WelcomePresenter
@@ -36,11 +33,14 @@ class WelcomeActivity : AppCompatActivity(), InitView {
                 welcomePresenter.setNextScreen(++currentScreenInitNumber)
             } else {
                 startMainActivity()
+                welcomePresenter.completeFirstLaunch(this@WelcomeActivity)
             }
         }
 
         binding.imageCloseButton.setOnClickListener {
             startMainActivity()
+            welcomePresenter.completeFirstLaunch(this@WelcomeActivity)
+
         }
 
     }
@@ -60,7 +60,11 @@ class WelcomeActivity : AppCompatActivity(), InitView {
     }
 
     override fun showNextImageInit(initScreenNumber: Int) {
-        val imageResource: Int = resources.getIdentifier("@drawable/init_picture_${initScreenNumber+1}", null, packageName)
+        val imageResource: Int = resources.getIdentifier(
+            "@drawable/init_picture_${initScreenNumber + 1}",
+            null,
+            packageName
+        )
         val imageView = ContextCompat.getDrawable(this, imageResource)
         binding.imageInit.setImageDrawable(imageView)
     }
@@ -71,7 +75,7 @@ class WelcomeActivity : AppCompatActivity(), InitView {
         binding.nextButtonInit.text = buttonArray[if (initScreenNumber < 3) 0 else 1]
 
         binding.welcomeRadioGroup.check(
-            resources.getIdentifier("welcomeRadioButton${initScreenNumber+1}", "id", packageName)
+            resources.getIdentifier("welcomeRadioButton${initScreenNumber + 1}", "id", packageName)
         )
     }
 
