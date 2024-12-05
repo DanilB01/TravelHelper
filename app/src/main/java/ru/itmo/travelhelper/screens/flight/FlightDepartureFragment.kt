@@ -3,7 +3,6 @@ package ru.itmo.travelhelper.screens.flight
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,9 @@ import ru.itmo.domain.models.flight.CityModel
 import ru.itmo.domain.models.flight.CountryModel
 import ru.itmo.travelhelper.databinding.FragmentFlightLocationDepartureBinding
 import ru.itmo.travelhelper.presenter.flight.FlightDeparturePresenter
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsListAdapter
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsOnItemClickListener
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsUpdateListInterface
 import ru.itmo.travelhelper.view.flight.FlightDepartureView
 
 

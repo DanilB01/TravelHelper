@@ -116,9 +116,8 @@
             android:background="@android:color/transparent"/>
         </LinearLayout>
 
-        <DatePicker
+        <CalendarView
             android:id="@+id/datePickerThere"
-            android:visibility="gone"
             android:layout_width="240dp"
             android:layout_height="390dp"
             android:layout_marginTop="20dp"
@@ -139,7 +138,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/datePickerThere" />
+            app:layout_constraintTop_toBottomOf="@id/dateFormatHintText" />
 
         <TextView
             android:id="@+id/textDateReturn"
@@ -164,8 +163,7 @@
             app:layout_constraintTop_toTopOf="@+id/textDateReturn"
             android:layout_marginStart="18dp"
             android:orientation="horizontal"
-            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets"
-            android:visibility="gone">
+            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets">
 
                 <EditText
                     android:id="@+id/editTextDateReturn"
@@ -185,9 +183,8 @@
         </LinearLayout>
 
 
-        <DatePicker
+        <CalendarView
             android:id="@+id/datePickerReturn"
-            android:visibility="gone"
             android:layout_width="240dp"
             android:layout_height="390dp"
             android:layout_marginTop="20dp"
@@ -197,7 +194,7 @@
             android:theme="@style/Theme.TravelHelper"
             app:layout_constraintEnd_toEndOf="@+id/layoutDateReturn"
             app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn" />
+            app:layout_constraintTop_toBottomOf="@+id/dateFormatHintReturnText" />
 
 
         <Button
@@ -210,6 +207,26 @@
             android:layout_height="wrap_content"/>
 
 
+        <TextView
+            android:id="@+id/dateFormatHintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp"
+            android:text="DD/MM/YYYY"
+            android:textColor="@color/hint_color"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere" />
 
+        <TextView
+            android:id="@+id/dateFormatHintReturnText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp"
+            android:text="DD/MM/YYYY"
+            android:textColor="@color/hint_color"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

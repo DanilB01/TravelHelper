@@ -14,6 +14,9 @@ import ru.itmo.domain.models.flight.CityModel
 import ru.itmo.domain.models.flight.CountryModel
 import ru.itmo.travelhelper.databinding.FragmentFlightLocationArrivalBinding
 import ru.itmo.travelhelper.presenter.flight.FlightArrivalPresenter
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsListAdapter
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsOnItemClickListener
+import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsUpdateListInterface
 import ru.itmo.travelhelper.view.flight.FlightArrivalView
 
 

@@ -1,16 +1,20 @@
 package ru.itmo.travelhelper.screens.flight
 
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.net.ParseException
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import ru.itmo.travelhelper.databinding.FragmentFlightDateBinding
 import ru.itmo.travelhelper.presenter.flight.FlightDatePresenter
+import ru.itmo.travelhelper.screens.flight.model.DateInputMask
 import java.util.Date
 
 
@@ -40,6 +44,7 @@ class FlightDateFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //Получение данных с активити
         parentFragmentManager.setFragmentResultListener("requestFlightToDateFromActivity", this) { _, result ->
@@ -50,6 +55,17 @@ class FlightDateFragment : Fragment() {
             binding.locationDepartureDataText.text = localDepartureDataList.joinToString(", ")
         }
 
+        binding.datePickerThere.visibility = View.GONE
+        binding.datePickerReturn.visibility = View.GONE
+        binding.layoutDateReturn.visibility = View.GONE
+        binding.dateFormatHintReturnText.visibility = View.GONE
+
+        binding.datePickerThere.setOnDateChangeListener { _, year, month, day ->
+            binding.editTextDateThere.setText("$day.${month+1}.$year")
+        }
+        binding.datePickerReturn.setOnDateChangeListener { _, year, month, day ->
+            binding.editTextDateReturn.setText("$day.${month+1}.$year")
+        }
 
         binding.editTextDateThere.addTextChangedListener(DateInputMask(binding.editTextDateThere))
         binding.editTextDateReturn.addTextChangedListener(DateInputMask(binding.editTextDateReturn))
@@ -81,9 +97,13 @@ class FlightDateFragment : Fragment() {
         binding.radioButtonDateReturn.setOnClickListener {
             if (binding.radioButtonDateReturn.isChecked) {
                 binding.layoutDateReturn.visibility = View.VISIBLE
+                binding.dateFormatHintReturnText.visibility = View.VISIBLE
             } else {
                 binding.layoutDateReturn.visibility = View.GONE
+                binding.dateFormatHintReturnText.visibility = View.GONE
             }
+            binding.datePickerReturn.visibility = View.GONE
+            isDatePickerReturnVisible = false
         }
 
         binding.testButtonDate.setOnClickListener {

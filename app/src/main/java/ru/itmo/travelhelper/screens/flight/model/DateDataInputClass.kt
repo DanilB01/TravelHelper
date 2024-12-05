@@ -1,8 +1,7 @@
-package ru.itmo.travelhelper.screens.flight
+package ru.itmo.travelhelper.screens.flight.model
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.EditText
 
 

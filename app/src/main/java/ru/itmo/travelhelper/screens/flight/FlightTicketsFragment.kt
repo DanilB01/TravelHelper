@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import ru.itmo.travelhelper.databinding.FragmentFlightTicketsBinding
+import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsListAdapter
+import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsOnItemClickListener
 
 
 class FlightTicketsFragment : Fragment() {

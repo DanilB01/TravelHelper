@@ -1,6 +1,5 @@
-package ru.itmo.travelhelper.screens.flight
+package ru.itmo.travelhelper.screens.flight.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,10 @@ interface FlightTicketsUpdateListInterface {
 
 class FlightTicketsListAdapter(
     var items: List<List<String>>,
-    private val listener: FlightTicketsOnItemClickListener)
-    : RecyclerView.Adapter<FlightTicketsListAdapter.FlightTicketsViewHolder>(), FlightTicketsUpdateListInterface {
+    private val listener: FlightTicketsOnItemClickListener
+)
+    : RecyclerView.Adapter<FlightTicketsListAdapter.FlightTicketsViewHolder>(),
+    FlightTicketsUpdateListInterface {
 
 
     class FlightTicketsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
