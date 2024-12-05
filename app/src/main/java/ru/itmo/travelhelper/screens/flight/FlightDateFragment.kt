@@ -60,18 +60,19 @@ class FlightDateFragment : Fragment() {
         binding.layoutDateReturn.visibility = View.GONE
         binding.dateFormatHintReturnText.visibility = View.GONE
 
+
+
+
         binding.datePickerThere.setOnDateChangeListener { _, year, month, day ->
-            binding.editTextDateThere.setText("$day.${month+1}.$year")
+            binding.buttonPickDateThere.setText("$day.${month+1}.$year")
+            sendIsDateFullToAct()
         }
         binding.datePickerReturn.setOnDateChangeListener { _, year, month, day ->
-            binding.editTextDateReturn.setText("$day.${month+1}.$year")
+            binding.buttonPickDateReturn.setText("$day.${month+1}.$year")
+            sendIsDateFullToAct()
         }
 
-        binding.editTextDateThere.addTextChangedListener(DateInputMask(binding.editTextDateThere))
-        binding.editTextDateReturn.addTextChangedListener(DateInputMask(binding.editTextDateReturn))
-
-
-        binding.imgButtonOpenDatePickerThere.setOnClickListener {
+        val dateThereClickListener = View.OnClickListener {
             if (isDatePickerThereVisible) {
                 binding.datePickerThere.visibility = View.GONE
                 isDatePickerThereVisible = false
@@ -79,10 +80,15 @@ class FlightDateFragment : Fragment() {
             else {
                 binding.datePickerThere.visibility = View.VISIBLE
                 isDatePickerThereVisible = true
+                binding.datePickerReturn.visibility = View.GONE
+                isDatePickerReturnVisible = false
             }
         }
 
-        binding.imgButtonOpenDatePickerReturn.setOnClickListener {
+        binding.imgButtonOpenDatePickerThere.setOnClickListener(dateThereClickListener)
+        binding.buttonPickDateThere.setOnClickListener(dateThereClickListener)
+
+        val dateReturnClickListener = View.OnClickListener {
             if (isDatePickerReturnVisible) {
                 binding.datePickerReturn.visibility = View.GONE
                 isDatePickerReturnVisible = false
@@ -90,8 +96,13 @@ class FlightDateFragment : Fragment() {
             else {
                 binding.datePickerReturn.visibility = View.VISIBLE
                 isDatePickerReturnVisible = true
+                binding.datePickerThere.visibility = View.GONE
+                isDatePickerThereVisible = false
             }
         }
+
+        binding.imgButtonOpenDatePickerReturn.setOnClickListener(dateReturnClickListener)
+        binding.buttonPickDateReturn.setOnClickListener(dateReturnClickListener)
 
 
         binding.radioButtonDateReturn.setOnClickListener {
@@ -104,25 +115,28 @@ class FlightDateFragment : Fragment() {
             }
             binding.datePickerReturn.visibility = View.GONE
             isDatePickerReturnVisible = false
+            sendIsDateFullToAct()
         }
 
-        binding.testButtonDate.setOnClickListener {
-            if (checkEditTextValidDate()) {
-                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDateBool",
-                    bundleOf("isDateFull" to true))
-            }
-            else {
-                parentFragmentManager.setFragmentResult("requestFlightToActivityFromDateBool",
-                    bundleOf("isDateFull" to false))
-            }
-        }
 
 
     }
+    private fun sendIsDateFullToAct() {
+        if (checkEditTextValidDate()) {
+            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDateBool",
+                bundleOf("isDateFull" to true))
+        }
+        else {
+            parentFragmentManager.setFragmentResult("requestFlightToActivityFromDateBool",
+                bundleOf("isDateFull" to false))
+        }
+    }
+
+
 
     private fun checkEditTextValidDate(): Boolean {
-        val dataThere = binding.editTextDateThere.text.toString()
-        val dataReturn = binding.editTextDateReturn.text.toString()
+        val dataThere = binding.buttonPickDateThere.text.toString()
+        val dataReturn = binding.buttonPickDateReturn.text.toString()
         val currentDate = Date()
         if (!isValidDate(dataThere) || currentDate > SimpleDateFormat("dd.MM.yyyy").parse(dataThere)) {
             return false
@@ -163,7 +177,6 @@ class FlightDateFragment : Fragment() {
             throw IllegalArgumentException("Неверный формат даты: $dateStr1 или $dateStr2")
         }
     }
-
 
 
 }

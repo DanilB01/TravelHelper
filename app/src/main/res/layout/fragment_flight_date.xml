@@ -96,14 +96,17 @@
             android:layout_marginStart="56dp"
             android:gravity="center_vertical"
             android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets">
-        <EditText
-            android:id="@+id/editTextDateThere"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/hintTypeDate"
-            android:textSize="18sp"
-            android:inputType="date"
 
+        <android.widget.Button
+            android:id="@+id/buttonPickDateThere"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:text="@string/hintTypeDate"
+            android:textSize="16sp"
+            android:textColor="@color/hint_color"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
             app:layout_constraintStart_toEndOf="@id/textDateThere"
             app:layout_constraintTop_toTopOf="@+id/textDateThere"
@@ -119,8 +122,8 @@
         <CalendarView
             android:id="@+id/datePickerThere"
             android:layout_width="240dp"
-            android:layout_height="390dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="285dp"
+            android:layout_marginTop="10dp"
             android:calendarViewShown="false"
             android:maxDate="31.12.2100"
             android:minDate="01.01.1970"
@@ -136,9 +139,9 @@
             android:layout_height="wrap_content"
             android:theme="@style/Theme.TravelHelper.Init.RadioButton"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateFormatHintText" />
+            app:layout_constraintTop_toBottomOf="@id/datePickerThere" />
 
         <TextView
             android:id="@+id/textDateReturn"
@@ -165,13 +168,18 @@
             android:orientation="horizontal"
             android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets">
 
-                <EditText
-                    android:id="@+id/editTextDateReturn"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
+                <android.widget.Button
+                    android:id="@+id/buttonPickDateReturn"
                     android:background="@android:color/transparent"
                     android:hint="@string/hintTypeDate"
-                    android:textSize="18sp"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/hintTypeDate"
+                    android:textSize="16sp"
+                    android:textColor="@color/hint_color"
+                    android:gravity="start|center_vertical"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_regular"
                     android:inputType="date"/>
                 <ImageButton
                     android:id="@+id/imgButtonOpenDatePickerReturn"
@@ -186,15 +194,15 @@
         <CalendarView
             android:id="@+id/datePickerReturn"
             android:layout_width="240dp"
-            android:layout_height="390dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="285dp"
+            android:layout_marginTop="10dp"
             android:calendarViewShown="false"
             android:maxDate="31.12.2100"
             android:minDate="01.01.1970"
             android:theme="@style/Theme.TravelHelper"
             app:layout_constraintEnd_toEndOf="@+id/layoutDateReturn"
             app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
-            app:layout_constraintTop_toBottomOf="@+id/dateFormatHintReturnText" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn" />
 
 
         <Button
@@ -208,11 +216,11 @@
 
 
         <TextView
-            android:id="@+id/dateFormatHintText"
+            android:id="@+id/dateFormatHintThereText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:text="DD/MM/YYYY"
             android:textColor="@color/hint_color"
             app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
@@ -223,7 +231,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:text="DD/MM/YYYY"
             android:textColor="@color/hint_color"
             app:layout_constraintStart_toStartOf="@+id/layoutDateThere"

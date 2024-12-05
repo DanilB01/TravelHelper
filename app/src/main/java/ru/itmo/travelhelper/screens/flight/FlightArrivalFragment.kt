@@ -459,8 +459,5 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
     }
 
 
-
-
-
 }
 
