@@ -47,7 +47,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
 
 
 
-        var currentFragmentNumber = 2
+        var currentFragmentNumber = 0
         openFragment(chooseFragment(currentFragmentNumber))
 
 
