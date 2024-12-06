@@ -1,4 +1,4 @@
-package ru.itmo.data.remote.restaurant
+package ru.itmo.data.remote.places
 
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -7,19 +7,20 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.itmo.data.remote.restaurant.RestaurantResponse
 
-interface RestaurantApiService {
+interface PlaceApiService {
     @GET("v3/places/search")
-    fun getRestaurants(
+    fun getPlaces(
         @Header("Authorization") accessKey: String,  // Используем заголовок Authorization
         @Query("categories") categories: String? = null,
         @Query("limit") limit: Int? = null,
         @Query("near") near: String? = null
-    ): Call<RestaurantResponse>
+    ): Call<PlaceResponse>
 
     // Новый метод для получения фото по fsq_id с дополнительным параметром classifications
     @GET("v3/places/{fsq_id}/photos")
-    fun getRestaurantPhotos(
+    fun getPlacePhotos(
         @Header("Authorization") accessKey: String,
         @Path("fsq_id") fsqId: String, // Используем {fsq_id} для подставления идентификатора ресторана
         @Query("limit") limit: Int = 1,  // Ограничиваем количество фото
@@ -27,40 +28,40 @@ interface RestaurantApiService {
     ): Call<List<PhotoResponse>>
 }
 
-fun createRestaurantApiService(): RestaurantApiService {
+fun createPlaceApiService(): PlaceApiService {
     val retrofit = Retrofit.Builder()
         .baseUrl("https://api.foursquare.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    return retrofit.create(RestaurantApiService::class.java)
+    return retrofit.create(PlaceApiService::class.java)
 }
 
 fun main() {
-    val restaurantApiService = createRestaurantApiService()
+    val placeApiService = createPlaceApiService()
 
     // Получаем список ресторанов
-    val callRestaurants = restaurantApiService.getRestaurants(
+    val callPlaces = placeApiService.getPlaces(
         accessKey = "fsq3clhcAmnkvsIgBjq70YKC/FFbBEs0strnaCUL7tCoF4s=",  // Передаем ключ в заголовке
-        categories = "13065",  // Пример: категория "Рестораны"
+        categories = "10000",  // категория "Искусство и развлечения"
         limit = 10,
         near = "Москва"
     )
 
-    val responseRestaurants = callRestaurants.execute()
+    val responsePlaces = callPlaces.execute()
 
-    if (responseRestaurants.isSuccessful) {
-        val restaurantResponse = responseRestaurants.body()
-        restaurantResponse?.results?.forEach { restaurant ->
-            println("Ресторан: ${restaurant.name}")
-            println("Адрес: ${restaurant.location.formatted_address}")
-            println(restaurant.fsq_id) // По нему ищем фото
+    if (responsePlaces.isSuccessful) {
+        val placeResponse = responsePlaces.body()
+        placeResponse?.results?.forEach { place ->
+            println("Место: ${place.name}")
+            println("Адрес: ${place.location.formatted_address}")
+            println(place.fsq_id) // По нему ищем фото
             println("---")
 
             // Теперь получаем фото для текущего ресторана с классификацией "outdoor"
-            val callPhotos = restaurantApiService.getRestaurantPhotos(
+            val callPhotos = placeApiService.getPlacePhotos(
                 accessKey = "fsq3clhcAmnkvsIgBjq70YKC/FFbBEs0strnaCUL7tCoF4s=",
-                fsqId = restaurant.fsq_id,
+                fsqId = place.fsq_id,
                 classifications = listOf("outdoor")  // Передаем список классификаций
             )
 
@@ -83,7 +84,7 @@ fun main() {
             }
         }
     } else {
-        println("Ошибка при поиске ресторанов: ${responseRestaurants.code()} - ${responseRestaurants.message()}")
+        println("Ошибка при поиске ресторанов: ${responsePlaces.code()} - ${responsePlaces.message()}")
     }
 }
 
