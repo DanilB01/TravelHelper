@@ -36,7 +36,7 @@
         android:paddingHorizontal="47dp"
         android:textAllCaps="false"
         android:textColor="@color/flight_tickets_button_back_text"
-        android:background="@drawable/share_rounded_back_button_flight_tickets"/>
+        android:background="@drawable/shape_rounded_back_button_flight_tickets"/>
 
     <android.widget.Button
         android:id="@+id/goToNextFragmentFlight"
@@ -52,7 +52,7 @@
         android:textAllCaps="false"
         android:paddingVertical="14dp"
         android:paddingHorizontal="37dp"
-        android:background="@drawable/share_rounded_init_button"/>
+        android:background="@drawable/shape_rounded_init_button"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

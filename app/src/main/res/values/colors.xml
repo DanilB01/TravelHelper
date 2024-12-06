@@ -16,6 +16,9 @@
     <color name="flight_seek_bar_left_part">#485E92</color>
     <color name="flight_seek_bar_right_part">#D9DFF6</color>
     <color name="hint_color">#49454f</color>
+    <color name="flight_date_picker_background">#D7E3F7</color>
+    <color name="flight_date_picker_selected_item">#556B8F</color>
+
 
 
 </resources>

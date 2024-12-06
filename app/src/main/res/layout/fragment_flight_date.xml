@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/share_rounded_picker_location_button"
+            android:background="@drawable/shape_rounded_picker_location_button"
             android:textColor="@color/white"
             android:paddingVertical="8dp"
             android:paddingHorizontal="14dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/share_rounded_picker_location_button"
+            android:background="@drawable/shape_rounded_picker_location_button"
             android:textColor="@color/white"
             android:paddingVertical="8dp"
             android:paddingHorizontal="14dp"
@@ -97,7 +97,7 @@
             android:textAllCaps="false"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/buttonFlightTextDate"
-            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets_filled" />
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets_filled" />
 
 
         <LinearLayout
@@ -113,10 +113,10 @@
             android:orientation="horizontal"
             android:layout_marginStart="56dp"
             android:gravity="center_vertical"
-            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets"
             android:visibility="gone">
 
-                <android.widget.Button
+                <TextView
                     android:id="@+id/buttonPickDateThere"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
@@ -130,7 +130,7 @@
                     app:layout_constraintStart_toEndOf="@id/textDateThere"
                     app:layout_constraintTop_toTopOf="@+id/textDateThere"
                     android:background="@android:color/transparent"/>
-                <ImageButton
+                <ImageView
                     android:id="@+id/imgButtonOpenDatePickerThere"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:theme="@style/Theme.TravelHelper"
             app:layout_constraintEnd_toEndOf="@+id/layoutDateThere"
             app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere"/>
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere" />
 
 
         <TextView
@@ -201,7 +201,7 @@
             android:textAllCaps="false"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/buttonFlightTextDate"
-            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets_filled"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets_filled"
             android:visibility="gone"/>
 
 
@@ -218,23 +218,22 @@
             app:layout_constraintTop_toTopOf="@+id/textDateReturn"
             android:layout_marginStart="18dp"
             android:orientation="horizontal"
-            android:background="@drawable/share_rounded_date_picker_edit_text_flight_tickets"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets"
             android:visibility="gone">
 
-                <android.widget.Button
+                <TextView
                     android:id="@+id/buttonPickDateReturn"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="start|center_vertical"
-                    android:inputType="date"
                     android:text="@string/hintTypeDate"
                     android:textAllCaps="false"
                     android:textColor="@color/hint_color"
                     android:textSize="16sp" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/imgButtonOpenDatePickerReturn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -253,6 +252,7 @@
             android:maxDate="31.12.2100"
             android:minDate="01.01.1970"
             android:theme="@style/Theme.TravelHelper"
+            android:weekNumberColor="@color/flight_date_picker_selected_item"
             app:layout_constraintEnd_toEndOf="@+id/layoutDateReturn"
             app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
             app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn"/>

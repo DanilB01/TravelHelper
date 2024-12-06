@@ -49,7 +49,7 @@
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
             android:textColor="@color/white"
-            android:background="@drawable/share_rounded_picker_location_button"/>
+            android:background="@drawable/shape_rounded_picker_location_button"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutCountryArrivalSearchField"
@@ -60,7 +60,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/countryArrivalTitleText"
-            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:background="@drawable/shape_rounded_flight_tickets_country_search_container"
             android:visibility="gone">
 
 
@@ -152,7 +152,7 @@
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
             android:textColor="@color/white"
-            android:background="@drawable/share_rounded_picker_location_button"
+            android:background="@drawable/shape_rounded_picker_location_button"
             android:visibility="gone"/>
 
 
@@ -165,7 +165,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cityArrivalTitleText"
-            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:background="@drawable/shape_rounded_flight_tickets_country_search_container"
             android:visibility="gone">
 
 
@@ -254,7 +254,7 @@
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
             android:textColor="@color/white"
-            android:background="@drawable/share_rounded_picker_location_button"
+            android:background="@drawable/shape_rounded_picker_location_button"
             android:visibility="gone"/>
 
 
@@ -267,7 +267,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/airportArrivalTitleText"
-            android:background="@drawable/share_rounded_flight_tickets_country_search_container"
+            android:background="@drawable/shape_rounded_flight_tickets_country_search_container"
             android:visibility="gone">
 
 
