@@ -45,11 +45,21 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                 ?.let { presenter.updateGlobalSavedDepartureData(it.toMutableList()) }
         }
 
+        supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromDate", this) { _, result ->
+            result.getStringArrayList("DateListData")
+                ?.let { presenter.updateGlobalSavedDateData(it.toMutableList()) }
+        }
 
 
-        var currentFragmentNumber = 0
+
+        var currentFragmentNumber = 3
         openFragment(chooseFragment(currentFragmentNumber))
 
+        // 0 - Departure Screen
+        // 1 - Arrival Screen
+        // 2 - Date Screen
+        // 3 - Tickets There Screen
+        // 4 - Tickets Return Screen
 
         binding.goToNextFragmentFlight.setOnClickListener {
             if (currentFragmentNumber == 0 && presenter.isDepartureFull) {
@@ -88,6 +98,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             else if (currentFragmentNumber == 2 && presenter.isDateFull) {
                 currentFragmentNumber++
                 openFragment(chooseFragment(currentFragmentNumber))
+
             }
 
         }
@@ -112,6 +123,11 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             else if (currentFragmentNumber == 3) {
                 currentFragmentNumber--
                 openFragment(chooseFragment(currentFragmentNumber))
+                supportFragmentManager.setFragmentResult("requestFlightToDateFromActivity",
+                    bundleOf(
+                        "ArrivalDataListFromAct" to presenter.giveArrivalData(),
+                        "DepartureDataListFromAct" to presenter.giveDepartureData(),
+                        "DateDataListFromAct" to presenter.giveDateData(),))
             }
         }
 
@@ -123,7 +139,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             0 -> fragmentChosen = FlightDepartureFragment.newInstance()
             1 -> fragmentChosen = FlightArrivalFragment.newInstance()
             2 -> fragmentChosen = FlightDateFragment.newInstance()
-            3 -> fragmentChosen = FlightTicketsFragment.newInstance()
+            3 -> fragmentChosen = FlightTicketsThereFragment.newInstance()
         }
         return fragmentChosen
     }

@@ -3,6 +3,7 @@ package ru.itmo.travelhelper.screens.flight
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,13 +15,13 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import ru.itmo.travelhelper.databinding.FragmentFlightTicketsBinding
+import ru.itmo.travelhelper.databinding.FragmentFlightTicketsThereBinding
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsListAdapter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsOnItemClickListener
 
 
-class FlightTicketsFragment : Fragment() {
-    lateinit var binding: FragmentFlightTicketsBinding
+class FlightTicketsThereFragment : Fragment() {
+    lateinit var binding: FragmentFlightTicketsThereBinding
     private lateinit var adapter: FlightTicketsListAdapter
     private val dataList = listOf(
         listOf("Аэрофлот","27000p"),
@@ -33,13 +34,13 @@ class FlightTicketsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFlightTicketsBinding.inflate(inflater)
+        binding = FragmentFlightTicketsThereBinding.inflate(inflater)
         return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = FlightTicketsFragment()
+        fun newInstance() = FlightTicketsThereFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,7 +76,7 @@ class FlightTicketsFragment : Fragment() {
         val snackbar = Snackbar.make(binding.root, formatNumber(progress.toString()), Snackbar.ANIMATION_MODE_SLIDE)
         val params = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
         params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-        params.setMargins(530, 155, 0, 0)
+        params.setMargins(330+getOffsetForSnackBar(progress), 30, 0, 0)
         snackbar.view.apply {
             backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
             layoutParams = params
@@ -95,6 +96,16 @@ class FlightTicketsFragment : Fragment() {
 
     private fun formatNumber(numberStr: String): String {
         return numberStr.reversed().chunked(3).joinToString(" ").reversed()
+    }
+
+
+    private fun getOffsetForSnackBar(progress: Int): Int {
+        val coeff = 430
+        val maxVal = binding.maxFlightTicketCost.text.toString().dropLast(1).replace(" ","").toDouble()
+        val minVal = binding.minFlightTicketCost.text.toString().dropLast(1).replace(" ","").toDouble()
+        val pers: Double = ((progress - minVal) / (maxVal - minVal))
+        Log.i("pers!",pers.toString())
+        return (pers * coeff).toInt()
     }
 
 }

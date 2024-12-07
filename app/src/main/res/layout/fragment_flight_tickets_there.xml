@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.flight.FlightTicketsFragment">
+    tools:context=".screens.flight.FlightTicketsThereFragment">
     <TextView
         android:id="@+id/titleTextCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Стоимость"
         android:textSize="23sp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="48dp"
         android:layout_marginStart="15dp"
         android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toStartOf="parent"

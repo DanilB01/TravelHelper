@@ -26,6 +26,13 @@ class FlightDateFragment : Fragment() {
     private var localArrivalDataList: MutableList<String> = mutableListOf("","","")
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Отправляем данные в активити при закрытии фрагмента
+        parentFragmentManager.setFragmentResult("requestFlightToActivityFromDate", bundleOf("DateListData" to presenter.giveDateData()))
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +57,8 @@ class FlightDateFragment : Fragment() {
             this.localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             binding.locationArrivalDataText.text = localArrivalDataList.joinToString(", ")
             binding.locationDepartureDataText.text = localDepartureDataList.joinToString(", ")
+            result.getStringArrayList("DateDataListFromAct")?.let { presenter.updateFullSavedDateData(it.toMutableList()) }
+            setSavedDateData(presenter.giveDateData())
         }
 
         binding.datePickerThere.visibility = View.GONE
@@ -124,6 +133,7 @@ class FlightDateFragment : Fragment() {
                 {
                     binding.buttonPickDateThere.text = chosenDataText
                     binding.buttonStartPickDateThere.text = chosenDataText
+                    presenter.updateExactIndexSavedDateData(chosenDataText, 0)
                     sendIsDateFullToAct()
 
                     binding.buttonStartPickDateThere.visibility = View.VISIBLE
@@ -158,6 +168,7 @@ class FlightDateFragment : Fragment() {
                 {
                     binding.buttonPickDateReturn.text = chosenDataText
                     binding.buttonStartPickDateReturn.text = chosenDataText
+                    presenter.updateExactIndexSavedDateData(chosenDataText, 1)
                     sendIsDateFullToAct()
 
                     binding.buttonStartPickDateReturn.visibility = View.VISIBLE
@@ -215,9 +226,10 @@ class FlightDateFragment : Fragment() {
         binding.buttonPickDateReturn.setOnClickListener(dateReturnClickListener)
 
 
-        binding.radioButtonDateReturn.setOnClickListener {
+        binding.radioButtonDateReturn.setOnCheckedChangeListener { _, _ ->
             if (binding.radioButtonDateReturn.isChecked)
             {
+                presenter.updateExactIndexSavedDateData("ReturnChecked_True", 2)
                 binding.buttonStartPickDateReturn.visibility = View.VISIBLE
                 if (isValidDate(binding.buttonStartPickDateReturn.text.toString())
                     && isValidDate(binding.buttonStartPickDateThere.text.toString())
@@ -229,6 +241,8 @@ class FlightDateFragment : Fragment() {
             }
             else
             {
+                presenter.updateExactIndexSavedDateData("ReturnChecked_False", 2)
+
                 binding.buttonStartPickDateReturn.visibility = View.GONE
                 binding.layoutDateReturn.visibility = View.GONE
                 binding.dateFormatHintReturnText.visibility = View.GONE
@@ -307,6 +321,28 @@ class FlightDateFragment : Fragment() {
         } else {
             throw IllegalArgumentException("Неверный формат даты: $dateStr1 или $dateStr2")
         }
+    }
+
+    private fun setSavedDateData(DateDataList: MutableList<String>) {
+        if (DateDataList[0].isNotEmpty()) {
+            binding.buttonStartPickDateThere.text = DateDataList[0]
+            binding.buttonPickDateThere.text = DateDataList[0]
+
+        }
+        else {
+            binding.buttonPickDateThere.text = "Выберите дату"
+            binding.buttonStartPickDateThere.text = "Нажмите, чтобы выбрать дату"
+        }
+        if (DateDataList[2] == "ReturnChecked_True") {
+            binding.buttonStartPickDateReturn.text = DateDataList[1]
+            binding.buttonPickDateReturn.text = DateDataList[1]
+            binding.radioButtonDateReturn.isChecked = true
+        }
+        else {
+            binding.buttonPickDateReturn.text = "Выберите дату"
+            binding.buttonStartPickDateReturn.text = "Нажмите, чтобы выбрать дату"
+        }
+
     }
 
 
