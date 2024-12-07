@@ -17,14 +17,17 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:text="*место вылета*"
         android:id="@+id/fieldDeparturePlaceTicketListItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
         android:textSize="16sp"
+        android:layout_marginEnd="15dp"
         android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toStartOf="@id/fieldArrivalPlaceTicketListItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fieldDepartureTimeTicketListItem"/>
 
@@ -47,16 +50,20 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:text="*место прилета*"
         android:id="@+id/fieldArrivalPlaceTicketListItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="16sp"
         android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="*место прилета*"
+        android:layout_marginStart="15dp"
+        android:gravity="end"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fieldArrivalTimeTicketListItem"/>
+        app:layout_constraintStart_toEndOf="@+id/fieldDeparturePlaceTicketListItem"
+        app:layout_constraintTop_toBottomOf="@id/fieldArrivalTimeTicketListItem" />
 
     <TextView
         android:text="Авиакомпания:"
