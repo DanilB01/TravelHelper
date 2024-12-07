@@ -1,5 +1,7 @@
 package ru.itmo.travelhelper.screens.flight
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -24,11 +26,17 @@ class FlightTicketsThereFragment : Fragment() {
     lateinit var binding: FragmentFlightTicketsThereBinding
     private lateinit var adapter: FlightTicketsListAdapter
     private val dataList = listOf(
-        listOf("Аэрофлот","27000p"),
-        listOf("Победа","19000p"),
-        listOf("Азимут","25000p"),
-        listOf("ЧипАвиа","1234p"),
-        listOf("РичАвиа","78000p"))
+        listOf("Аэрофлот","27000₽","00.12","09.47"),
+        listOf("Победа","19000₽","01.45","11.23"),
+        listOf("Азимут","25000₽","03.34","15.09"),
+        listOf("ЧипАвиа","1234₽","02.11","16.34"),
+        listOf("РичАвиа","78000₽","17.44","21.00"))
+
+
+    lateinit var localDepartureDataList: MutableList<String>
+    lateinit var localArrivalDataList: MutableList<String>
+    lateinit var localDateDataList: MutableList<String>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +46,25 @@ class FlightTicketsThereFragment : Fragment() {
         return binding.root
     }
 
+
     companion object {
         @JvmStatic
         fun newInstance() = FlightTicketsThereFragment()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //Получение данных с активити
+        parentFragmentManager.setFragmentResultListener("requestFlightToTicketThereFromActivity", this) { _, result ->
+            this.localDepartureDataList = result.getStringArrayList("DepartureDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
+            this.localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
+            this.localDateDataList = result.getStringArrayList("DateDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
+            launchTicketAdapter(listOf(localDepartureDataList[2],localArrivalDataList[2]))
+        }
 
 
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = FlightTicketsListAdapter(emptyList(), object : FlightTicketsOnItemClickListener {
-            override fun onItemClicked(position: Int) {
-                Toast.makeText(requireContext(), "Вы нажали на ${adapter.items[position]}", Toast.LENGTH_SHORT).show()
-            }
-        })
 
-        binding.recyclerView.adapter = adapter
 
         binding.minFlightTicketCost.text = "${formatNumber(binding.seekBar.min.toString())}₽"
         binding.maxFlightTicketCost.text = "${formatNumber(binding.seekBar.max.toString())}₽"
@@ -83,9 +93,6 @@ class FlightTicketsThereFragment : Fragment() {
             elevation = 0F
         }
         snackbar.setTextColor(ColorStateList.valueOf(Color.BLACK))
-//        snackbar.setAnchorView(binding.minFlightTicketCost)
-
-
         snackbar.show()
     }
 
@@ -106,6 +113,16 @@ class FlightTicketsThereFragment : Fragment() {
         val pers: Double = ((progress - minVal) / (maxVal - minVal))
         Log.i("pers!",pers.toString())
         return (pers * coeff).toInt()
+    }
+
+    private fun launchTicketAdapter(listOfLocations: List<String>) {
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = FlightTicketsListAdapter(emptyList(), listOfLocations,object : FlightTicketsOnItemClickListener {
+            override fun onItemClicked(position: Int) {
+                Toast.makeText(requireContext(), "Вы нажали на ${adapter.items[position]}", Toast.LENGTH_SHORT).show()
+            }
+        })
+        binding.recyclerView.adapter = adapter
     }
 
 }

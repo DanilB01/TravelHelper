@@ -9,14 +9,14 @@
     android:layout_marginBottom="10dp">
 
     <TextView
-        android:text="*время вылета*"
         android:id="@+id/fieldDepartureTimeTicketListItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
+        android:text="*время вылета*"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:text="*место вылета*"
         android:id="@+id/fieldDeparturePlaceTicketListItem"
@@ -27,6 +27,16 @@
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fieldDepartureTimeTicketListItem"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/flight_ticket_item_separator"
+        android:layout_marginHorizontal="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fieldDepartureTimeTicketListItem"
+        app:layout_constraintEnd_toStartOf="@+id/fieldArrivalTimeTicketListItem"
+        app:layout_constraintStart_toEndOf="@+id/fieldDepartureTimeTicketListItem"
+        app:layout_constraintTop_toTopOf="@+id/fieldDepartureTimeTicketListItem" />
 
     <TextView
         android:text="*время прилета*"

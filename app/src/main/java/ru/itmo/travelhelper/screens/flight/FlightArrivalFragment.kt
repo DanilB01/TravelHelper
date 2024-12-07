@@ -41,7 +41,6 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
         super.onDestroy()
 
         // Отправляем данные в активити при закрытии фрагмента
-
         parentFragmentManager.setFragmentResult("requestFlightToActivityFromArrival", bundleOf("ArrivalListData" to presenter.giveArrivalData()))
     }
 
@@ -68,10 +67,7 @@ class FlightArrivalFragment() : Fragment(), FlightArrivalView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
-
-
-        //Получение данных с активити
+       //Получение данных с активити
 
         parentFragmentManager.setFragmentResultListener("requestFlightToArrivalFromActivity", this) { _, result ->
             this.localDepartureDataList = result.getStringArrayList("DepartureDataListFromAct")?.toMutableList() ?: mutableListOf("","","")

@@ -52,7 +52,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
 
 
 
-        var currentFragmentNumber = 3
+        var currentFragmentNumber = 0
         openFragment(chooseFragment(currentFragmentNumber))
 
         // 0 - Departure Screen
@@ -98,6 +98,16 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             else if (currentFragmentNumber == 2 && presenter.isDateFull) {
                 currentFragmentNumber++
                 openFragment(chooseFragment(currentFragmentNumber))
+                supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromDate", this) { _, result ->
+                    result.getStringArrayList("DateListData")
+                        ?.let { presenter.updateGlobalSavedDateData(it.toMutableList()) }
+
+                    supportFragmentManager.setFragmentResult("requestFlightToTicketThereFromActivity",
+                        bundleOf(
+                            "DateDataListFromAct" to presenter.giveDateData(),
+                            "DepartureDataListFromAct" to presenter.giveDepartureData(),
+                            "ArrivalDataListFromAct" to presenter.giveArrivalData()))
+                }
 
             }
 
