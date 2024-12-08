@@ -7,6 +7,8 @@ class FlightPresenter(private val view: FlightActivityView) {
     var globalSavedArrivalData = mutableListOf("","","")
     var globalSavedDepartureData = mutableListOf("","","")
     var globalSavedDateData = mutableListOf("","","")
+    var globalSavedTicketThereData = 0
+    var globalSavedTicketReturnData = 0
     var isDepartureFull: Boolean = false
     var isArrivalFull: Boolean = false
     var isDateFull: Boolean = false
@@ -23,6 +25,14 @@ class FlightPresenter(private val view: FlightActivityView) {
         return globalSavedDateData
     }
 
+    fun giveTicketThereData(): Int {
+        return globalSavedTicketThereData
+    }
+
+    fun giveTicketReturnData(): Int {
+        return globalSavedTicketReturnData
+    }
+
 
     fun updateGlobalSavedArrivalData(dataToSave: MutableList<String>) {
         this.globalSavedArrivalData = dataToSave
@@ -36,6 +46,15 @@ class FlightPresenter(private val view: FlightActivityView) {
         this.globalSavedDateData = dataToSave
     }
 
+    fun updateGlobalSavedTicketThereData(dataToSave: Int) {
+        this.globalSavedTicketThereData = dataToSave
+    }
+
+    fun updateGlobalSavedTicketReturnData(dataToSave: Int) {
+        this.globalSavedTicketReturnData = dataToSave
+    }
+
+
     fun updateIsDepartureFull(dataToSave: Boolean) {
         this.isDepartureFull = dataToSave
     }
@@ -47,5 +66,11 @@ class FlightPresenter(private val view: FlightActivityView) {
     fun updateIsDateFull(dataToSave: Boolean) {
         this.isDateFull = dataToSave
     }
+
+    fun getIsReturnBoxChecked(): Boolean {
+        return (globalSavedDateData[2] == "ReturnChecked_True")
+    }
+
+
 
 }

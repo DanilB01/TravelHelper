@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.screens.flight.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class FlightTicketsListAdapter(
         return FlightTicketsViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FlightTicketsViewHolder, position: Int) {
         holder.textCompanyNameItem.text = items[position][0]
         holder.textCostItem.text = formatNumber(items[position][1].dropLast(1))+"₽"

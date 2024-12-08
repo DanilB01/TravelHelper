@@ -50,6 +50,14 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                 ?.let { presenter.updateGlobalSavedDateData(it.toMutableList()) }
         }
 
+        supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromTicketThere", this) { _, result ->
+            presenter.updateGlobalSavedTicketThereData(result.getInt("TicketThereListData"))
+        }
+
+        supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromTicketReturn", this) { _, result ->
+            presenter.updateGlobalSavedTicketReturnData(result.getInt("TicketReturnListData"))
+        }
+
 
 
         var currentFragmentNumber = 0
@@ -106,9 +114,29 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                         bundleOf(
                             "DateDataListFromAct" to presenter.giveDateData(),
                             "DepartureDataListFromAct" to presenter.giveDepartureData(),
-                            "ArrivalDataListFromAct" to presenter.giveArrivalData()))
+                            "ArrivalDataListFromAct" to presenter.giveArrivalData(),
+                            "TicketThereDataListFromAct" to presenter.giveTicketThereData()))
                 }
 
+            }
+
+
+            else if (currentFragmentNumber == 3 && presenter.getIsReturnBoxChecked()) {
+                currentFragmentNumber++
+                openFragment(chooseFragment(currentFragmentNumber))
+                supportFragmentManager.setFragmentResultListener("requestFlightToActivityFromTicketThere", this) { _, result ->
+                    presenter.updateGlobalSavedTicketThereData(result.getInt("TicketThereListData"))
+                    supportFragmentManager.setFragmentResult(
+                        "requestFlightToTicketReturnFromActivity",
+                        bundleOf(
+                            "DateDataListFromAct" to presenter.giveDateData(),
+                            "DepartureDataListFromAct" to presenter.giveDepartureData(),
+                            "ArrivalDataListFromAct" to presenter.giveArrivalData(),
+                            "TicketReturnDataListFromAct" to presenter.giveTicketReturnData()
+                        )
+                    )
+
+                }
             }
 
         }
@@ -139,6 +167,17 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                         "DepartureDataListFromAct" to presenter.giveDepartureData(),
                         "DateDataListFromAct" to presenter.giveDateData(),))
             }
+            else if (currentFragmentNumber == 4) {
+                currentFragmentNumber--
+                openFragment(chooseFragment(currentFragmentNumber))
+                supportFragmentManager.setFragmentResult("requestFlightToTicketThereFromActivity",
+                    bundleOf(
+                        "ArrivalDataListFromAct" to presenter.giveArrivalData(),
+                        "DepartureDataListFromAct" to presenter.giveDepartureData(),
+                        "DateDataListFromAct" to presenter.giveDateData(),
+                        "TicketThereDataListFromAct" to presenter.giveTicketThereData()))
+            }
+
         }
 
     }
@@ -150,6 +189,7 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
             1 -> fragmentChosen = FlightArrivalFragment.newInstance()
             2 -> fragmentChosen = FlightDateFragment.newInstance()
             3 -> fragmentChosen = FlightTicketsThereFragment.newInstance()
+            4 -> fragmentChosen = FlightTicketsReturnFragment.newInstance()
         }
         return fragmentChosen
     }

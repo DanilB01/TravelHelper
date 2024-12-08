@@ -16,65 +16,68 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import ru.itmo.travelhelper.databinding.FragmentFlightTicketsThereBinding
-import ru.itmo.travelhelper.presenter.flight.FlightTicketsTherePresenter
+import ru.itmo.travelhelper.databinding.FragmentFlightTicketsReturnBinding
+import ru.itmo.travelhelper.presenter.flight.FlightTicketsReturnPresenter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsListAdapter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsOnItemClickListener
 
 
-class FlightTicketsThereFragment : Fragment() {
-    private val presenter: FlightTicketsTherePresenter by lazy { FlightTicketsTherePresenter(this) }
-    lateinit var binding: FragmentFlightTicketsThereBinding
+class FlightTicketsReturnFragment : Fragment() {
+    private val presenter: FlightTicketsReturnPresenter by lazy { FlightTicketsReturnPresenter(this) }
+    lateinit var binding: FragmentFlightTicketsReturnBinding
     private lateinit var adapter: FlightTicketsListAdapter
     private val dataList = listOf(
-        listOf("Аэрофлот","27000₽","00.12","09.47"),
-        listOf("Победа","19000₽","01.45","11.23"),
-        listOf("Азимут","25000₽","03.34","15.09"),
-        listOf("ЧипАвиа","1234₽","02.11","16.34"),
-        listOf("РичАвиа","78000₽","17.44","21.00"))
+        listOf("Россия","27000₽","00.12","09.47"),
+        listOf("S7 Airlines","19000₽","01.45","11.23"),
+        listOf("Казах Эйр","25000₽","03.34","15.09"),
+        listOf("Смартавиа","1234₽","02.11","16.34"),
+        listOf("Emirates","78000₽","17.44","21.00"))
 
 
     lateinit var localDepartureDataList: MutableList<String>
     lateinit var localArrivalDataList: MutableList<String>
     lateinit var localDateDataList: MutableList<String>
 
+
     override fun onDestroy() {
         super.onDestroy()
 
         // Отправляем данные в активити при закрытии фрагмента
-        parentFragmentManager.setFragmentResult("requestFlightToActivityFromTicketThere",
-            bundleOf("TicketThereListData" to presenter.giveTicketThereProgress()))
+        parentFragmentManager.setFragmentResult("requestFlightToActivityFromTicketReturn",
+            bundleOf("TicketReturnListData" to presenter.giveTicketReturnProgress())
+        )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFlightTicketsThereBinding.inflate(inflater)
+        binding = FragmentFlightTicketsReturnBinding.inflate(inflater)
         return binding.root
     }
 
 
     companion object {
         @JvmStatic
-        fun newInstance() = FlightTicketsThereFragment()
+        fun newInstance() = FlightTicketsReturnFragment()
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //Получение данных с активити
-        parentFragmentManager.setFragmentResultListener("requestFlightToTicketThereFromActivity", this) { _, result ->
+        parentFragmentManager.setFragmentResultListener("requestFlightToTicketReturnFromActivity", this) { _, result ->
             this.localDepartureDataList = result.getStringArrayList("DepartureDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             this.localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             this.localDateDataList = result.getStringArrayList("DateDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
-            launchTicketAdapter(listOf(localDepartureDataList[2],localArrivalDataList[2]))
-            presenter.updateSavedTicketThereProgress(result.getInt("TicketThereDataListFromAct"))
-            if (presenter.giveTicketThereProgress() == 0) {
-                presenter.updateSavedTicketThereProgress(binding.seekBar.min)
+            launchTicketAdapter(listOf(localArrivalDataList[2],localDepartureDataList[2]))
+            presenter.updateSavedTicketReturnProgress(result.getInt("TicketReturnDataListFromAct"))
+            if (presenter.giveTicketReturnProgress() == 0) {
+                presenter.updateSavedTicketReturnProgress(binding.seekBar.min)
             }
-            binding.seekBar.progress = presenter.giveTicketThereProgress()
+            binding.seekBar.progress = presenter.giveTicketReturnProgress()
             filterData(binding.seekBar.progress)
         }
+
 
 
 
@@ -82,15 +85,13 @@ class FlightTicketsThereFragment : Fragment() {
         binding.minFlightTicketCost.text = "${formatNumber(binding.seekBar.min.toString())}₽"
         binding.maxFlightTicketCost.text = "${formatNumber(binding.seekBar.max.toString())}₽"
 
-
-
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
                     showCurrentValueSnackbar(progress)
                 }
                 filterData(progress)
-                presenter.updateSavedTicketThereProgress(progress)
+                presenter.updateSavedTicketReturnProgress(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -98,7 +99,6 @@ class FlightTicketsThereFragment : Fragment() {
         })
 
     }
-
     private fun showCurrentValueSnackbar(progress: Int) {
         val snackbar = Snackbar.make(binding.root, formatNumber(progress.toString()), Snackbar.LENGTH_SHORT)
         val params = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
@@ -116,7 +116,6 @@ class FlightTicketsThereFragment : Fragment() {
     private fun filterData(progress: Int) {
         val filteredList = dataList.filter { it[1].dropLast(1).toInt() <= progress }
         adapter.updateList(filteredList)
-
     }
 
     private fun formatNumber(numberStr: String): String {

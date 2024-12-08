@@ -54,7 +54,7 @@
         android:id="@+id/titleTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textFlightThere"
+        android:text="@string/textFlightReturn"
         android:textSize="23sp"
         android:layout_marginTop="69dp"
         android:layout_marginStart="15dp"
