@@ -8,4 +8,8 @@
     <color name="init_block_bg">#FFFFFF</color>
     <color name="init_block_border">#CAC4D0</color>
     <color name="init_button_bg">#556B8F</color>
+
+    <color name="light_background">#F5F8FA</color>
+    <color name="primary">#2C6CC1</color>
+
 </resources>

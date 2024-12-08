@@ -32,6 +32,8 @@
 
     <string name="init_button_next">Далее</string>
     <string name="init_button_start">Начать</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
