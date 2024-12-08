@@ -8,10 +8,10 @@ import androidx.core.content.ContextCompat
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityWelcomeScreenBinding
 import ru.itmo.travelhelper.presenter.WelcomePresenter
-import ru.itmo.travelhelper.view.InitView
+import ru.itmo.travelhelper.view.WelcomeView
 
-class WelcomeActivity : AppCompatActivity(), InitView {
-    private lateinit var welcomePresenter: WelcomePresenter
+class WelcomeActivity : AppCompatActivity(), WelcomeView {
+    private val welcomePresenter: WelcomePresenter by lazy { WelcomePresenter(this) }
 
     private val binding by lazy {
         ActivityWelcomeScreenBinding.inflate(layoutInflater)
@@ -21,8 +21,6 @@ class WelcomeActivity : AppCompatActivity(), InitView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        welcomePresenter = WelcomePresenter(this)
 
 
         var currentScreenInitNumber = 0

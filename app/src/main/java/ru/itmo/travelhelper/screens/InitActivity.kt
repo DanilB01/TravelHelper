@@ -27,18 +27,5 @@ class InitActivity : AppCompatActivity(), InitView {
         }
         finish()
 
-
-    }
-
-    override fun showNextTitleAndTextInit(initScreenNumber: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun showNextImageInit(initScreenNumber: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun showNextButtonTextInit(initScreenNumber: Int) {
-        TODO("Not yet implemented")
     }
 }
