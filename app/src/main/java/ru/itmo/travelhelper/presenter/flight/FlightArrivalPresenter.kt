@@ -3,16 +3,16 @@ package ru.itmo.travelhelper.presenter.flight
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import ru.itmo.data.repositories.flight.LocationRepositoryImpl
+import ru.itmo.data.repositories.flight.LocationsRepositoryImpl
 import ru.itmo.domain.usecases.flight.GetAirportUseCase
 import ru.itmo.domain.usecases.flight.GetCityUseCase
 import ru.itmo.domain.usecases.flight.GetCountryUseCase
-import ru.itmo.travelhelper.screens.flight.FlightArrivalFragment
+import ru.itmo.travelhelper.view.flight.FlightArrivalView
 
-class FlightArrivalPresenter(private val view: FlightArrivalFragment) {
-    private val getCountryUseCase = GetCountryUseCase(LocationRepositoryImpl())
-    private val getCityUseCase = GetCityUseCase(LocationRepositoryImpl())
-    private val getAirportUseCase = GetAirportUseCase(LocationRepositoryImpl())
+class FlightArrivalPresenter(private val view: FlightArrivalView) {
+    private val getCountryUseCase = GetCountryUseCase(LocationsRepositoryImpl())
+    private val getCityUseCase = GetCityUseCase(LocationsRepositoryImpl())
+    private val getAirportUseCase = GetAirportUseCase(LocationsRepositoryImpl())
     private var savedArrivalData = mutableListOf("","","")
 
 

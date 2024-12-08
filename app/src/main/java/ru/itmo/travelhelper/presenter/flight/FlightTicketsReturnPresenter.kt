@@ -1,9 +1,9 @@
 package ru.itmo.travelhelper.presenter.flight
 
 
-import ru.itmo.travelhelper.screens.flight.FlightTicketsReturnFragment
+import ru.itmo.travelhelper.view.flight.FlightTicketsReturnView
 
-class FlightTicketsReturnPresenter(private val view: FlightTicketsReturnFragment) {
+class FlightTicketsReturnPresenter(private val view: FlightTicketsReturnView) {
     private var savedTicketReturnProgress: Int = 0
 
 

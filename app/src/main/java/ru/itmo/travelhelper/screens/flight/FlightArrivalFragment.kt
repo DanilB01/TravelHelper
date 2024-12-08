@@ -3,11 +3,11 @@ package ru.itmo.travelhelper.screens.flight
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.itmo.domain.models.flight.AirportModel
 import ru.itmo.domain.models.flight.CityModel

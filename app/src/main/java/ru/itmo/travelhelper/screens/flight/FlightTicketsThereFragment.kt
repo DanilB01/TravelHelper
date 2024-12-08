@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,17 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import ru.itmo.travelhelper.databinding.FragmentFlightTicketsThereBinding
 import ru.itmo.travelhelper.presenter.flight.FlightTicketsTherePresenter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsListAdapter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsOnItemClickListener
+import ru.itmo.travelhelper.view.flight.FlightTicketsThereView
 
 
-class FlightTicketsThereFragment : Fragment() {
+class FlightTicketsThereFragment : Fragment(), FlightTicketsThereView {
     private val presenter: FlightTicketsTherePresenter by lazy { FlightTicketsTherePresenter(this) }
     lateinit var binding: FragmentFlightTicketsThereBinding
     private lateinit var adapter: FlightTicketsListAdapter

@@ -3,21 +3,21 @@ package ru.itmo.travelhelper.screens.flight
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
-import android.icu.util.Calendar
 import android.net.ParseException
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.databinding.FragmentFlightDateBinding
 import ru.itmo.travelhelper.presenter.flight.FlightDatePresenter
+import ru.itmo.travelhelper.view.flight.FlightDateView
 import java.util.Date
 
 
-class FlightDateFragment : Fragment() {
+class FlightDateFragment : Fragment(), FlightDateView {
     private val presenter: FlightDatePresenter by lazy { FlightDatePresenter(this) }
     lateinit var binding: FragmentFlightDateBinding
 

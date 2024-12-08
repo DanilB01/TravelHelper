@@ -1,6 +1,3 @@
 package ru.itmo.travelhelper.view.flight
 
-interface FlightDataView {
-
-}
-
+interface FlightTicketsReturnView
