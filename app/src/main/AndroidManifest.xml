@@ -29,7 +29,7 @@
             android:name=".screens.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.HotelActivity"
+            android:name=".screens.hotels.HotelActivity"
             android:exported="false" />
     </application>
 

@@ -7,4 +7,6 @@ interface HotelView {
     fun hideLoading()
     fun showHotels(hotels: List<Hotel>)
     fun showError(message: String)
+
+
 }

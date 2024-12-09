@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.presenter
+package ru.itmo.travelhelper.presenter.hotels
 
 
 import kotlinx.coroutines.Dispatchers

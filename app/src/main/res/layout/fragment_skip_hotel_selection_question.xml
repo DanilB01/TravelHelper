@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/background"
+    tools:context=".screens.hotels.SkipHotelSelectionFragment">
+
+    <TextView
+        android:id="@+id/textViewCheckIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="206dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="Выбор отелей"
+        android:textSize="37sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewCheckOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Пропустить?"
+        android:textSize="29sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCheckIn" />
+
+    <android.widget.Button
+        android:id="@+id/btnSkipSelection"
+        android:layout_width="136dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/shape_transparent_button"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Да"
+        android:textAllCaps="false"
+        android:textColor="@color/transparent_button_text"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCheckOut" />
+
+    <android.widget.Button
+        android:id="@+id/btnAcceptSelection"
+        android:layout_width="136dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/shape_solid_button"
+        android:backgroundTint="@color/init_button_bg"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Нет"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCheckOut" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

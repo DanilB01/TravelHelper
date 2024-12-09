@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.hotels.HotelActivity">
+
+
+    <android.widget.Button
+        android:id="@+id/buttonNext"
+        android:layout_width="136dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="47dp"
+        android:background="@drawable/shape_solid_button"
+        android:backgroundTint="@color/init_button_bg"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/buttonBack"
+        android:layout_width="136dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginBottom="47dp"
+        android:background="@drawable/shape_transparent_button"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Назад"
+
+        android:textAllCaps="false"
+        android:textColor="@color/transparent_button_text"
+        android:textSize="21sp"
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragmentHolder"
+        android:layout_width="match_parent"
+        android:layout_height="625dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/background"
+    tools:context=".screens.hotels.HotelSelectionFragment">
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="83dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="Стоимость"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="за ночь"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+
+
+    <TextView
+        android:id="@+id/textViewMinPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="204dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="1 000Р"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMaxPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="22dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="50 000Р"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="214dp"
+        android:layout_marginEnd="9dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarSize="25dp"
+        android:scrollbarThumbVertical="@drawable/shape_solid_scroll_thumb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:paddingStart="15dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="353dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_solid_hotel_card"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="115dp"
+                    android:layout_height="78dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="23dp"
+                    android:src="@drawable/init_picture_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewCheckInTime"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="19dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="left"
+                    android:text="Время - 9.05"
+                    android:textSize="23sp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewHotelName"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="11dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="left"
+                    android:text="Belmont Bed  Breakfast"
+                    android:textSize="14sp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCheckInTime" />
+
+                <TextView
+                    android:id="@+id/textViewMinPriceForNignt"
+                    android:layout_width="170dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="left
+"
+                    android:text="Минимальная стоимость за ночь: 8 200"
+                    android:textSize="14sp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHotelName" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
