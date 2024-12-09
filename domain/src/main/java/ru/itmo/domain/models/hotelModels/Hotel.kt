@@ -1,4 +1,4 @@
-package ru.itmo.domain.models
+package ru.itmo.domain.models.hotelModels
 
 data class Hotel(
     val name: String,

@@ -3,10 +3,10 @@ package ru.itmo.travelhelper.presenter
 
 import android.content.Context
 import ru.itmo.data.prefs.LocalStorageImpl
-import ru.itmo.travelhelper.view.InitView
 import ru.itmo.domain.usecases.CompleteFirstLaunchUseCase
+import ru.itmo.travelhelper.view.WelcomeView
 
-class WelcomePresenter(private val view: InitView) {
+class WelcomePresenter(private val view: WelcomeView) {
 
     fun setNextScreen(currentScreenInitNumber: Int) {
         view.showNextImageInit(currentScreenInitNumber)
