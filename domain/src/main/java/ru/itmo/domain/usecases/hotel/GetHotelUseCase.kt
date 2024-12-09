@@ -1,7 +1,7 @@
-package ru.itmo.domain.usecases
+package ru.itmo.domain.usecases.hotel
 
-import ru.itmo.domain.models.Hotel
-import ru.itmo.domain.repositories.HotelRepository
+import ru.itmo.domain.models.hotelModels.Hotel
+import ru.itmo.domain.repositories.hotel.HotelRepository
 
 class GetHotelsUseCase(private val hotelRepository: HotelRepository) {
     suspend fun execute(): List<Hotel> {

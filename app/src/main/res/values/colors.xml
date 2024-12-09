@@ -4,10 +4,25 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="background">#F2FAF8</color>
-
+    <color name="flight_tickets_country_search_block_bg">#DBEBF8</color>
+    <color name="flight_tickets_picker_location_button_bg">#556B8F</color>
+    <color name="flight_tickets_button_back_border">#70787C</color>
+    <color name="flight_tickets_button_back_text">#01687D</color>
+    <color name="flight_tickets_edit_text_date_picker">#485E92</color>
+    <color name="flight_tickets_list_block_bg">#D2E4F6</color>
     <color name="init_block_bg">#FFFFFF</color>
     <color name="init_block_border">#CAC4D0</color>
     <color name="init_button_bg">#556B8F</color>
     <color name="transparent_button_text">#01687D</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="flight_seek_bar_left_part">#485E92</color>
+    <color name="flight_seek_bar_right_part">#D9DFF6</color>
+    <color name="hint_color">#49454f</color>
+    <color name="flight_date_picker_background">#D7E3F7</color>
+    <color name="flight_date_picker_selected_item">#556B8F</color>
+    <color name="flight_ticket_item_separator">#3C5277</color>
+
+
+
+
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="7dp" />
+            <solid android:color="@color/flight_seek_bar_right_part" /> <!-- Цвет фона -->
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="7dp" />
+                <solid android:color="@color/flight_seek_bar_left_part" />
+                <size android:width="15dp" android:height="3dp"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>
