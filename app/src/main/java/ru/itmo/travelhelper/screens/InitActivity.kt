@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.itmo.travelhelper.presenter.InitPresenter
+import ru.itmo.travelhelper.view.InitView
 
 
-class InitActivity : AppCompatActivity() {
-    private lateinit var initPresenter: InitPresenter
+class InitActivity : AppCompatActivity(), InitView {
+
+    private val initPresenter: InitPresenter by lazy { InitPresenter(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,7 +26,6 @@ class InitActivity : AppCompatActivity() {
             startActivity(intentMainActivity)
         }
         finish()
-
 
     }
 }

@@ -18,12 +18,10 @@
         <item>Начать</item>
     </string-array>
 
-
     <string name="init_title_1">Добро пожаловать</string>
     <string name="init_title_2">Авиабилеты</string>
     <string name="init_title_3">Отели</string>
     <string name="init_title_4">Маршруты</string>
-
 
     <string name="init_text_1">Откройте для себя удобный и продуманный планировщик путешествий. Мы поможем собрать всё в одном месте! </string>
     <string name="init_text_2">Легко выбирайте и бронируйте лучшие авиабилеты для вашего маршрута</string>
@@ -34,6 +32,33 @@
     <string name="init_button_start">Начать</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="flight_tickets_arrival_place_title">Куда:</string>
+    <string name="flight_tickets_departure_place_title">Откуда:</string>
+
+    <string name="flight_tickets_country_search_title">Выберите страну</string>
+    <string name="flight_tickets_hint_country_search">Введите страну для поиска</string>
+    <string name="flight_tickets_country_search_button_text">Нажмите, чтобы выбрать страну</string>
+
+    <string name="flight_tickets_city_search_title">Выберите город</string>
+    <string name="flight_tickets_hint_city_search">Введите город для поиска</string>
+    <string name="flight_tickets_city_search_button_text">Нажмите, чтобы выбрать город</string>
+
+
+    <string name="flight_tickets_airport_search_title">Выберите аэропорт</string>
+    <string name="flight_tickets_hint_airport_search">Введите аэропорт для поиска</string>
+    <string name="flight_tickets_airport_search_button_text">Нажмите, чтобы выбрать аэропорт</string>
+
+    <string name="titleTextFlightLocations">Место вылета и прилета</string>
+    <string name="titleTextChoseDate">Выберите даты</string>
+    <string name="textFlightThere">Туда</string>
+    <string name="hintTypeDate">Выберите дату</string>
+    <string name="buttonFlightTextDate">Нажмите, чтобы выбрать дату</string>
+    <string name="textFlightReturn">Обратно</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="textFlightTicketCost">Стоимость</string>
 
 
 </resources>
