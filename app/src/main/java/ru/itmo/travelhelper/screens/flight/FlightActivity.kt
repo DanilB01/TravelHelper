@@ -12,6 +12,7 @@ import ru.itmo.travelhelper.view.flight.FlightActivityView
 class FlightActivity() : AppCompatActivity(), FlightActivityView {
 
 
+
     private val binding by lazy { ActivityFlightTicketsMainBinding.inflate(layoutInflater) }
     private val presenter: FlightPresenter by lazy { FlightPresenter(this) }
 
