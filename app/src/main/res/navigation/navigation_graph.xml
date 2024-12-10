@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/hotelFragment"
-        android:name="com.example.hotelapp.HotelFragment"
+        android:name="ru.itmo.travelhelper.screens.HotelFragment"
         android:label="Выбор отелей"
         tools:layout="@layout/fragment_hotel">
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.hotelapp.CategoryFragment"
+        android:name="ru.itmo.travelhelper.screens.CategoryFragment"
         android:label="Что выбираем?"
         tools:layout="@layout/fragment_category">
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.hotelapp.DetailsFragment"
+        android:name="ru.itmo.travelhelper.screens.DetailsFragment"
         android:label="Детали"
         tools:layout="@layout/fragment_details">
         <action

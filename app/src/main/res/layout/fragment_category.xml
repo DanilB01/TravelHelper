@@ -1,75 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/light_background"
+    android:background="#F2FAF8"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Что выбираем?"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center" />
+    <!-- Progress indicator -->
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
+    <!-- Radio buttons for options -->
+
+    <!-- Navigation buttons -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
+        android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/radio_events"
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#556B8F"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.067" />
+
+        <TextView
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Мероприятия"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
+            android:text="Что выбираем?"
+            android:textColor="#000000"
+            android:textSize="37sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.181" />
 
-        <RadioButton
-            android:id="@+id/radio_places"
+        <RadioGroup
+            android:id="@+id/optionsRadioGroup"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.329"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            app:layout_constraintVertical_bias="0.232">
+
+            <RadioButton
+                android:id="@+id/eventsRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#52616B"
+                android:text="Мероприятия"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/placesRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:buttonTint="#52616B"
+                android:text="Места"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/foodRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:buttonTint="#52616B"
+                android:text="Еда"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <android.widget.Button
+            android:id="@+id/yesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Места"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-
-        <RadioButton
-            android:id="@+id/radio_food"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Еда"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity=""
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:width="136dp"
+            android:height="55dp"
+            android:background="@drawable/shape_rounded_back_button_flight_tickets"
             android:text="Назад"
-            android:background="@drawable/outlined_button"
-            android:textColor="@color/black" />
+            android:textAllCaps="false"
+            android:textColor="@color/flight_tickets_button_back_text"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.975" />
 
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <android.widget.Button
+            android:id="@+id/noButton"
+            android:layout_width="132dp"
+            android:layout_height="57dp"
+            android:width="136dp"
+            android:height="55dp"
+            android:background="@drawable/shape_rounded_init_button"
             android:text="Далее"
-            android:background="@drawable/solid_button"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.831"
+            app:layout_constraintStart_toEndOf="@+id/yesButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.979" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -19,8 +19,7 @@
     <color name="flight_date_picker_background">#D7E3F7</color>
     <color name="flight_date_picker_selected_item">#556B8F</color>
     <color name="flight_ticket_item_separator">#3C5277</color>
-
-
+    <color name="background_details">#D2E4F6</color>
 
 
 </resources>

@@ -18,5 +18,7 @@ class MainActivity : AppCompatActivity() {
         // Инициализация NavHostFragment для связи с navigation_graph.xml
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        navController.navigate(R.id.detailsFragment)
+
     }
 }

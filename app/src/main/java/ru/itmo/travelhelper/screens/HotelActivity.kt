@@ -3,7 +3,7 @@ package ru.itmo.travelhelper.screens
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.itmo.travelhelper.R
-import ru.itmo.domain.models.Hotel
+import ru.itmo.domain.models.hotelModels.Hotel
 import ru.itmo.travelhelper.presenter.HotelPresenter
 import ru.itmo.travelhelper.view.HotelView
 
