@@ -28,7 +28,7 @@
             android:name=".screens.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.MainActivity"
+            android:name=".screens.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".screens.HotelActivity"
