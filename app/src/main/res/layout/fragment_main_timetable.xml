@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.main.MainTimetableFragment">
+
+    <TextView
+        android:id="@+id/textTitleCalendarTimetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:text="Календарь событий"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+
+    <CalendarView
+        android:id="@+id/datePickerCalendarTimetable"
+        android:layout_width="240dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:calendarViewShown="false"
+        android:maxDate="31.12.2100"
+        android:minDate="01.01.1970"
+        android:theme="@style/Theme.TravelHelper"
+        android:background="@drawable/shape_rounded_datepicker"
+        app:layout_constraintStart_toStartOf="@+id/textTitleCalendarTimetable"
+        app:layout_constraintTop_toBottomOf="@+id/textTitleCalendarTimetable" />
+
+
+    <TextView
+        android:id="@+id/textTitleTimetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:text="Расписание"
+        android:paddingHorizontal="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:background="@color/main_timetable_title_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/datePickerCalendarTimetable"  />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTitleTimetable" />
+</androidx.constraintlayout.widget.ConstraintLayout>

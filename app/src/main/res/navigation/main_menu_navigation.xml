@@ -7,16 +7,23 @@
 
     <fragment
         android:id="@+id/timetableItem"
-        android:name="ru.itmo.travelhelper.screens.main.TimetableFragment"
-        tools:layout="@layout/fragment_timetable" />
+        android:name="ru.itmo.travelhelper.screens.main.MainTimetableFragment"
+        tools:layout="@layout/fragment_main_timetable" />
 
     <fragment
         android:id="@+id/expressItem"
-        android:name="ru.itmo.travelhelper.screens.main.ExpressFragment"
-        tools:layout="@layout/fragment_express" />
+        android:name="ru.itmo.travelhelper.screens.main.MainExpressFragment"
+        tools:layout="@layout/fragment_main_express" >
+    </fragment>
 
     <fragment
         android:id="@+id/historyItem"
-        android:name="ru.itmo.travelhelper.screens.main.HistoryFragment"
-        tools:layout="@layout/fragment_history" />
+        android:name="ru.itmo.travelhelper.screens.main.MainHistoryFragment"
+        tools:layout="@layout/fragment_main_history" />
+    <fragment
+        android:id="@+id/emptyTravelsItem"
+        android:name="ru.itmo.travelhelper.screens.main.MainEmptyTravelsFragment"
+        android:label="fragment_main_empty_travels"
+        tools:layout="@layout/fragment_main_empty_travels" />
+
 </navigation>
