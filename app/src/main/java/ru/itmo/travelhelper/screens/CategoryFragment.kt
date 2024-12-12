@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.RadioButton
+import androidx.navigation.fragment.findNavController
 import ru.itmo.travelhelper.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +39,25 @@ class CategoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_category, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val eventsRadioButton = view.findViewById<RadioButton>(R.id.eventsRadioButton)
+        val placesRadioButton = view.findViewById<RadioButton>(R.id.placesRadioButton)
+        val foodRadioButton = view.findViewById<RadioButton>(R.id.foodRadioButton)
+
+        view.findViewById<Button>(R.id.nextButton).setOnClickListener {
+            val selectedCategories = mutableListOf<String>()
+            if (eventsRadioButton.isChecked) selectedCategories.add("events")
+            if (placesRadioButton.isChecked) selectedCategories.add("places")
+            if (foodRadioButton.isChecked) selectedCategories.add("food")
+
+            val action = CategoryFragmentDirections.actionCategoryFragmentToDetailsFragment(selectedCategories.toTypedArray())
+
+            findNavController().navigate(action)
+        }
     }
 
     companion object {

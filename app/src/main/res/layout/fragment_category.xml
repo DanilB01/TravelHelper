@@ -46,49 +46,54 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.181" />
 
-        <RadioGroup
-            android:id="@+id/optionsRadioGroup"
-            android:layout_width="300dp"
+
+        <RadioButton
+            android:id="@+id/eventsRadioButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="#52616B"
+            android:text="Мероприятия"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.329"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-            app:layout_constraintVertical_bias="0.232">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.356" />
 
-            <RadioButton
-                android:id="@+id/eventsRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="#52616B"
-                android:text="Мероприятия"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/placesRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#52616B"
+            android:text="Места"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.143"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.548" />
 
-            <RadioButton
-                android:id="@+id/placesRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:buttonTint="#52616B"
-                android:text="Места"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/foodRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:buttonTint="#52616B"
-                android:text="Еда"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </RadioGroup>
+        <RadioButton
+            android:id="@+id/foodRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#52616B"
+            android:text="Еда"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.451" />
 
         <android.widget.Button
-            android:id="@+id/yesButton"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width="136dp"
@@ -106,9 +111,10 @@
             app:layout_constraintVertical_bias="0.975" />
 
         <android.widget.Button
-            android:id="@+id/noButton"
+            android:id="@+id/nextButton"
             android:layout_width="132dp"
             android:layout_height="57dp"
+            android:layout_marginEnd="16dp"
             android:width="136dp"
             android:height="55dp"
             android:background="@drawable/shape_rounded_init_button"
@@ -118,8 +124,8 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.831"
-            app:layout_constraintStart_toEndOf="@+id/yesButton"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.979" />
     </androidx.constraintlayout.widget.ConstraintLayout>

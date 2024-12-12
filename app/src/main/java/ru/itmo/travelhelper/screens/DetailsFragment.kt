@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import ru.itmo.travelhelper.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +48,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val eventsTextView: TextView = view.findViewById(R.id.eventsTextView)
         val placesTextView: TextView = view.findViewById(R.id.placesTextView)
         val foodTextView: TextView = view.findViewById(R.id.foodTextView)
@@ -62,6 +65,13 @@ class DetailsFragment : Fragment() {
         val placesSpannableString = SpannableString(placesText)
         val foodSpannableString = SpannableString(foodText)
 
+        val selectedCategories = arguments?.getStringArray("selectedCategories") ?: emptyArray()
+
+        // Скрыть все TextView по умолчанию
+        eventsTextView.visibility = View.GONE
+        placesTextView.visibility = View.GONE
+        foodTextView.visibility = View.GONE
+
         // Мероприятия
         eventsSpannableString.setSpan(
             RelativeSizeSpan(1.5f), // Размер 150% от базового для "Мероприятия"
@@ -75,7 +85,6 @@ class DetailsFragment : Fragment() {
             eventsText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
         // Места
         placesSpannableString.setSpan(
             RelativeSizeSpan(1.5f), // Размер 150% от базового для "Мероприятия"
@@ -89,7 +98,6 @@ class DetailsFragment : Fragment() {
             placesText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
         // Еда
         foodSpannableString.setSpan(
             RelativeSizeSpan(1.5f), // Размер 150% от базового для "Мероприятия"
@@ -104,9 +112,25 @@ class DetailsFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
-        eventsTextView.text = eventsSpannableString
-        placesTextView.text = placesSpannableString
-        foodTextView.text = foodSpannableString
+        // Отобразить только выбранные категории
+        if ("events" in selectedCategories) {
+            eventsTextView.visibility = View.VISIBLE
+            eventsTextView.text = eventsSpannableString
+
+        }
+        if ("places" in selectedCategories) {
+            placesTextView.visibility = View.VISIBLE
+            placesTextView.text = placesSpannableString
+
+        }
+        if ("food" in selectedCategories) {
+            foodTextView.visibility = View.VISIBLE
+            foodTextView.text = foodSpannableString
+
+        }
+        view.findViewById<Button>(R.id.backButton).setOnClickListener {
+            findNavController().navigate(R.id.action_detailsFragment_to_categoryFragment)
+        }
     }
     companion object {
         /**
