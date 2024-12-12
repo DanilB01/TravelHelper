@@ -6,7 +6,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.itmo.data.repositories.HotelRepositoryImpl
 import ru.itmo.domain.usecases.hotel.GetHotelsUseCase
-import ru.itmo.travelhelper.view.HotelView
+import ru.itmo.travelhelper.view.hotel.HotelView
 
 class HotelPresenter(private val view: HotelView) {
     private val getHotelsUseCase = GetHotelsUseCase(HotelRepositoryImpl())

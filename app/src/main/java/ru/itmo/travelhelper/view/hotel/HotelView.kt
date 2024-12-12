@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.view
+package ru.itmo.travelhelper.view.hotel
 
 import ru.itmo.domain.models.hotelModels.Hotel
 

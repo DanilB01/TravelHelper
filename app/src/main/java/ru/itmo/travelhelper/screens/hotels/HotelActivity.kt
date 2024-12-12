@@ -2,32 +2,38 @@ package ru.itmo.travelhelper.screens.hotels
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
-import ru.itmo.domain.models.Hotel
-import ru.itmo.travelhelper.screens.hotels.DateSelectionFragment
-import ru.itmo.travelhelper.screens.hotels.HotelSelectionFragment
-import ru.itmo.travelhelper.screens.hotels.RoomSelectionFragment
-import ru.itmo.travelhelper.screens.hotels.SkipHotelSelectionFragment
+import ru.itmo.domain.models.hotelModels.Hotel
 import ru.itmo.travelhelper.databinding.ActivityHotelBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelPresenter
 import ru.itmo.travelhelper.screens.MainActivity
-import ru.itmo.travelhelper.view.HotelView
+import ru.itmo.travelhelper.view.hotel.HotelView
 
 class HotelActivity : AppCompatActivity(), HotelView {
     private val presenter: HotelPresenter by lazy { HotelPresenter(this) }
     private lateinit var binding: ActivityHotelBinding
     private var currentFragmentNumber: Int = 0
-    private var maxFragmentNumber: Int = 3
+    private var maxFragmentNumber: Int = 4
+
+
+    private var checkInDate: String = ""
+    private var checkOutDate: String = ""
+    private var hotelName: String = ""
+    private var hotelDescription = "HOTEL DESC"
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHotelBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.setupView()
 
-        openFragment(SkipHotelSelectionFragment.newInstance())
+        openFragment(HotelSkipSelectionFragment.newInstance())
         binding.buttonBack.setOnClickListener {
 
             openPrevFragment()
@@ -35,6 +41,42 @@ class HotelActivity : AppCompatActivity(), HotelView {
         binding.buttonNext.setOnClickListener {
 
             openNextFragment()
+        }
+        supportFragmentManager.setFragmentResultListener(
+            "requestFromHotelDateSelectionFragmentToActivity",
+            this
+        ) { _, result ->
+            checkInDate = result.getString("CheckInDate", "NONE")
+            checkOutDate = result.getString("CheckOutDate", "NONE")
+            Log.i("CHECKDATA", result.getString("CheckInDate", "NONE"))
+            Log.i("CHECKDATA", result.getString("CheckOutDate", "NONE"))
+            binding.buttonNext.isEnabled = true
+
+        }
+        supportFragmentManager.setFragmentResultListener(
+            "requestFromHotelSelectionFragmentToActivity",
+            this
+        ) { _, result ->
+            hotelName = result.getString("Name", "NONE")
+            val toast = Toast.makeText(
+                this, result.getString("Name", "NONE"), Toast.LENGTH_SHORT
+            )
+            toast.show()
+            binding.buttonNext.isEnabled = true
+            openNextFragment()
+
+        }
+        supportFragmentManager.setFragmentResultListener(
+            "requestFromRoomSelectionFragmentToActivity",
+            this
+        ) { _, result ->
+            hotelName = result.getString("Name", "NONE")
+            val toast = Toast.makeText(
+                this, result.getString("roomName", "NONE"), Toast.LENGTH_SHORT
+            )
+            toast.show()
+
+
         }
     }
 
@@ -53,7 +95,7 @@ class HotelActivity : AppCompatActivity(), HotelView {
     }
 
     fun openPrevFragment() {
-        if (currentFragmentNumber < maxFragmentNumber) {
+        if (currentFragmentNumber <= maxFragmentNumber) {
             currentFragmentNumber--
             if (currentFragmentNumber == 0) {
                 binding.buttonNext.setVisibility(View.INVISIBLE)
@@ -90,13 +132,15 @@ class HotelActivity : AppCompatActivity(), HotelView {
     }
 
     fun chooseFragment(idFragment: Int): Fragment {
-        var fragmentChosen: Fragment = SkipHotelSelectionFragment.newInstance()
+        var fragmentChosen: Fragment = HotelSkipSelectionFragment.newInstance()
         when (idFragment) {
-            0 -> fragmentChosen = SkipHotelSelectionFragment.newInstance()
-            1 -> fragmentChosen = DateSelectionFragment.newInstance()
+            0 -> fragmentChosen = HotelSkipSelectionFragment.newInstance()
+            1 -> fragmentChosen = HotelDateSelectionFragment.newInstance()
             2 -> fragmentChosen = HotelSelectionFragment.newInstance()
-            3 -> fragmentChosen = RoomSelectionFragment.newInstance()
+            3 -> fragmentChosen = HotelDetailsFragment.newInstance(hotelName, hotelDescription)
+            4 -> fragmentChosen = HotelRoomSelectionFragment.newInstance(hotelName)
         }
+
         return fragmentChosen
     }
 

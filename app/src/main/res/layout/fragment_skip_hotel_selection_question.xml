@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/background"
-    tools:context=".screens.hotels.SkipHotelSelectionFragment">
+    tools:context=".screens.hotels.HotelSkipSelectionFragment">
 
     <TextView
         android:id="@+id/textViewCheckIn"

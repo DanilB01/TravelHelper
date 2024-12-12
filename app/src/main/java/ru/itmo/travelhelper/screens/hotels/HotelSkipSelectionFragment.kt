@@ -10,10 +10,10 @@ import ru.itmo.travelhelper.databinding.FragmentSkipHotelSelectionQuestionBindin
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SkipHotelSelectionFragment.newInstance] factory method to
+ * Use the [HotelSkipSelectionFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SkipHotelSelectionFragment : Fragment(R.layout.fragment_skip_hotel_selection_question) {
+class HotelSkipSelectionFragment : Fragment(R.layout.fragment_skip_hotel_selection_question) {
     private var _binding: FragmentSkipHotelSelectionQuestionBinding? = null
     private val binding get() = _binding!!
 
@@ -34,6 +34,6 @@ class SkipHotelSelectionFragment : Fragment(R.layout.fragment_skip_hotel_selecti
     companion object {
 
         @JvmStatic
-        fun newInstance() = SkipHotelSelectionFragment()
+        fun newInstance() = HotelSkipSelectionFragment()
     }
 }
