@@ -6,22 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.itmo.domain.models.main.TimeTableModel
 import ru.itmo.travelhelper.databinding.FragmentMainTimetableBinding
-import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesListAdapter
-import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesOnItemClickListener
+import ru.itmo.travelhelper.presenter.main.MainTimetablePresenter
 import ru.itmo.travelhelper.screens.main.adapter.MainTimetableListAdapter
 import ru.itmo.travelhelper.screens.main.adapter.MainTimetableOnItemClickListener
+import ru.itmo.travelhelper.view.main.MainTimetableView
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class MainTimetableFragment : Fragment() {
-
+class MainTimetableFragment : Fragment(), MainTimetableView {
+    private val presenter: MainTimetablePresenter by lazy { MainTimetablePresenter(this) }
     lateinit var binding: FragmentMainTimetableBinding
     private lateinit var adapterTimetable: MainTimetableListAdapter
-    private val dataList = listOf(
-        listOf("11.40","Вылет","default"),
-        listOf("14.25","Вылет","default"),
-        listOf("14.40","ресторан FISHBOWL","action1"),
-        listOf("15:50","Заселение","default"),
-        listOf("17:00","ATTY Gallery","action2"))
+    private lateinit var timeTableList: List<List<String>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,16 +35,30 @@ class MainTimetableFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val todayData = getTodayDate()
+        presenter.loadTimeTableData(todayData)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         adapterTimetable = MainTimetableListAdapter(emptyList(), object : MainTimetableOnItemClickListener {
-            override fun onItemClicked(selectedItem: Int) {
+            override fun onItemClicked(position: Int) {
 
             }
         })
 
         binding.recyclerView.adapter = adapterTimetable
-        adapterTimetable.updateList(dataList)
+        adapterTimetable.updateList(this.timeTableList)
 
+    }
+
+    override fun getTimeTable(timeTableData: List<TimeTableModel>) {
+        this.timeTableList = timeTableData
+            .map { timeTable -> listOf(timeTable.timeData, timeTable.descriptionData, timeTable.typeData) }
+    }
+
+
+    private fun getTodayDate(): String {
+        val today = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val formattedDate = today.format(formatter)
+        return formattedDate
     }
 }

@@ -52,10 +52,15 @@ class FlightTicketsListAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FlightTicketsViewHolder, position: Int) {
         holder.textCompanyNameItem.text = items[position][0]
-        holder.textCostItem.text = formatNumber(items[position][1].dropLast(1))+"₽"
+        if (items[position][1][items[position][1].length-1] == '₽') {
+            holder.textCostItem.text = formatNumber(items[position][1].dropLast(1))+"₽"
+        }
+        else {
+            holder.textCostItem.text = formatNumber(items[position][1])+"₽"
+        }
+
         holder.textTimeDeparture.text = items[position][2]
         holder.textTimeArrival.text = items[position][3]
-
         holder.textPlaceDeparture.text = place_items[0]
         holder.textPlaceArrival.text = place_items[1]
 

@@ -2,9 +2,6 @@ package ru.itmo.travelhelper.screens.flight
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -12,9 +9,9 @@ import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityFlightTicketsMainBinding
 import ru.itmo.travelhelper.presenter.flight.FlightPresenter
 import ru.itmo.travelhelper.screens.main.MainActivity
-import ru.itmo.travelhelper.view.flight.FlightActivityView
+import ru.itmo.travelhelper.view.flight.FlightView
 
-class FlightActivity() : AppCompatActivity(), FlightActivityView {
+class FlightActivity() : AppCompatActivity(), FlightView {
 
 
 

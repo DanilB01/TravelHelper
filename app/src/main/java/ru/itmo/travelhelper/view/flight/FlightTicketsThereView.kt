@@ -1,3 +1,7 @@
 package ru.itmo.travelhelper.view.flight
 
-interface FlightTicketsThereView
+import ru.itmo.domain.models.flight.TicketModel
+
+interface FlightTicketsThereView {
+    fun getTickets(ticketsData: List<TicketModel>)
+}

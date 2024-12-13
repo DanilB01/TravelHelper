@@ -16,6 +16,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import ru.itmo.domain.models.flight.TicketModel
 import ru.itmo.travelhelper.databinding.FragmentFlightTicketsReturnBinding
 import ru.itmo.travelhelper.presenter.flight.FlightTicketsReturnPresenter
 import ru.itmo.travelhelper.screens.flight.adapter.FlightTicketsListAdapter
@@ -27,12 +28,7 @@ class FlightTicketsReturnFragment : Fragment(), FlightTicketsReturnView {
     private val presenter: FlightTicketsReturnPresenter by lazy { FlightTicketsReturnPresenter(this) }
     lateinit var binding: FragmentFlightTicketsReturnBinding
     private lateinit var adapter: FlightTicketsListAdapter
-    private val dataList = listOf(
-        listOf("Россия","27000₽","00.12","09.47"),
-        listOf("S7 Airlines","19000₽","01.45","11.23"),
-        listOf("Казах Эйр","25000₽","03.34","15.09"),
-        listOf("Смартавиа","1234₽","02.11","16.34"),
-        listOf("Emirates","78000₽","17.44","21.00"))
+    private lateinit var ticketsDataList: List<List<String>>
 
 
     lateinit var localDepartureDataList: MutableList<String>
@@ -71,12 +67,14 @@ class FlightTicketsReturnFragment : Fragment(), FlightTicketsReturnView {
             this.localArrivalDataList = result.getStringArrayList("ArrivalDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             this.localDateDataList = result.getStringArrayList("DateDataListFromAct")?.toMutableList() ?: mutableListOf("","","")
             launchTicketAdapter(listOf(localArrivalDataList[2],localDepartureDataList[2]))
+            presenter.loadReturnTicketData(localArrivalDataList[2],localDepartureDataList[2], localDateDataList[0])
             presenter.updateSavedTicketReturnProgress(result.getInt("TicketReturnDataListFromAct"))
             if (presenter.giveTicketReturnProgress() == 0) {
                 presenter.updateSavedTicketReturnProgress(binding.seekBar.min)
             }
             binding.seekBar.progress = presenter.giveTicketReturnProgress()
             filterData(binding.seekBar.progress)
+
         }
 
 
@@ -115,7 +113,7 @@ class FlightTicketsReturnFragment : Fragment(), FlightTicketsReturnView {
     }
 
     private fun filterData(progress: Int) {
-        val filteredList = dataList.filter { it[1].dropLast(1).toInt() <= progress }
+        val filteredList = ticketsDataList.filter { it[1].dropLast(1).toInt() <= progress }
         adapter.updateList(filteredList)
     }
 
@@ -140,6 +138,11 @@ class FlightTicketsReturnFragment : Fragment(), FlightTicketsReturnView {
             }
         })
         binding.recyclerView.adapter = adapter
+    }
+
+    override fun getTickets(ticketsData: List<TicketModel>) {
+        this.ticketsDataList = ticketsData
+            .map { ticket -> listOf(ticket.companyName, ticket.ticketCost, ticket.flightTimeFrom, ticket.flightTimeTo) }
     }
 
 }

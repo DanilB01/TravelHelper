@@ -1,21 +1,18 @@
 package ru.itmo.travelhelper.screens.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.databinding.FragmentMainEmptyTravelsBinding
+import ru.itmo.travelhelper.view.main.MainEmptyTravelsView
 
 
-class MainEmptyTravelsFragment : Fragment() {
+class MainEmptyTravelsFragment : Fragment(), MainEmptyTravelsView {
     lateinit var binding: FragmentMainEmptyTravelsBinding
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,14 +1,15 @@
 package ru.itmo.travelhelper.screens.main
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityMainBinding
+import ru.itmo.travelhelper.view.main.MainView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)

@@ -5,27 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.itmo.travelhelper.R
+import ru.itmo.domain.models.main.InterestingPlaceModel
 import ru.itmo.travelhelper.databinding.FragmentMainExpressBinding
+import ru.itmo.travelhelper.presenter.main.MainExpressPresenter
+import ru.itmo.travelhelper.presenter.main.MainTimetablePresenter
 import ru.itmo.travelhelper.screens.flight.FlightActivity
-import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsListAdapter
-import ru.itmo.travelhelper.screens.flight.adapter.FlightLocationsOnItemClickListener
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesListAdapter
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesOnItemClickListener
+import ru.itmo.travelhelper.view.main.MainExpressView
 
-class MainExpressFragment : Fragment() {
+class MainExpressFragment : Fragment(), MainExpressView {
+    private val presenter: MainExpressPresenter by lazy { MainExpressPresenter(this) }
     lateinit var binding: FragmentMainExpressBinding
     private lateinit var adapterInterestingPlaces: MainInterestingPlacesListAdapter
-    private val dataList = listOf(
-        listOf("Мак","около Набережной","Круглосуточно","5+"),
-        listOf("Театр","около Дома","Круглосуточно","4+"),
-        listOf("Музей","около Улицы","Возраст: 6+","5"),
-        listOf("Кино","там!","Новые фильмы появились","5++"),
-        listOf("Университет","ломо","Выживание","5+++"))
+    private lateinit var interestingPlaceData: List<List<String>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,18 +40,24 @@ class MainExpressFragment : Fragment() {
         }
 
 
-
+        presenter.loadInterestingPlaceData()
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         adapterInterestingPlaces = MainInterestingPlacesListAdapter(emptyList(), object : MainInterestingPlacesOnItemClickListener {
-            override fun onItemClicked(selectedItem: Int) {
+            override fun onItemClicked(position: Int) {
 
             }
         })
 
         binding.recyclerView.adapter = adapterInterestingPlaces
-        adapterInterestingPlaces.updateList(dataList)
+        adapterInterestingPlaces.updateList(this.interestingPlaceData)
 
 
+    }
+
+    override fun getInterestingPlaceData(interestingPlaceData: List<InterestingPlaceModel>) {
+        this.interestingPlaceData = interestingPlaceData
+            .map { inter_place_item -> listOf(inter_place_item.placeName, inter_place_item.placeLocation,
+                inter_place_item.placeDescription, inter_place_item.placeRating) }
     }
 
 }

@@ -1,7 +1,6 @@
 package ru.itmo.travelhelper.screens.main.adapter
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater

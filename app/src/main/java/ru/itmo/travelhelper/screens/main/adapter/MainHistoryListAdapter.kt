@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itmo.travelhelper.R
-import ru.itmo.travelhelper.databinding.FragmentMainHistoryBinding
-import ru.itmo.travelhelper.databinding.MainHistoryListItemBinding
 
 
 interface MainHistoryOnItemClickListener {
