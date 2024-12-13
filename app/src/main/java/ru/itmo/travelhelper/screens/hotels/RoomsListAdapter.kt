@@ -7,31 +7,30 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import androidx.recyclerview.widget.RecyclerView
-import ru.itmo.travelhelper.databinding.HotelCardBinding
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.RoomCardBinding
 
-class RoomsListAdapter(val onCardClicked: (Room) -> Unit) :
+class RoomsListAdapter(val onCardClicked: (RoomModel) -> Unit) :
     RecyclerView.Adapter<RoomsListAdapter.RoomHolder>() {
-    var roomsList = ArrayList<Room>()
+    var roomsList = ArrayList<RoomModel>()
 
-    class RoomHolder(view: View, val onCardClicked: (Room) -> Unit) :
+    class RoomHolder(view: View, val onCardClicked: (RoomModel) -> Unit) :
         RecyclerView.ViewHolder(view) {
         val binding = RoomCardBinding.bind(view)
 
 
-        fun bind(room: Room) = with(binding)
+        fun bind(roomModel: RoomModel) = with(binding)
         {
 
-            imageView.setImageResource(room.getImageId())
-            textViewRoomType.text = room.getRoomName()
-            for (i in 0..<room.getIconsId().size) {
-                giveImageViewByNumber(binding, i).setImageResource(room.getIconsId()[i])
+            imageView.setImageResource(roomModel.getImageId())
+            textViewRoomType.text = roomModel.getRoomName()
+            for (i in 0..<roomModel.getIconsId().size) {
+                giveImageViewByNumber(binding, i).setImageResource(roomModel.getIconsId()[i])
             }
 
 
             mainLayout.setOnClickListener {
-                onCardClicked(room)
+                onCardClicked(roomModel)
 
             }
 
@@ -72,12 +71,12 @@ class RoomsListAdapter(val onCardClicked: (Room) -> Unit) :
         return roomsList.size
     }
 
-    fun addRoom(room: Room) {
-        roomsList.add(room)
+    fun addRoom(roomModel: RoomModel) {
+        roomsList.add(roomModel)
         notifyDataSetChanged()
     }
 
-    fun setNewList(list: ArrayList<Room>) {
+    fun setNewList(list: ArrayList<RoomModel>) {
         roomsList = list
         notifyDataSetChanged()
     }

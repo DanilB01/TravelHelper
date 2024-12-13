@@ -2,13 +2,12 @@ package ru.itmo.travelhelper.screens.hotels
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
-import ru.itmo.domain.models.hotelModels.Hotel
+import ru.itmo.domain.models.hotelModels.HotelModel
 import ru.itmo.travelhelper.databinding.ActivityHotelBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelPresenter
 import ru.itmo.travelhelper.screens.MainActivity
@@ -19,12 +18,6 @@ class HotelActivity : AppCompatActivity(), HotelView {
     private lateinit var binding: ActivityHotelBinding
     private var currentFragmentNumber: Int = 0
     private var maxFragmentNumber: Int = 4
-
-
-    private var checkInDate: String = ""
-    private var checkOutDate: String = ""
-    private var hotelName: String = ""
-    private var hotelDescription = "HOTEL DESC"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +39,12 @@ class HotelActivity : AppCompatActivity(), HotelView {
             "requestFromHotelDateSelectionFragmentToActivity",
             this
         ) { _, result ->
-            checkInDate = result.getString("CheckInDate", "NONE")
-            checkOutDate = result.getString("CheckOutDate", "NONE")
-            Log.i("CHECKDATA", result.getString("CheckInDate", "NONE"))
-            Log.i("CHECKDATA", result.getString("CheckOutDate", "NONE"))
+            val checkInDate = result.getString("CheckInDate", "NONE")
+            val checkOutDate = result.getString("CheckOutDate", "NONE")
+            presenter.setCheckInDate(checkInDate)
+            presenter.setCheckOutDate(checkOutDate)
+            presenter.setVisitorsCount(result.getInt("VisitorsCount"))
+
             binding.buttonNext.isEnabled = true
 
         }
@@ -57,9 +52,13 @@ class HotelActivity : AppCompatActivity(), HotelView {
             "requestFromHotelSelectionFragmentToActivity",
             this
         ) { _, result ->
-            hotelName = result.getString("Name", "NONE")
+
+            val hotelModel: HotelModel = result.getSerializable("SelectedHotelModel") as HotelModel
+
+
+            presenter.setSelectedHotelModel(hotelModel)
             val toast = Toast.makeText(
-                this, result.getString("Name", "NONE"), Toast.LENGTH_SHORT
+                this, hotelModel.getHotelName(), Toast.LENGTH_SHORT
             )
             toast.show()
             binding.buttonNext.isEnabled = true
@@ -70,17 +69,18 @@ class HotelActivity : AppCompatActivity(), HotelView {
             "requestFromRoomSelectionFragmentToActivity",
             this
         ) { _, result ->
-            hotelName = result.getString("Name", "NONE")
+            val roomModel: RoomModel = result.getSerializable("SelectedRoomModel") as RoomModel
+
+            presenter.setSelectedRoomModel(roomModel)
             val toast = Toast.makeText(
-                this, result.getString("roomName", "NONE"), Toast.LENGTH_SHORT
+                this, roomModel.getRoomName(), Toast.LENGTH_SHORT
             )
             toast.show()
-
 
         }
     }
 
-    fun openNextFragment() {
+    override fun openNextFragment() {
         if (currentFragmentNumber < maxFragmentNumber) {
             currentFragmentNumber++
             if (currentFragmentNumber == 1) {
@@ -94,7 +94,7 @@ class HotelActivity : AppCompatActivity(), HotelView {
         }
     }
 
-    fun openPrevFragment() {
+    override fun openPrevFragment() {
         if (currentFragmentNumber <= maxFragmentNumber) {
             currentFragmentNumber--
             if (currentFragmentNumber == 0) {
@@ -115,37 +115,29 @@ class HotelActivity : AppCompatActivity(), HotelView {
 
     open
 
-    override fun showLoading() {
-        // Показать индикатор загрузки
-    }
 
-    override fun hideLoading() {
-        // Скрыть индикатор загрузки
-    }
-
-    override fun showHotels(hotels: List<Hotel>) {
-        // Отобразить список отелей
-    }
-
-    override fun showError(message: String) {
-        // Показать ошибку
-    }
-
-    fun chooseFragment(idFragment: Int): Fragment {
+    override fun chooseFragment(idFragment: Int): Fragment {
         var fragmentChosen: Fragment = HotelSkipSelectionFragment.newInstance()
         when (idFragment) {
             0 -> fragmentChosen = HotelSkipSelectionFragment.newInstance()
             1 -> fragmentChosen = HotelDateSelectionFragment.newInstance()
             2 -> fragmentChosen = HotelSelectionFragment.newInstance()
-            3 -> fragmentChosen = HotelDetailsFragment.newInstance(hotelName, hotelDescription)
-            4 -> fragmentChosen = HotelRoomSelectionFragment.newInstance(hotelName)
+            3 -> {
+                fragmentChosen = HotelDetailsFragment.newInstance(presenter.getSelectedHotelModel())
+                binding.buttonNext.isEnabled = true
+            }
+
+            4 -> fragmentChosen =
+                HotelRoomSelectionFragment.newInstance(presenter.getSelectedHotelModel())
         }
 
         return fragmentChosen
     }
 
 
-    fun openFragment(fragment: Fragment) {
+    override fun openFragment(fragment: Fragment) {
+        binding.buttonNext.isEnabled = (currentFragmentNumber == 3)
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentHolder, fragment)

@@ -12,10 +12,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.klinker.android.link_builder.Link
 import com.klinker.android.link_builder.applyLinks
+import ru.itmo.domain.models.hotelModels.HotelModel
 import ru.itmo.travelhelper.databinding.FragmentHotelDetailsBinding
 
 
-class HotelDetailsFragment(val hotelName: String, val hotelDescription: String) : Fragment() {
+class HotelDetailsFragment(val hotelModel: HotelModel) : Fragment() {
 
 
     private var _binding: FragmentHotelDetailsBinding? = null
@@ -32,8 +33,8 @@ class HotelDetailsFragment(val hotelName: String, val hotelDescription: String) 
         _binding = FragmentHotelDetailsBinding.inflate(inflater, container, false)
         with(binding)
         {
-            textViewHotelName.text = hotelName
-            textViewHotelDescription.text = hotelDescription
+            textViewHotelName.text = hotelModel.getHotelName()
+            textViewHotelDescription.text = hotelModel.getDescription()
         }
 
         setupLink("http://www.google.com", "перейти", binding.textViewOfficialSiteLink)
@@ -63,7 +64,7 @@ class HotelDetailsFragment(val hotelName: String, val hotelDescription: String) 
     companion object {
 
         @JvmStatic
-        fun newInstance(hotelName: String, hotelDescription: String) =
-            HotelDetailsFragment(hotelName, hotelDescription)
+        fun newInstance(hotelModel: HotelModel) =
+            HotelDetailsFragment(hotelModel)
     }
 }

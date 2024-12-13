@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import ru.itmo.domain.models.hotelModels.HotelModel
 import ru.itmo.travelhelper.databinding.FragmentHotelSelectionBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelSelectionPresenter
 import ru.itmo.travelhelper.view.hotel.HotelSelectionView
@@ -41,18 +42,13 @@ class HotelSelectionFragment : Fragment(), HotelSelectionView {
 
     }
 
-    fun onHotelCardClicked(hotelData: Hotel) {
+    fun onHotelCardClicked(hotelModel: HotelModel) {
+        val bundle = Bundle()
+        bundle.putSerializable("SelectedHotelModel",hotelModel)
+
 
         parentFragmentManager.setFragmentResult(
-            "requestFromHotelSelectionFragmentToActivity", bundleOf(
-                "ImageId" to hotelData.getImageId(),
-                "Name" to hotelData.getHotelName(),
-                "CheckInTime" to hotelData.getCheckInTime(),
-                "MinPrice" to hotelData.getMinPriceString(),
-                "Description" to hotelData.getDescription(),
-                "WebsiteURL" to hotelData.getWebsiteURL()
-
-            )
+            "requestFromHotelSelectionFragmentToActivity", bundle
         )
 
     }

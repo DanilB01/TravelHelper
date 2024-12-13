@@ -10,6 +10,8 @@ import java.util.Date
 import android.widget.Toast
 import android.icu.text.SimpleDateFormat
 import android.net.ParseException
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.core.os.bundleOf
 
@@ -19,7 +21,7 @@ class HotelDateSelectionFragment : Fragment() {
     private val binding get() = _binding!!
     private var checkInDate: String = "01.01.1970"
     private var isCheckInDateSelected: Boolean = false
-    private var checkOutDate: String = ""
+    private var checkOutDate: String = "01.01.2100"
     private var isCheckOutDateSelected: Boolean = false
 
     override fun onCreateView(
@@ -61,14 +63,18 @@ class HotelDateSelectionFragment : Fragment() {
                 )
                 toast.show()
             } else {
-                if (isValidDate(chosenDataText)) {
+                if (isValidDate(chosenDataText) && isFirstDateLessThanSecond(
+                        chosenDataText,
+                        checkOutDate
+                    )
+                ) {
                     onCheckInDateSelected(chosenDataText)
 
 
                 } else {
                     val toast = Toast.makeText(
                         context,
-                        "Неверный формат даты",
+                        "Пожалуйста выберите дату не позже даты отъезда",
                         Toast.LENGTH_SHORT
                     )
                     toast.show()
@@ -105,8 +111,25 @@ class HotelDateSelectionFragment : Fragment() {
                 }
             }
         }
+        binding.editTextVisitorsCount.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                trySendDateToActivity()
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
     }
 
+    private fun getVisitorsCount(): Int {
+        val count = binding.editTextVisitorsCount.text.toString().toIntOrNull()
+        if (count != null)
+        {
+
+            return count
+        }
+
+        return 0
+    }
 
     private fun onCheckInDateSelected(chosenDate: String) {
         checkInDate = chosenDate
@@ -124,11 +147,16 @@ class HotelDateSelectionFragment : Fragment() {
 
 
     }
-    private fun trySendDateToActivity()
-    {
-        if(isCheckInDateSelected && isCheckOutDateSelected)
-        {
-            parentFragmentManager.setFragmentResult("requestFromHotelDateSelectionFragmentToActivity", bundleOf("CheckInDate" to checkInDate, "CheckOutDate" to checkOutDate))
+
+    private fun trySendDateToActivity() {
+        if (isCheckInDateSelected && isCheckOutDateSelected && getVisitorsCount() > 0) {
+            parentFragmentManager.setFragmentResult(
+                "requestFromHotelDateSelectionFragmentToActivity",
+                bundleOf(
+                    "CheckInDate" to checkInDate,
+                    "CheckOutDate" to checkOutDate,
+                    "VisitorsCount" to getVisitorsCount())
+            )
 
         }
     }
@@ -173,13 +201,17 @@ class HotelDateSelectionFragment : Fragment() {
             throw IllegalArgumentException("Неверный формат даты: $dateStr1 или $dateStr2")
         }
     }
-    override fun onDestroy()
-    {
+
+    override fun onDestroy() {
         super.onDestroy()
         Log.d("DESTROY", "DateFragmentDestroyed")
-        parentFragmentManager.setFragmentResult("requestHotelDateToActivityFromFragment", bundleOf("CheckInDate" to checkInDate, "CheckOutDate" to checkOutDate))
+        parentFragmentManager.setFragmentResult(
+            "requestHotelDateToActivityFromFragment",
+            bundleOf("CheckInDate" to checkInDate, "CheckOutDate" to checkOutDate)
+        )
 
     }
+
     companion object {
 
         fun newInstance() = HotelDateSelectionFragment()

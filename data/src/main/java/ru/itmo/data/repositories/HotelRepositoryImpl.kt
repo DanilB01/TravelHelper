@@ -1,14 +1,18 @@
 package ru.itmo.data.repositories
 
+
+
 import ru.itmo.data.mappers.HotelMapper
 import ru.itmo.data.remote.hotel.HotelApiModel
 import ru.itmo.domain.models.hotelModels.Hotel
+import ru.itmo.domain.models.hotelModels.HotelModel
 import ru.itmo.domain.repositories.hotel.HotelRepository
 
-class HotelRepositoryImpl: HotelRepository {
+class HotelRepositoryImpl : HotelRepository {
     // TODO: Add service implementation
     //private val apiService = HotelApiService
     private val mapper = HotelMapper()
+
 
     override suspend fun getHotels(): List<Hotel> {
         // Получаем список объектов HotelApiModel из API
