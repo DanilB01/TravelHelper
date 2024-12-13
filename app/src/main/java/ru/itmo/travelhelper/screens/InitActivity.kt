@@ -20,10 +20,10 @@ class InitActivity : AppCompatActivity(), InitView {
 
 
         if (isFirstLaunching) {
-            val intentWelcomeActivity = Intent(this, HotelActivity::class.java)
+            val intentWelcomeActivity = Intent(this, WelcomeActivity::class.java)
             startActivity(intentWelcomeActivity)
         } else {
-            val intentMainActivity = Intent(this, HotelActivity::class.java)
+            val intentMainActivity = Intent(this, MainActivity::class.java)
             startActivity(intentMainActivity)
         }
         finish()
