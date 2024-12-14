@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itmo.travelhelper.R
+import ru.itmo.travelhelper.databinding.MainInterestingPlaceListItemBinding
 
 
 interface MainInterestingPlacesOnItemClickListener {
@@ -34,34 +35,28 @@ class MainInterestingPlacesListAdapter(
     // place_items[1] - Flight place to
 
 
-    class MainInterestingPlacesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textPlaceNameItem: TextView = itemView.findViewById(R.id.fieldNamePlaceListItem)
-        val textRatingItem: TextView = itemView.findViewById(R.id.fieldRatingPlaceListItem)
-        val textNearItem: TextView = itemView.findViewById(R.id.fieldNearPlaceListItem)
-        val textDetailsItem: TextView = itemView.findViewById(R.id.fieldDetailsPlaceListItem)
-        val imagePlaceItem: ImageView = itemView.findViewById(R.id.fieldPicturePlaceListItem)
+    class MainInterestingPlacesViewHolder(private val binding: MainInterestingPlaceListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-
+        // Метод для привязки данных
+        fun bind(item: List<String>) {
+            binding.fieldNamePlaceListItem.text = item[0]
+            binding.fieldNearPlaceListItem.text = item[1]
+            binding.fieldDetailsPlaceListItem.text = item[2]
+            binding.fieldRatingPlaceListItem.text = item[3]
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainInterestingPlacesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_interesting_place_list_item, parent, false)
-        return MainInterestingPlacesViewHolder(view)
+        val binding = MainInterestingPlaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MainInterestingPlacesViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MainInterestingPlacesViewHolder, position: Int) {
-        holder.textPlaceNameItem.text = items[position][0]
-        holder.textNearItem.text = items[position][1]
-        holder.textDetailsItem.text = items[position][2]
-        holder.textRatingItem.text = items[position][3]
-
-//        holder.textPlaceDeparture.text = place_items[0]
-//        holder.textPlaceArrival.text = place_items[1]
+        holder.bind(items[position])
 
 
-
-        // Добавляем обработчик нажатия на каждый элемент
         holder.itemView.setOnClickListener {
             listener.onItemClicked(position)
         }

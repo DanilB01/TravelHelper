@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itmo.travelhelper.R
+import ru.itmo.travelhelper.databinding.FragmentMainEmptyTravelsBinding
+import ru.itmo.travelhelper.databinding.MainHistoryListItemBinding
 
 
 interface MainHistoryOnItemClickListener {
@@ -31,33 +33,27 @@ class MainHistoryListAdapter(
     // items[4] - Travel cost
 
 
-    class MainHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textTimeDeparture: TextView = itemView.findViewById(R.id.fieldDepartureTimeMainHistoryListItem)
-        val textTimeArrival: TextView = itemView.findViewById(R.id.fieldArrivalTimeMainHistoryListItem)
-        val textPlaceDeparture: TextView = itemView.findViewById(R.id.fieldDeparturePlaceMainHistoryListItem)
-        val textPlaceArrival: TextView = itemView.findViewById(R.id.fieldArrivalPlaceMainHistoryListItem)
-        val textCostItem: TextView = itemView.findViewById(R.id.fieldTravelCostMainHistoryListItem)
-
+    class MainHistoryViewHolder(private val binding: MainHistoryListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: List<String>) {
+            binding.fieldDepartureTimeMainHistoryListItem.text = item[0]
+            binding.fieldArrivalTimeMainHistoryListItem.text = item[1]
+            binding.fieldDeparturePlaceMainHistoryListItem.text = item[2]
+            binding.fieldArrivalPlaceMainHistoryListItem.text = item[3]
+            binding.fieldTravelCostMainHistoryListItem.text = item[4]
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHistoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_history_list_item, parent, false)
-        return MainHistoryViewHolder(view)
+        val binding = MainHistoryListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MainHistoryViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MainHistoryViewHolder, position: Int) {
-        val ite = arrayListOf("1","2","3")
-        holder.textTimeDeparture.text = items[position][0]
-        holder.textTimeArrival.text = items[position][1]
-        holder.textPlaceDeparture.text = items[position][2]
-        holder.textPlaceArrival.text = items[position][3]
-        holder.textCostItem.text = items[position][4]
+        holder.bind(items[position])
 
 
-
-
-        // Добавляем обработчик нажатия на каждый элемент
         holder.itemView.setOnClickListener {
             listener.onItemClicked(position)
         }

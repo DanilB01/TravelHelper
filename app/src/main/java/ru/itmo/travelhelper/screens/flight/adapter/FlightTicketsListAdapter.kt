@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itmo.travelhelper.R
+import ru.itmo.travelhelper.databinding.FlightTicketListItemBinding
 
 
 interface FlightTicketsOnItemClickListener {
@@ -34,36 +35,40 @@ class FlightTicketsListAdapter(
     // place_items[1] - Flight place to
 
 
-    class FlightTicketsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textCompanyNameItem: TextView = itemView.findViewById(R.id.fieldCompanyNameTicketListItem)
-        val textCostItem: TextView = itemView.findViewById(R.id.fieldCostTicketListItem)
-        val textTimeDeparture: TextView = itemView.findViewById(R.id.fieldDepartureTimeTicketListItem)
-        val textPlaceDeparture: TextView = itemView.findViewById(R.id.fieldDeparturePlaceTicketListItem)
-        val textTimeArrival: TextView = itemView.findViewById(R.id.fieldArrivalTimeTicketListItem)
-        val textPlaceArrival: TextView = itemView.findViewById(R.id.fieldArrivalPlaceTicketListItem)
+    class FlightTicketsViewHolder(private val binding: FlightTicketListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
+        // Метод для привязки данных
+        fun bind(item: List<String>, placeItems: List<String>) {
+            binding.fieldCompanyNameTicketListItem.text = item[0]
+
+            // Форматируем цену
+            val formattedCost = if (item[1].endsWith("₽")) {
+                formatNumber(item[1].dropLast(1)) + "₽"
+            } else {
+                formatNumber(item[1]) + "₽"
+            }
+            binding.fieldCostTicketListItem.text = formattedCost
+
+            binding.fieldDepartureTimeTicketListItem.text = item[2]
+            binding.fieldArrivalTimeTicketListItem.text = item[3]
+            binding.fieldDeparturePlaceTicketListItem.text = placeItems[0]
+            binding.fieldArrivalPlaceTicketListItem.text = placeItems[1]
+        }
+
+        private fun formatNumber(numberStr: String): String {
+            return numberStr.reversed().chunked(3).joinToString(" ").reversed()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightTicketsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.flight_ticket_list_item, parent, false)
-        return FlightTicketsViewHolder(view)
+        val binding = FlightTicketListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FlightTicketsViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FlightTicketsViewHolder, position: Int) {
-        holder.textCompanyNameItem.text = items[position][0]
-        if (items[position][1][items[position][1].length-1] == '₽') {
-            holder.textCostItem.text = formatNumber(items[position][1].dropLast(1))+"₽"
-        }
-        else {
-            holder.textCostItem.text = formatNumber(items[position][1])+"₽"
-        }
-
-        holder.textTimeDeparture.text = items[position][2]
-        holder.textTimeArrival.text = items[position][3]
-        holder.textPlaceDeparture.text = place_items[0]
-        holder.textPlaceArrival.text = place_items[1]
-
+        holder.bind(items[position], place_items)
 
 
         // Добавляем обработчик нажатия на каждый элемент
