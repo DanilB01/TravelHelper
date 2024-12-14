@@ -2,7 +2,6 @@ package ru.itmo.travelhelper.screens.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,8 +49,6 @@ class MainTimetableListAdapter(
     override fun onBindViewHolder(holder: MainTimetableViewHolder, position: Int) {
         holder.textDateItem.text = items[position][0]
         holder.textDescriptionItem.text = items[position][1]
-        Log.i("1234","here1")
-        Log.i("1234","here2i")
         val bgColors = mapOf(
             "default" to holder.context.getColor(R.color.main_timetable_default_category),
             "action1" to holder.context.getColor(R.color.main_timetable_action1_category),

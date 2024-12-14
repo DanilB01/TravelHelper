@@ -6,25 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".screens.main.MainExpressFragment">
 
-    <TextView
-        android:id="@+id/textTitleExpress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="38dp"
-        android:textSize="25sp"
-        android:text="Экспресс-меню"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"  />
 
     <android.widget.Button
         android:id="@+id/buttonStartPlanningTravel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/main_express_button_color"
         android:fontFamily="@font/roboto_medium"
         android:paddingHorizontal="6dp"
@@ -33,7 +22,7 @@
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitleExpress" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView

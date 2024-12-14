@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.itmo.domain.models.main.InterestingPlaceModel
 import ru.itmo.travelhelper.databinding.FragmentMainExpressBinding
 import ru.itmo.travelhelper.presenter.main.MainExpressPresenter
-import ru.itmo.travelhelper.presenter.main.MainTimetablePresenter
 import ru.itmo.travelhelper.screens.flight.FlightActivity
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesListAdapter
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesOnItemClickListener

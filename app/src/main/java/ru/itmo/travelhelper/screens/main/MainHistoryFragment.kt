@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.itmo.domain.models.main.HistoryModel
+import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.FragmentMainHistoryBinding
 import ru.itmo.travelhelper.presenter.main.MainHistoryPresenter
 import ru.itmo.travelhelper.screens.main.adapter.MainHistoryListAdapter
@@ -28,11 +31,22 @@ class MainHistoryFragment : Fragment(), MainHistoryView {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter.loadHistoryData()
+        if (historyList.isEmpty()) {
+            findNavController().navigate(R.id.action_historyItem_to_emptyTravelsItem,null,
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.historyItem, true)  // Очищаем стек до newFragment
+                    .build())
+        }
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        presenter.loadHistoryData()
+
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         adapterHistory = MainHistoryListAdapter(emptyList(), object : MainHistoryOnItemClickListener {
             override fun onItemClicked(position: Int) {
