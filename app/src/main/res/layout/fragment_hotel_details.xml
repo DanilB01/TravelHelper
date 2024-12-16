@@ -4,22 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".screens.hotels.HotelDetailsFragment">
-
 
     <TextView
         android:id="@+id/textViewHotelName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="6dp"
         android:background="#D2E4F6"
         android:fontFamily="@font/roboto_medium"
         android:gravity="left"
-        android:paddingStart="25dp"
-
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="8dp"
         android:text="Стоимость"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +39,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingStart="22dp"
-            android:paddingEnd="22dp"
-
-
-            >
-
+            android:paddingEnd="22dp">
 
             <TextView
                 android:id="@+id/textViewOfficialSiteLink"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/background"
+    android:paddingVertical="32dp"
     tools:context=".screens.hotels.HotelSelectionFragment">
 
     <TextView
@@ -12,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="83dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="Стоимость"
@@ -36,50 +36,49 @@
         android:id="@+id/seekBar"
         android:layout_width="206dp"
         android:layout_height="26dp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="47dp"
         android:max="50000"
         android:min="1000"
         android:progress="50000"
         android:progressDrawable="@drawable/flight_seek_bar_custom"
         android:thumb="@drawable/flight_thumb_custom"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPrice2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textViewPrice" />
 
     <TextView
         android:id="@+id/textViewMinPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="126dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="204dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="1 000Р"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
         android:id="@+id/textViewMaxPrice"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="126dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="22dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="50 000Р"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcViewHotelCards"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="214dp"
-        android:layout_marginEnd="9dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/transparent"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
@@ -89,10 +88,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/textViewMaxPrice">
 
 
     </androidx.recyclerview.widget.RecyclerView>

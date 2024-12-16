@@ -20,15 +20,14 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingVertical="32dp">
 
             <TextView
                 android:id="@+id/textViewCheckIn"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_marginStart="21dp"
-                android:layout_marginTop="85dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="Дата заселения"

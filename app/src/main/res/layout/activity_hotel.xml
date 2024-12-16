@@ -8,10 +8,20 @@
     tools:context=".screens.hotels.HotelActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_progress_hotel" />
+
     <android.widget.Button
         android:id="@+id/buttonNext"
         android:layout_width="136dp"
-        android:layout_height="58dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="47dp"
         android:background="@drawable/shape_solid_button"
@@ -35,23 +45,21 @@
         android:background="@drawable/shape_transparent_button"
         android:fontFamily="@font/roboto_medium"
         android:text="Назад"
-
         android:textAllCaps="false"
         android:textColor="@color/transparent_button_text"
         android:textSize="21sp"
-
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/fragmentHolder"
         android:layout_width="match_parent"
-        android:layout_height="625dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
