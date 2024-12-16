@@ -47,8 +47,8 @@
             app:layout_constraintVertical_bias="0.181" />
 
 
-        <RadioButton
-            android:id="@+id/eventsRadioButton"
+        <CheckBox
+            android:id="@+id/eventsCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#52616B"
@@ -62,8 +62,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.356" />
 
-        <RadioButton
-            android:id="@+id/placesRadioButton"
+        <CheckBox
+            android:id="@+id/placesCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#52616B"
@@ -75,10 +75,10 @@
             app:layout_constraintHorizontal_bias="0.143"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.548" />
+            app:layout_constraintVertical_bias="0.459" />
 
-        <RadioButton
-            android:id="@+id/foodRadioButton"
+        <CheckBox
+            android:id="@+id/foodCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#52616B"
@@ -90,7 +90,7 @@
             app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.451" />
+            app:layout_constraintVertical_bias="0.565" />
 
         <android.widget.Button
             android:id="@+id/backButton"
