@@ -3,20 +3,21 @@ package ru.itmo.travelhelper.screens
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.itmo.travelhelper.databinding.ActivityMainBinding
+import ru.itmo.travelhelper.presenter.InitPresenter
+import ru.itmo.travelhelper.screens.main.MainActivity
+import ru.itmo.travelhelper.view.InitView
 
 
-class InitActivity : AppCompatActivity() {
+class InitActivity : AppCompatActivity(), InitView {
 
-    private val viewBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
+    private val initPresenter: InitPresenter by lazy { InitPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(viewBinding.root)
-        val isFirstLaunching = true //get bool value if first launching true/false
+
+        val isFirstLaunching = initPresenter.isFirstLaunch(this@InitActivity)
+
 
         if (isFirstLaunching) {
             val intentWelcomeActivity = Intent(this, WelcomeActivity::class.java)
@@ -26,7 +27,6 @@ class InitActivity : AppCompatActivity() {
             startActivity(intentMainActivity)
         }
         finish()
-
 
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.flight.FlightTicketsThereFragment">
+    <TextView
+        android:id="@+id/titleTextCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textFlightTicketCost"
+        android:textSize="23sp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:max="100000"
+        android:min="1000"
+        android:layout_marginStart="12dp"
+        android:progressDrawable="@drawable/flight_seek_bar_custom"
+        android:thumb="@drawable/flight_thumb_custom"
+        app:layout_constraintBottom_toBottomOf="@+id/titleTextCost"
+        app:layout_constraintStart_toEndOf="@+id/titleTextCost"
+        app:layout_constraintTop_toTopOf="@+id/titleTextCost"/>
+    <TextView
+        android:id="@+id/minFlightTicketCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="18sp"
+        android:text="100₽"
+        app:layout_constraintStart_toStartOf="@id/seekBar"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"
+        android:layout_marginStart="-10dp"/>
+    <TextView
+        android:id="@+id/maxFlightTicketCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="18sp"
+        android:text="100 000₽"
+        app:layout_constraintEnd_toEndOf="@id/seekBar"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"
+        android:layout_marginEnd="-30dp"/>
+
+    <TextView
+        android:id="@+id/titleTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textFlightThere"
+        android:textSize="23sp"
+        android:layout_marginTop="69dp"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextCost"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="37dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextDate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:background="@drawable/share_rounded_init_container"
+        android:background="@drawable/shape_rounded_init_container"
         app:layout_constraintTop_toBottomOf="@+id/headerConstraintLayout"
         tools:layout_editor_absoluteX="20dp">
 
@@ -125,7 +125,7 @@
             android:id="@+id/nextButtonInit"
             android:layout_width="136dp"
             android:layout_height="58dp"
-            android:background="@drawable/share_rounded_init_button"
+            android:background="@drawable/shape_rounded_init_button"
             android:fontFamily="@font/roboto_medium"
             tools:text="@string/init_button_next"
             android:textAllCaps="false"

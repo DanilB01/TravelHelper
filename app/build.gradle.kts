@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "ru.itmo.travelhelper"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -48,9 +48,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.com.klinkerapps.link.builder)
+
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.navigation.ui.ktx)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
+
 
     // Test
     testImplementation(libs.junit)

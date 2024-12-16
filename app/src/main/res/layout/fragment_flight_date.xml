@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.flight.FlightDateFragment">
+
+        <TextView
+            android:id="@+id/titleTextLocations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleTextFlightLocations"
+            android:textSize="23sp"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/locationDepartureDataText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_rounded_picker_location_button"
+            android:textColor="@color/white"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextLocations"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/roboto_regular"
+            tools:text="TestText"/>
+
+
+
+
+        <TextView
+            android:id="@+id/locationArrivalDataText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/shape_rounded_picker_location_button"
+            android:textColor="@color/white"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/locationDepartureDataText"
+            tools:text="TestText"/>
+
+        <TextView
+            android:id="@+id/titleTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleTextChoseDate"
+            android:textSize="23sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationArrivalDataText"/>
+
+
+        <TextView
+            android:id="@+id/textDateThere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textFlightThere"
+            android:textSize="21sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="50dp"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextDate"/>
+
+        <android.widget.Button
+            android:id="@+id/buttonStartPickDateThere"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
+            app:layout_constraintStart_toEndOf="@id/textDateThere"
+            app:layout_constraintTop_toTopOf="@+id/textDateThere"
+            android:layout_marginStart="56dp"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:paddingHorizontal="6dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/buttonFlightTextDate"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets_filled" />
+
+
+        <LinearLayout
+            android:id="@+id/layoutDateThere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="2dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
+            app:layout_constraintStart_toEndOf="@id/textDateThere"
+            app:layout_constraintTop_toTopOf="@+id/textDateThere"
+            android:orientation="horizontal"
+            android:layout_marginStart="56dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets"
+            android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/buttonPickDateThere"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/hintTypeDate"
+                    android:textSize="16sp"
+                    android:textColor="@color/hint_color"
+                    android:gravity="start|center_vertical"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_regular"
+                    app:layout_constraintBottom_toBottomOf="@+id/textDateThere"
+                    app:layout_constraintStart_toEndOf="@id/textDateThere"
+                    app:layout_constraintTop_toTopOf="@+id/textDateThere"
+                    android:background="@android:color/transparent"/>
+                <ImageView
+                    android:id="@+id/imgButtonOpenDatePickerThere"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/open_date_picker_icon"
+                    android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+        <CalendarView
+            android:id="@+id/datePickerThere"
+            android:layout_width="240dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:calendarViewShown="false"
+            android:maxDate="31.12.2100"
+            android:minDate="01.01.1970"
+            android:theme="@style/Theme.TravelHelper"
+            app:layout_constraintEnd_toEndOf="@+id/layoutDateThere"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere" />
+
+
+        <TextView
+            android:id="@+id/dateFormatHintThereText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="1dp"
+            android:text="@string/dd_mm_yyyy"
+            android:textColor="@color/hint_color"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateThere"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateThere"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/radioButtonDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.TravelHelper.Init.RadioButton"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datePickerThere" />
+
+        <TextView
+            android:id="@+id/textDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/textFlightReturn"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/radioButtonDateReturn"
+            app:layout_constraintStart_toEndOf="@id/radioButtonDateReturn"
+            app:layout_constraintTop_toTopOf="@+id/radioButtonDateReturn" />
+
+        <android.widget.Button
+            android:id="@+id/buttonStartPickDateReturn"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateReturn"
+            app:layout_constraintStart_toEndOf="@id/textDateReturn"
+            app:layout_constraintTop_toTopOf="@+id/textDateReturn"
+            android:layout_marginStart="17dp"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:paddingHorizontal="6dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/buttonFlightTextDate"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets_filled"
+            android:visibility="gone"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/layoutDateReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="2dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDateReturn"
+            app:layout_constraintStart_toEndOf="@id/textDateReturn"
+            app:layout_constraintTop_toTopOf="@+id/textDateReturn"
+            android:layout_marginStart="18dp"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rounded_date_picker_edit_text_flight_tickets"
+            android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/buttonPickDateReturn"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/hintTypeDate"
+                    android:textAllCaps="false"
+                    android:textColor="@color/hint_color"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imgButtonOpenDatePickerReturn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/open_date_picker_icon"
+                    android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+
+        <CalendarView
+            android:id="@+id/datePickerReturn"
+            android:layout_width="240dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:calendarViewShown="false"
+            android:maxDate="31.12.2100"
+            android:minDate="01.01.1970"
+            android:theme="@style/Theme.TravelHelper"
+            android:weekNumberColor="@color/flight_date_picker_selected_item"
+            app:layout_constraintEnd_toEndOf="@+id/layoutDateReturn"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn"/>
+
+        <TextView
+            android:id="@+id/dateFormatHintReturnText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="1dp"
+            android:text="@string/dd_mm_yyyy"
+            android:textColor="@color/hint_color"
+            app:layout_constraintStart_toStartOf="@+id/layoutDateReturn"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateReturn"
+            android:visibility="gone"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
