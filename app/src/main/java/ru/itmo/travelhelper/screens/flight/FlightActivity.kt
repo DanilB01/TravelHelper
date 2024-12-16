@@ -142,6 +142,14 @@ class FlightActivity() : AppCompatActivity(), FlightView {
                 }
             }
 
+
+            else if ((currentFragmentNumber == 3 && !presenter.getIsReturnBoxChecked()) || currentFragmentNumber == 4) {
+                // TODO intent переход на отели
+            }
+
+
+
+
         }
 
 
