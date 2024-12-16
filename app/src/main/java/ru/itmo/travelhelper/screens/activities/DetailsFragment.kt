@@ -1,11 +1,10 @@
-package ru.itmo.travelhelper.screens
+package ru.itmo.travelhelper.screens.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import ru.itmo.travelhelper.databinding.FragmentDetailsBinding
 import ru.itmo.travelhelper.presenter.DetailsPresenter
 import ru.itmo.domain.usecases.GetDetailsUseCase
@@ -29,18 +28,14 @@ class DetailsFragment : Fragment(), DetailsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Инициализируем UseCase и Presenter
         getDetailsUseCase = GetDetailsUseCase()
         presenter = DetailsPresenter(this)
 
-        // Получаем выбранные категории из аргументов
-        val selectedCategories = arguments?.getStringArray("selectedCategories") ?: emptyArray()
-
-        // Передаем их в Presenter
+        val selectedCategories = arguments?.getStringArray(ARG_SELECTED_CATEGORIES) ?: emptyArray()
         presenter.onCategoriesLoaded(selectedCategories, getDetailsUseCase)
 
         binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -62,5 +57,17 @@ class DetailsFragment : Fragment(), DetailsView {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val ARG_SELECTED_CATEGORIES = "selectedCategories"
+
+        fun newInstance(selectedCategories: Array<String>): DetailsFragment {
+            val fragment = DetailsFragment()
+            val args = Bundle()
+            args.putStringArray(ARG_SELECTED_CATEGORIES, selectedCategories)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

@@ -1,11 +1,10 @@
-package ru.itmo.travelhelper.screens
+package ru.itmo.travelhelper.screens.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import ru.itmo.travelhelper.databinding.FragmentCategoryBinding
 import ru.itmo.domain.repositories.CategoryRepository
 import ru.itmo.domain.usecases.GetCategoriesUseCase
@@ -17,7 +16,6 @@ class CategoryFragment : Fragment(), CategoryView {
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: CategoryPresenter
-
     private lateinit var getCategoriesUseCase: GetCategoriesUseCase
 
     override fun onCreateView(
@@ -45,10 +43,9 @@ class CategoryFragment : Fragment(), CategoryView {
         }
     }
 
-
     override fun navigateToDetails(selectedCategories: Array<String>) {
-        val action = CategoryFragmentDirections.actionCategoryFragmentToDetailsFragment(selectedCategories)
-        findNavController().navigate(action)
+        val detailsFragment = DetailsFragment.newInstance(selectedCategories)
+        (requireActivity() as ActivitiesActivity).replaceFragment(detailsFragment)
     }
 
     override fun onDestroyView() {

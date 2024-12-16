@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="ru.itmo.travelhelper.screens.CategoryFragment"
+        android:name="ru.itmo.travelhelper.screens.activities.CategoryFragment"
         android:label="Что выбираем?"
         tools:layout="@layout/fragment_category">
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="ru.itmo.travelhelper.screens.DetailsFragment"
+        android:name="ru.itmo.travelhelper.screens.activities.DetailsFragment"
         android:label="Детали"
         tools:layout="@layout/fragment_details">
         <action
