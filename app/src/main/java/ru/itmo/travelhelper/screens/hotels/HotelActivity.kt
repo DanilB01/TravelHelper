@@ -11,7 +11,7 @@ import ru.itmo.domain.models.hotel.Hotel
 import ru.itmo.domain.models.hotel.Room
 import ru.itmo.travelhelper.databinding.ActivityHotelBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelPresenter
-import ru.itmo.travelhelper.screens.MainActivity
+import ru.itmo.travelhelper.screens.main.MainActivity
 import ru.itmo.travelhelper.view.hotel.HotelView
 
 class HotelActivity : AppCompatActivity(), HotelView {
@@ -111,10 +111,6 @@ class HotelActivity : AppCompatActivity(), HotelView {
         startActivity(intentMainActivity)
 
     }
-
-
-    open
-
 
     override fun chooseFragment(idFragment: Int): Fragment {
         var fragmentChosen: Fragment = HotelSkipSelectionFragment.newInstance()
