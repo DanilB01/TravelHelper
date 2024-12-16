@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/expressItem">
+
+    <fragment
+        android:id="@+id/timetableItem"
+        android:name="ru.itmo.travelhelper.screens.main.TimetableFragment"
+        tools:layout="@layout/fragment_timetable" />
+
+    <fragment
+        android:id="@+id/expressItem"
+        android:name="ru.itmo.travelhelper.screens.main.ExpressFragment"
+        tools:layout="@layout/fragment_express" />
+
+    <fragment
+        android:id="@+id/historyItem"
+        android:name="ru.itmo.travelhelper.screens.main.HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+</navigation>

@@ -51,9 +51,12 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.com.klinkerapps.link.builder)
 
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.navigation.ui.ktx)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
+
 
     // Test
     testImplementation(libs.junit)

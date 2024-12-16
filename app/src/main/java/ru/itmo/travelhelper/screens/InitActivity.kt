@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.itmo.travelhelper.presenter.InitPresenter
-import ru.itmo.travelhelper.screens.hotels.HotelActivity
 import ru.itmo.travelhelper.view.InitView
 
 
