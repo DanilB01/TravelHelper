@@ -31,8 +31,9 @@
             android:name=".screens.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.HotelActivity"
-            android:exported="false" />
+            android:name=".screens.hotels.HotelActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
