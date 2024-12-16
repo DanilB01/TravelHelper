@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import ru.itmo.domain.models.hotelModels.HotelModel
+import ru.itmo.domain.models.hotel.Hotel
+import ru.itmo.domain.models.hotel.Room
 
 import ru.itmo.travelhelper.databinding.FragmentRoomSelectionBinding
 
 import ru.itmo.travelhelper.presenter.hotels.RoomSelectionPresenter
 import ru.itmo.travelhelper.view.hotel.RoomSelectionView
 
-class HotelRoomSelectionFragment(val selectedHotelModel: HotelModel) : Fragment(),
+class HotelRoomSelectionFragment(val selectedHotel: Hotel) : Fragment(),
     RoomSelectionView {
 
     private val presenter: RoomSelectionPresenter by lazy { RoomSelectionPresenter(this) }
@@ -27,14 +27,14 @@ class HotelRoomSelectionFragment(val selectedHotelModel: HotelModel) : Fragment(
     ): View? {
         _binding = FragmentRoomSelectionBinding.inflate(inflater, container, false)
         loadRooms()
-        binding.textViewHotelName.text = selectedHotelModel.getHotelName()
+        binding.textViewHotelName.text = selectedHotel.getHotelName()
         return binding.root
 
     }
 
-    fun onRoomCardClicked(roomModel: RoomModel) {
+    fun onRoomCardClicked(room: Room) {
         val bundle = Bundle()
-        bundle.putSerializable("SelectedRoomModel", roomModel)
+        bundle.putSerializable("SelectedRoomModel", room)
         parentFragmentManager.setFragmentResult(
             "requestFromRoomSelectionFragmentToActivity", bundle
         )
@@ -53,8 +53,8 @@ class HotelRoomSelectionFragment(val selectedHotelModel: HotelModel) : Fragment(
     companion object {
 
         @JvmStatic
-        fun newInstance(hotelModel: HotelModel) =
-            HotelRoomSelectionFragment(hotelModel)
+        fun newInstance(hotel: Hotel) =
+            HotelRoomSelectionFragment(hotel)
 
     }
 }

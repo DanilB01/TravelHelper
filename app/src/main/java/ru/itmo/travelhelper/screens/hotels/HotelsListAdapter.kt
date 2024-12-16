@@ -6,27 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
-import ru.itmo.domain.models.hotelModels.HotelModel
+import ru.itmo.domain.models.hotel.Hotel
 import ru.itmo.travelhelper.databinding.HotelCardBinding
 import ru.itmo.travelhelper.R
 
-class HotelsListAdapter(val onCardClicked: (HotelModel) -> Unit) :
+class HotelsListAdapter(val onCardClicked: (Hotel) -> Unit) :
     RecyclerView.Adapter<HotelsListAdapter.HotelHolder>() {
-    var hotelsList = ArrayList<HotelModel>()
+    var hotelsList = ArrayList<Hotel>()
 
-    class HotelHolder(view: View, val onCardClicked: (HotelModel) -> Unit) : RecyclerView.ViewHolder(view) {
+    class HotelHolder(view: View, val onCardClicked: (Hotel) -> Unit) : RecyclerView.ViewHolder(view) {
         val binding = HotelCardBinding.bind(view)
 
 
-        fun bind(hotelModel: HotelModel) = with(binding)
+        fun bind(hotel: Hotel) = with(binding)
         {
 
-            imageView.setImageResource(hotelModel.getImageId())
-            textViewHotelName.text = hotelModel.getHotelName()
-            textViewCheckInTime.text = "Время - ${hotelModel.getCheckInTime()}"
-            textViewMinPriceForNignt.text = "Минимальная стоимость за ночь:${hotelModel.getMinPriceString()}"
+            imageView.setImageResource(hotel.getImageId())
+            textViewHotelName.text = hotel.getHotelName()
+            textViewCheckInTime.text = "Время - ${hotel.getCheckInTime()}"
+            textViewMinPriceForNignt.text = "Минимальная стоимость за ночь:${hotel.getMinPriceString()}"
             mainLayout.setOnClickListener {
-                onCardClicked(hotelModel)
+                onCardClicked(hotel)
 
             }
 
@@ -51,12 +51,12 @@ class HotelsListAdapter(val onCardClicked: (HotelModel) -> Unit) :
         return hotelsList.size
     }
 
-    fun addHotel(hotelModel: HotelModel) {
-        hotelsList.add(hotelModel)
+    fun addHotel(hotel: Hotel) {
+        hotelsList.add(hotel)
         notifyDataSetChanged()
     }
 
-    fun setNewList(list: ArrayList<HotelModel>) {
+    fun setNewList(list: ArrayList<Hotel>) {
         hotelsList = list
         notifyDataSetChanged()
     }

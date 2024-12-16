@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.SeekBar
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import ru.itmo.domain.models.hotelModels.HotelModel
+import ru.itmo.domain.models.hotel.Hotel
 import ru.itmo.travelhelper.databinding.FragmentHotelSelectionBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelSelectionPresenter
 import ru.itmo.travelhelper.view.hotel.HotelSelectionView
@@ -76,9 +75,9 @@ class HotelSelectionFragment : Fragment(), HotelSelectionView {
         return numberStr.reversed().chunked(3).joinToString(" ").reversed()
     }
 
-    fun onHotelCardClicked(hotelModel: HotelModel) {
+    fun onHotelCardClicked(hotel: Hotel) {
         val bundle = Bundle()
-        bundle.putSerializable("SelectedHotelModel",hotelModel)
+        bundle.putSerializable("SelectedHotelModel",hotel)
 
 
         parentFragmentManager.setFragmentResult(

@@ -1,10 +1,9 @@
-package ru.itmo.domain.models.hotelModels
+package ru.itmo.domain.models.hotel
 
 import java.io.Serializable
 
-
-data class HotelModel(
-    private val imageId: Int,
+data class Hotel(
+    private val imageId: Int = 0,
     private val hotelName: String,
     private val checkInTime: String,
     private val minPrice: Int,

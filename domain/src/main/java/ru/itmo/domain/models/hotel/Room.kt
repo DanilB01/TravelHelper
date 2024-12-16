@@ -1,10 +1,10 @@
-package ru.itmo.travelhelper.screens.hotels
+package ru.itmo.domain.models.hotel
 
 import java.io.Serializable
 
 
-data class RoomModel(
-    private val imageId: Int,
+data class Room(
+    private val imageId: Int = 0,
     private val roomName: String,
     private val square: Int,
     private val iconsId: ArrayList<Int>,

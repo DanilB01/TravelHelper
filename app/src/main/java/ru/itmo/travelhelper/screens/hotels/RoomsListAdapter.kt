@@ -7,30 +7,31 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import androidx.recyclerview.widget.RecyclerView
+import ru.itmo.domain.models.hotel.Room
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.RoomCardBinding
 
-class RoomsListAdapter(val onCardClicked: (RoomModel) -> Unit) :
+class RoomsListAdapter(val onCardClicked: (Room) -> Unit) :
     RecyclerView.Adapter<RoomsListAdapter.RoomHolder>() {
-    var roomsList = ArrayList<RoomModel>()
+    var roomsList = ArrayList<Room>()
 
-    class RoomHolder(view: View, val onCardClicked: (RoomModel) -> Unit) :
+    class RoomHolder(view: View, val onCardClicked: (Room) -> Unit) :
         RecyclerView.ViewHolder(view) {
         val binding = RoomCardBinding.bind(view)
 
 
-        fun bind(roomModel: RoomModel) = with(binding)
+        fun bind(room: Room) = with(binding)
         {
 
-            imageView.setImageResource(roomModel.getImageId())
-            textViewRoomType.text = roomModel.getRoomName()
-            for (i in 0..<roomModel.getIconsId().size) {
-                giveImageViewByNumber(binding, i).setImageResource(roomModel.getIconsId()[i])
+            imageView.setImageResource(room.getImageId())
+            textViewRoomType.text = room.getRoomName()
+            for (i in 0..<room.getIconsId().size) {
+                giveImageViewByNumber(binding, i).setImageResource(room.getIconsId()[i])
             }
 
 
             mainLayout.setOnClickListener {
-                onCardClicked(roomModel)
+                onCardClicked(room)
 
             }
 
@@ -71,12 +72,12 @@ class RoomsListAdapter(val onCardClicked: (RoomModel) -> Unit) :
         return roomsList.size
     }
 
-    fun addRoom(roomModel: RoomModel) {
-        roomsList.add(roomModel)
+    fun addRoom(room: Room) {
+        roomsList.add(room)
         notifyDataSetChanged()
     }
 
-    fun setNewList(list: ArrayList<RoomModel>) {
+    fun setNewList(list: ArrayList<Room>) {
         roomsList = list
         notifyDataSetChanged()
     }

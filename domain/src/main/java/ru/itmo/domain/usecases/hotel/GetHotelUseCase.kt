@@ -1,6 +1,6 @@
 package ru.itmo.domain.usecases.hotel
 
-import ru.itmo.domain.models.hotelModels.Hotel
+import ru.itmo.domain.models.hotel.Hotel
 import ru.itmo.domain.repositories.hotel.HotelRepository
 
 class GetHotelsUseCase(private val hotelRepository: HotelRepository) {

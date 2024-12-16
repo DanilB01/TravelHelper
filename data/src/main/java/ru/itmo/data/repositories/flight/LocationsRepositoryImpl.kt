@@ -1,7 +1,6 @@
 package ru.itmo.data.repositories.flight
 
 
-import ru.itmo.data.mappers.HotelMapper
 import ru.itmo.data.mappers.flight.AirportMapper
 import ru.itmo.data.mappers.flight.CityMapper
 import ru.itmo.data.mappers.flight.CountryMapper

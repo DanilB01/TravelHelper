@@ -7,7 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
-import ru.itmo.domain.models.hotelModels.HotelModel
+import ru.itmo.domain.models.hotel.Hotel
+import ru.itmo.domain.models.hotel.Room
 import ru.itmo.travelhelper.databinding.ActivityHotelBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelPresenter
 import ru.itmo.travelhelper.screens.MainActivity
@@ -24,7 +25,6 @@ class HotelActivity : AppCompatActivity(), HotelView {
         super.onCreate(savedInstanceState)
         binding = ActivityHotelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter.setupView()
 
         openFragment(HotelSkipSelectionFragment.newInstance())
         binding.buttonBack.setOnClickListener {
@@ -53,12 +53,12 @@ class HotelActivity : AppCompatActivity(), HotelView {
             this
         ) { _, result ->
 
-            val hotelModel: HotelModel = result.getSerializable("SelectedHotelModel") as HotelModel
+            val hotel: Hotel = result.getSerializable("SelectedHotelModel") as Hotel
 
 
-            presenter.setSelectedHotelModel(hotelModel)
+            presenter.setSelectedHotelModel(hotel)
             val toast = Toast.makeText(
-                this, hotelModel.getHotelName(), Toast.LENGTH_SHORT
+                this, hotel.getHotelName(), Toast.LENGTH_SHORT
             )
             toast.show()
             binding.buttonNext.isEnabled = true
@@ -69,11 +69,11 @@ class HotelActivity : AppCompatActivity(), HotelView {
             "requestFromRoomSelectionFragmentToActivity",
             this
         ) { _, result ->
-            val roomModel: RoomModel = result.getSerializable("SelectedRoomModel") as RoomModel
+            val room: Room = result.getSerializable("SelectedRoomModel") as Room
 
-            presenter.setSelectedRoomModel(roomModel)
+            presenter.setSelectedRoomModel(room)
             val toast = Toast.makeText(
-                this, roomModel.getRoomName(), Toast.LENGTH_SHORT
+                this, room.getRoomName(), Toast.LENGTH_SHORT
             )
             toast.show()
 
