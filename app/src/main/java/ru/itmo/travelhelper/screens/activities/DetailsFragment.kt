@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.itmo.domain.models.activities.Event
 import ru.itmo.travelhelper.databinding.FragmentDetailsBinding
-import ru.itmo.travelhelper.presenter.DetailsPresenter
-import ru.itmo.domain.usecases.GetDetailsUseCase
-import ru.itmo.travelhelper.view.DetailsView
+import ru.itmo.travelhelper.presenter.activities.DetailsPresenter
+import ru.itmo.domain.usecases.activities.GetDetailsUseCase
+import ru.itmo.travelhelper.view.activities.DetailsView
 
 class DetailsFragment : Fragment(), DetailsView {
 
@@ -16,6 +17,9 @@ class DetailsFragment : Fragment(), DetailsView {
     private val binding get() = _binding!!
     private lateinit var presenter: DetailsPresenter
     private lateinit var getDetailsUseCase: GetDetailsUseCase
+
+
+    private var event: Event? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,10 @@ class DetailsFragment : Fragment(), DetailsView {
 
         binding.backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.eventsTextView.setOnClickListener {
+            (requireActivity() as ActivitiesActivity).replaceFragment(EventsListFragment())
         }
     }
 

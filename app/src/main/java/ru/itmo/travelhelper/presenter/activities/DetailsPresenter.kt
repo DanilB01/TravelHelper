@@ -1,9 +1,9 @@
-package ru.itmo.travelhelper.presenter
+package ru.itmo.travelhelper.presenter.activities
 
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
-import ru.itmo.domain.usecases.GetDetailsUseCase
-import ru.itmo.travelhelper.view.DetailsView
+import ru.itmo.domain.usecases.activities.GetDetailsUseCase
+import ru.itmo.travelhelper.view.activities.DetailsView
 
 class DetailsPresenter(private val view: DetailsView) {
 

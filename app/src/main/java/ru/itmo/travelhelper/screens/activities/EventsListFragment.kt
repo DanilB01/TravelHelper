@@ -1,0 +1,69 @@
+package ru.itmo.travelhelper.screens.activities
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import ru.itmo.domain.models.activities.Event
+import ru.itmo.domain.repositories.activities.EventsRepositoryImpl
+import ru.itmo.travelhelper.databinding.FragmentEventsListBinding
+import ru.itmo.travelhelper.presenter.activities.EventsListPresenter
+import ru.itmo.travelhelper.screens.activities.adapter.EventsAdapter
+import ru.itmo.travelhelper.view.activities.EventsListView
+
+class EventsListFragment : Fragment(), EventsListView {
+
+    private var _binding: FragmentEventsListBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var presenter: EventsListPresenter
+    private lateinit var adapter: EventsAdapter
+    private var selectedRating: Double? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEventsListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        presenter = EventsListPresenter(this, EventsRepositoryImpl()) // или передайте зависимость через DI
+        setupRecyclerView()
+        setupRatingFilter()
+        presenter.loadEvents()
+    }
+
+    private fun setupRecyclerView() {
+        adapter = EventsAdapter { event ->
+            onEventSelected(event)
+        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun setupRatingFilter() {
+        binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+            selectedRating = if (rating > 0) rating.toDouble() else null
+            presenter.filterEvents(selectedRating)
+        }
+    }
+
+    private fun onEventSelected(event: Event) {
+        val detailsFragment = DetailsFragment()
+        (requireActivity() as ActivitiesActivity).replaceFragment(detailsFragment)
+    }
+
+    override fun showEvents(events: List<Event>) {
+        adapter.submitList(events)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

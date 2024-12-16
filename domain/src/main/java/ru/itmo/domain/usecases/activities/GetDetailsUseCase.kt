@@ -1,4 +1,4 @@
-package ru.itmo.domain.usecases
+package ru.itmo.domain.usecases.activities
 
 class GetDetailsUseCase {
 

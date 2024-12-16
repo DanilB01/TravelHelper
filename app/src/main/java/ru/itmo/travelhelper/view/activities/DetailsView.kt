@@ -1,4 +1,4 @@
-package ru.itmo.travelhelper.view
+package ru.itmo.travelhelper.view.activities
 
 interface DetailsView {
     fun showEventsText(text: CharSequence)

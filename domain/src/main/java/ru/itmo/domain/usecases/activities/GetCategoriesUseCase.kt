@@ -1,6 +1,6 @@
-package ru.itmo.domain.usecases
+package ru.itmo.domain.usecases.activities
 
-import ru.itmo.domain.repositories.CategoryRepository
+import ru.itmo.domain.repositories.activities.CategoryRepository
 
 class GetCategoriesUseCase(private val repository: CategoryRepository) {
     fun execute(): List<String> {

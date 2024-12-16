@@ -1,6 +1,6 @@
-package ru.itmo.travelhelper.presenter
+package ru.itmo.travelhelper.presenter.activities
 
-import ru.itmo.travelhelper.view.CategoryView
+import ru.itmo.travelhelper.view.activities.CategoryView
 
 class CategoryPresenter(private val view: CategoryView) {
     fun onNextButtonClicked(selectedCategories: List<String>) {

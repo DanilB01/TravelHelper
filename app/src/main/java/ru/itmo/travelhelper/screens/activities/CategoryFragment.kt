@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.databinding.FragmentCategoryBinding
-import ru.itmo.domain.repositories.CategoryRepository
-import ru.itmo.domain.usecases.GetCategoriesUseCase
-import ru.itmo.travelhelper.presenter.CategoryPresenter
-import ru.itmo.travelhelper.view.CategoryView
+import ru.itmo.domain.repositories.activities.CategoryRepositoryImpl
+import ru.itmo.domain.usecases.activities.GetCategoriesUseCase
+import ru.itmo.travelhelper.presenter.activities.CategoryPresenter
+import ru.itmo.travelhelper.view.activities.CategoryView
 
 class CategoryFragment : Fragment(), CategoryView {
 
@@ -29,7 +29,7 @@ class CategoryFragment : Fragment(), CategoryView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = CategoryRepository()
+        val repository = CategoryRepositoryImpl()
         getCategoriesUseCase = GetCategoriesUseCase(repository)
         presenter = CategoryPresenter(this)
 
