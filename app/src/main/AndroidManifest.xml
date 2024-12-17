@@ -37,7 +37,10 @@
         <activity
             android:name=".screens.hotels.HotelActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".screens.activities.ActivitiesActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
