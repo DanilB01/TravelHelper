@@ -12,6 +12,7 @@ import ru.itmo.travelhelper.databinding.FragmentTravelInfoBinding
 import ru.itmo.travelhelper.presenter.totalinfo.TravelInfoPresenter
 import ru.itmo.travelhelper.screens.totalinfo.adapter.TotalInfoPlacesListAdapter
 import ru.itmo.travelhelper.screens.totalinfo.adapter.TotalInfoPlacesOnItemClickListener
+import ru.itmo.travelhelper.screens.totalinfo.model.EnumChangeActivities
 import ru.itmo.travelhelper.view.totalinfo.TravelInfoView
 
 

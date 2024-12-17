@@ -35,8 +35,8 @@ class MainExpressFragment : Fragment(), MainExpressView {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonStartPlanningTravel.setOnClickListener {
-//            val intentFlightActivity = Intent(context, FlightActivity::class.java)
-            val intentFlightActivity = Intent(context, TotalInfoActivity::class.java)
+            val intentFlightActivity = Intent(context, FlightActivity::class.java)
+//            val intentFlightActivity = Intent(context, TotalInfoActivity::class.java)
             startActivity(intentFlightActivity)
         }
 

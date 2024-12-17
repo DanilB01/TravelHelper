@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import ru.itmo.travelhelper.databinding.FragmentWarningInfoBinding
-import ru.itmo.travelhelper.screens.totalinfo.model.TotalInfoFragments
+import ru.itmo.travelhelper.screens.totalinfo.model.EnumChangeActivities
+import ru.itmo.travelhelper.screens.totalinfo.model.EnumTotalInfoFragments
 
 
 class WarningInfoFragment : Fragment() {
@@ -27,7 +28,11 @@ class WarningInfoFragment : Fragment() {
 
 
         binding.buttonNoFragmentTotalInfo.setOnClickListener {
-            parentFragmentManager.setFragmentResult("requestTotalInfoToActivityForChanging", bundleOf("fragmentId" to TotalInfoFragments.CHANGING_INFO.name))
+            parentFragmentManager.setFragmentResult("requestTotalInfoToActivityForChanging", bundleOf("fragmentId" to EnumTotalInfoFragments.CHANGING_INFO.name))
+        }
+
+        binding.buttonYesFragmentTotalInfo.setOnClickListener {
+            parentFragmentManager.setFragmentResult("requestTotalInfoToActivityForChangingActivity", bundleOf("activityId" to EnumChangeActivities.TICKETS_ACT.name))
         }
     }
     companion object {

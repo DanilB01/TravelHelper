@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.screens.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import ru.itmo.travelhelper.databinding.FragmentCategoryBinding
 import ru.itmo.domain.repositories.activities.CategoryRepositoryImpl
 import ru.itmo.domain.usecases.activities.GetCategoriesUseCase
 import ru.itmo.travelhelper.presenter.activities.CategoryPresenter
+import ru.itmo.travelhelper.screens.WelcomeActivity
+import ru.itmo.travelhelper.screens.totalinfo.TotalInfoActivity
 import ru.itmo.travelhelper.view.activities.CategoryView
 
 class CategoryFragment : Fragment(), CategoryView {
@@ -46,6 +49,10 @@ class CategoryFragment : Fragment(), CategoryView {
     override fun navigateToDetails(selectedCategories: Array<String>) {
         val detailsFragment = DetailsFragment.newInstance(selectedCategories)
         (requireActivity() as ActivitiesActivity).replaceFragment(detailsFragment)
+    }
+
+    override fun goToNextActivity() {
+        startActivity(Intent(context, TotalInfoActivity::class.java))
     }
 
     override fun onDestroyView() {

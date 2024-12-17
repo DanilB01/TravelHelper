@@ -40,6 +40,8 @@ class HotelDetailsFragment(val hotel: Hotel) : Fragment() {
         return binding.root
     }
 
+
+
     private fun setupLink(linkText: String, textShouldBeLinked: String, textView: TextView) {
 
         val link = Link(textShouldBeLinked)
