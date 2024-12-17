@@ -48,7 +48,7 @@ class FlightDateFragment : Fragment(), FlightDateView {
     }
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //Получение данных с активити
         parentFragmentManager.setFragmentResultListener("requestFlightToDateFromActivity", this) { _, result ->
@@ -267,6 +267,7 @@ class FlightDateFragment : Fragment(), FlightDateView {
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     private fun checkEditTextValidDate(): Boolean {
         val dataThere = binding.buttonPickDateThere.text.toString()
         val dataReturn = binding.buttonPickDateReturn.text.toString()
@@ -288,6 +289,7 @@ class FlightDateFragment : Fragment(), FlightDateView {
 
 
 
+    @SuppressLint("SimpleDateFormat")
     private fun isValidDate(dateStr: String): Boolean {
         if (dateStr.isNotEmpty() && dateStr.length == 10) {
         return try {
@@ -301,6 +303,7 @@ class FlightDateFragment : Fragment(), FlightDateView {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun compareDates(dateStr1: String, dateStr2: String): Boolean {
         //Проверка 1 дата позже 2
         if (isValidDate(dateStr1) && isValidDate(dateStr2)) {
@@ -312,6 +315,7 @@ class FlightDateFragment : Fragment(), FlightDateView {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun compareDatesStrict(dateStr1: String, dateStr2: String): Boolean {
         //Проверка 1 дата позже 2
         if (isValidDate(dateStr1) && isValidDate(dateStr2)) {
@@ -323,19 +327,19 @@ class FlightDateFragment : Fragment(), FlightDateView {
         }
     }
 
-    private fun setSavedDateData(DateDataList: MutableList<String>) {
-        if (DateDataList[0].isNotEmpty()) {
-            binding.buttonStartPickDateThere.text = DateDataList[0]
-            binding.buttonPickDateThere.text = DateDataList[0]
+    private fun setSavedDateData(dateDataList: MutableList<String>) {
+        if (dateDataList[0].isNotEmpty()) {
+            binding.buttonStartPickDateThere.text = dateDataList[0]
+            binding.buttonPickDateThere.text = dateDataList[0]
 
         }
         else {
             binding.buttonPickDateThere.text = "Выберите дату"
             binding.buttonStartPickDateThere.text = "Нажмите, чтобы выбрать дату"
         }
-        if (DateDataList[2] == "ReturnChecked_True") {
-            binding.buttonStartPickDateReturn.text = DateDataList[1]
-            binding.buttonPickDateReturn.text = DateDataList[1]
+        if (dateDataList[2] == "ReturnChecked_True") {
+            binding.buttonStartPickDateReturn.text = dateDataList[1]
+            binding.buttonPickDateReturn.text = dateDataList[1]
             binding.radioButtonDateReturn.isChecked = true
         }
         else {
