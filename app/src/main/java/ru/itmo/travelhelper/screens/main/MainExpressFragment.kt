@@ -13,6 +13,7 @@ import ru.itmo.travelhelper.presenter.main.MainExpressPresenter
 import ru.itmo.travelhelper.screens.flight.FlightActivity
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesListAdapter
 import ru.itmo.travelhelper.screens.main.adapter.MainInterestingPlacesOnItemClickListener
+import ru.itmo.travelhelper.screens.totalinfo.TotalInfoActivity
 import ru.itmo.travelhelper.view.main.MainExpressView
 
 class MainExpressFragment : Fragment(), MainExpressView {
@@ -34,7 +35,8 @@ class MainExpressFragment : Fragment(), MainExpressView {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonStartPlanningTravel.setOnClickListener {
-            val intentFlightActivity = Intent(context, FlightActivity::class.java)
+//            val intentFlightActivity = Intent(context, FlightActivity::class.java)
+            val intentFlightActivity = Intent(context, TotalInfoActivity::class.java)
             startActivity(intentFlightActivity)
         }
 

@@ -1,7 +1,6 @@
-package ru.itmo.travelhelper.screens.main.adapter
+package ru.itmo.travelhelper.screens.totalinfo.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,20 +10,20 @@ import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.MainInterestingPlaceListItemBinding
 
 
-interface MainInterestingPlacesOnItemClickListener {
+interface TotalInfoPlacesOnItemClickListener {
     fun onItemClicked(position: Int)
 }
 
-interface MainInterestingPlacesUpdateListInterface {
+interface TotalInfoPlacesUpdateListInterface {
     fun updateList(filteredItems: List<List<String>>)
 }
 
-class MainInterestingPlacesListAdapter(
+class TotalInfoPlacesListAdapter(
     var items: List<List<String>>,
-    private val listener: MainInterestingPlacesOnItemClickListener
+    private val listener: TotalInfoPlacesOnItemClickListener
 )
-    : RecyclerView.Adapter<MainInterestingPlacesListAdapter.MainInterestingPlacesViewHolder>(),
-    MainInterestingPlacesUpdateListInterface {
+    : RecyclerView.Adapter<TotalInfoPlacesListAdapter.TotalInfoPlacesViewHolder>(),
+    TotalInfoPlacesUpdateListInterface {
 
     // items[0] - Place name
     // items[1] - Near
@@ -33,7 +32,7 @@ class MainInterestingPlacesListAdapter(
     // items[4] - Picture Name
 
 
-    class MainInterestingPlacesViewHolder(private val binding: MainInterestingPlaceListItemBinding) :
+    class TotalInfoPlacesViewHolder(private val binding: MainInterestingPlaceListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         // Метод для привязки данных
@@ -57,13 +56,13 @@ class MainInterestingPlacesListAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainInterestingPlacesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TotalInfoPlacesViewHolder {
         val binding = MainInterestingPlaceListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainInterestingPlacesViewHolder(binding)
+        return TotalInfoPlacesViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: MainInterestingPlacesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TotalInfoPlacesViewHolder, position: Int) {
         holder.bind(items[position])
 
 
