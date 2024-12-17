@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityWelcomeScreenBinding
 import ru.itmo.travelhelper.presenter.WelcomePresenter
-import ru.itmo.travelhelper.screens.MainActivity
+import ru.itmo.travelhelper.screens.main.MainActivity
 import ru.itmo.travelhelper.view.WelcomeView
 
 class WelcomeActivity : AppCompatActivity(), WelcomeView {

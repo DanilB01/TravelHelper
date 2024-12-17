@@ -57,5 +57,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="textFlightTicketCost">Стоимость</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

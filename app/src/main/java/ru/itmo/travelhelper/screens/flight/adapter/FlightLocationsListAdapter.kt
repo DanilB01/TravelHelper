@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itmo.travelhelper.R
+import ru.itmo.travelhelper.databinding.FlightLocationListItemBinding
 
 interface FlightLocationsOnItemClickListener {
     fun onItemClicked(selectedItem: Int)
@@ -24,18 +25,22 @@ class FlightLocationsListAdapter(
     FlightLocationsUpdateListInterface {
 
 
-    class FlightLocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val locationName: TextView = itemView.findViewById(R.id.textLocationNameListItem)
+    class FlightLocationViewHolder(private val binding: FlightLocationListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
+        // Метод для привязки данных
+        fun bind(location: String) {
+            binding.textLocationNameListItem.text = location
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightLocationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.flight_location_list_item, parent, false)
-        return FlightLocationViewHolder(view)
+        val binding = FlightLocationListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FlightLocationViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FlightLocationViewHolder, position: Int) {
-        holder.locationName.text = items[position]
+        holder.bind(items[position])
 
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClicked(position)
