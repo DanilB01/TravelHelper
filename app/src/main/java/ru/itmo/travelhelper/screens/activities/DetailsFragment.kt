@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ru.itmo.domain.models.activities.Event
 import ru.itmo.travelhelper.databinding.FragmentDetailsBinding
 import ru.itmo.travelhelper.presenter.activities.DetailsPresenter
 import ru.itmo.domain.usecases.activities.GetDetailsUseCase
@@ -59,12 +58,12 @@ class DetailsFragment : Fragment(), DetailsView {
         }
         binding.foodTextView.setOnClickListener {
             val selectedCategories = arguments?.getStringArray(ARG_SELECTED_CATEGORIES)
-            val foodListFragment = FoodListFragment().apply {
+            val filterFoodFragment = FilterFoodFragment().apply {
                 arguments = Bundle().apply {
                     putStringArray(DetailsFragment.ARG_SELECTED_CATEGORIES, selectedCategories)
                 }
             }
-            (requireActivity() as ActivitiesActivity).replaceFragment(foodListFragment)
+            (requireActivity() as ActivitiesActivity).replaceFragment(filterFoodFragment)
         }
     }
 
