@@ -19,13 +19,13 @@ class LocationsRepositoryImpl: LocationRepository {
 
     // TODO: Add service implementation
 
-    private val country_data = listOf(
+    private val country_data: List<CountryApiModel> = listOf(
         CountryApiModel("Россия"), CountryApiModel("США"), CountryApiModel("Канада"), CountryApiModel("Китай"),
         CountryApiModel("Индия"), CountryApiModel("Германия"), CountryApiModel("Франция"), CountryApiModel("Великобритания"),
         CountryApiModel("Италия"), CountryApiModel("Испания"), CountryApiModel("Австралия"),
         CountryApiModel("Бразилия"), CountryApiModel("Япония"), CountryApiModel("Мексика"), CountryApiModel("Турция"))
 
-    private val cities_data = mapOf(
+    private val cities_data: Map<CountryApiModel, List<CityApiModel>> = mapOf(
         CountryApiModel("Россия") to listOf(CityApiModel("Москва"), CityApiModel("Санкт-Петербург"), CityApiModel("Новосибирск")),
         CountryApiModel("США") to listOf(CityApiModel("Нью-Йорк"), CityApiModel("Лос-Анджелес"), CityApiModel("Чикаго")),
         CountryApiModel("Китай") to listOf(CityApiModel("Пекин"), CityApiModel("Шанхай"), CityApiModel("Гуанчжоу")),
@@ -43,7 +43,7 @@ class LocationsRepositoryImpl: LocationRepository {
         CountryApiModel("Турция") to listOf(CityApiModel("Стамбул"), CityApiModel("Анкара"), CityApiModel("Измир"))
     )
 
-    val airports_data = mapOf(
+    private val airports_data: Map<CityApiModel, List<AirportApiModel>> = mapOf(
         CityApiModel("Москва") to listOf(AirportApiModel("Шереметьево"), AirportApiModel("Домодедово"), AirportApiModel("Внуково")), CityApiModel("Санкт-Петербург") to listOf(AirportApiModel("Пулково")), CityApiModel("Новосибирск") to listOf(AirportApiModel("Толмачево")),
         CityApiModel("Нью-Йорк") to listOf(AirportApiModel("Джон Ф. Кеннеди"), AirportApiModel("Ла-Гуардиа"), AirportApiModel("Ньюарк Либерти")), CityApiModel("Лос-Анджелес") to listOf(AirportApiModel("Международный аэропорт Лос-Анджелеса")), CityApiModel("Чикаго") to listOf(AirportApiModel("О'Хара"), AirportApiModel("Мидуэй")),
         CityApiModel("Торонто") to listOf(AirportApiModel("Пирсон"), AirportApiModel("Билли Бишоп")), CityApiModel("Монреаль") to listOf(AirportApiModel("Монреаль-Трюдо")), CityApiModel("Ванкувер") to listOf(AirportApiModel("Международный аэропорт Ванкувера")),

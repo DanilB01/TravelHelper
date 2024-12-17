@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
+    android:background="@drawable/shape_rounded_flight_tickets_list_container"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/fieldDepartureTimeMainHistoryListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="*время вылета*"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fieldDeparturePlaceMainHistoryListItem"
+        android:text="*место вылета*"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="16sp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toStartOf="@id/fieldArrivalPlaceMainHistoryListItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fieldDepartureTimeMainHistoryListItem"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/flight_ticket_item_separator"
+        android:layout_marginHorizontal="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fieldDepartureTimeMainHistoryListItem"
+        app:layout_constraintEnd_toStartOf="@+id/fieldArrivalTimeMainHistoryListItem"
+        app:layout_constraintStart_toEndOf="@+id/fieldDepartureTimeMainHistoryListItem"
+        app:layout_constraintTop_toTopOf="@+id/fieldDepartureTimeMainHistoryListItem" />
+
+    <TextView
+        android:text="*время прилета*"
+        android:id="@+id/fieldArrivalTimeMainHistoryListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/fieldArrivalPlaceMainHistoryListItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="*место прилета*"
+        android:layout_marginStart="15dp"
+        android:gravity="end"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fieldDeparturePlaceMainHistoryListItem"
+        app:layout_constraintTop_toBottomOf="@id/fieldArrivalTimeMainHistoryListItem" />
+
+    <TextView
+        android:text="Стоимость путешествия:"
+        android:id="@+id/textTravelCostMainHistoryListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="14sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fieldDeparturePlaceMainHistoryListItem"/>
+    <TextView
+        android:id="@+id/fieldTravelCostMainHistoryListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toEndOf="@id/textTravelCostMainHistoryListItem"
+        app:layout_constraintTop_toTopOf="@id/textTravelCostMainHistoryListItem"
+        app:layout_constraintBottom_toBottomOf="@id/textTravelCostMainHistoryListItem"
+        android:layout_marginStart="15dp"
+        tools:text="TestText"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.screens.flight
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -7,9 +8,11 @@ import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
 import ru.itmo.travelhelper.databinding.ActivityFlightTicketsMainBinding
 import ru.itmo.travelhelper.presenter.flight.FlightPresenter
-import ru.itmo.travelhelper.view.flight.FlightActivityView
+import ru.itmo.travelhelper.screens.main.MainActivity
+import ru.itmo.travelhelper.view.flight.FlightView
 
-class FlightActivity() : AppCompatActivity(), FlightActivityView {
+class FlightActivity() : AppCompatActivity(), FlightView {
+
 
 
     private val binding by lazy { ActivityFlightTicketsMainBinding.inflate(layoutInflater) }
@@ -139,10 +142,22 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
                 }
             }
 
+
+            else if ((currentFragmentNumber == 3 && !presenter.getIsReturnBoxChecked()) || currentFragmentNumber == 4) {
+                // TODO intent переход на отели
+            }
+
+
+
+
         }
 
 
         binding.goToBackFragmentFlight.setOnClickListener {
+            if (currentFragmentNumber == 0) {
+                val intentMainActivity = Intent(this, MainActivity::class.java)
+                startActivity(intentMainActivity)
+            }
             if (currentFragmentNumber == 1) {
                 currentFragmentNumber--
                 openFragment(chooseFragment(currentFragmentNumber))
@@ -182,17 +197,20 @@ class FlightActivity() : AppCompatActivity(), FlightActivityView {
 
     }
 
-    private fun chooseFragment(idFragment: Int): Fragment {
-        var fragmentChosen: Fragment = FlightArrivalFragment.newInstance()
-        when (idFragment) {
-            0 -> fragmentChosen = FlightDepartureFragment.newInstance()
-            1 -> fragmentChosen = FlightArrivalFragment.newInstance()
-            2 -> fragmentChosen = FlightDateFragment.newInstance()
-            3 -> fragmentChosen = FlightTicketsThereFragment.newInstance()
-            4 -> fragmentChosen = FlightTicketsReturnFragment.newInstance()
-        }
-        return fragmentChosen
+    enum class FlightFragments {
+        DEPARTURE, ARRIVAL, DATE, THERE, RETURN
     }
+
+    fun chooseFragment(idFragment: Int): Fragment {
+        return when (FlightFragments.values()[idFragment]) {
+            FlightFragments.DEPARTURE -> FlightDepartureFragment.newInstance()
+            FlightFragments.ARRIVAL -> FlightArrivalFragment.newInstance()
+            FlightFragments.DATE -> FlightDateFragment.newInstance()
+            FlightFragments.THERE -> FlightTicketsThereFragment.newInstance()
+            FlightFragments.RETURN -> FlightTicketsReturnFragment.newInstance()
+        }
+    }
+
 
     private fun openFragment(frag: Fragment) {
         supportFragmentManager.beginTransaction()

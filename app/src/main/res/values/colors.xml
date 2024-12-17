@@ -23,6 +23,17 @@
     <color name="flight_ticket_item_separator">#3C5277</color>
     <color name="main_bottom_menu_bg">#D2E4F6</color>
     <color name="main_bottom_menu_selected_item">#3B7BDE</color>
+    <color name="main_express_button_color">#85B2FA</color>
+    <color name="date_picker_color">#D7E3F7</color>
+    <color name="main_timetable_title_bg">#B8D0F8</color>
+    <color name="main_timetable_default_category">#E0E6F1</color>
+    <color name="main_timetable_action1_category">#FEFFD9</color>
+    <color name="main_timetable_action2_category">#FFE8D9</color>
+
+
+
+
+
 
 
 

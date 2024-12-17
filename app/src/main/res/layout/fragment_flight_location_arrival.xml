@@ -48,6 +48,7 @@
             android:textSize="16sp"
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
+            android:paddingEnd="4dp"
             android:textColor="@color/white"
             android:background="@drawable/shape_rounded_picker_location_button"/>
 
@@ -151,6 +152,7 @@
             android:textSize="16sp"
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
+            android:paddingEnd="4dp"
             android:textColor="@color/white"
             android:background="@drawable/shape_rounded_picker_location_button"
             android:visibility="gone"/>
@@ -253,6 +255,7 @@
             android:textSize="16sp"
             android:paddingVertical="13dp"
             android:paddingStart="8dp"
+            android:paddingEnd="4dp"
             android:textColor="@color/white"
             android:background="@drawable/shape_rounded_picker_location_button"
             android:visibility="gone"/>

@@ -1,9 +1,9 @@
 package ru.itmo.travelhelper.presenter.flight
 
 
-import ru.itmo.travelhelper.view.flight.FlightActivityView
+import ru.itmo.travelhelper.view.flight.FlightView
 
-class FlightPresenter(private val view: FlightActivityView) {
+class FlightPresenter(private val view: FlightView) {
     var globalSavedArrivalData = mutableListOf("","","")
     var globalSavedDepartureData = mutableListOf("","","")
     var globalSavedDateData = mutableListOf("","","")
