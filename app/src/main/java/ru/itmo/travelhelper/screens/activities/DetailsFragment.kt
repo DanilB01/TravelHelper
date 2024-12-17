@@ -39,11 +39,17 @@ class DetailsFragment : Fragment(), DetailsView {
         presenter.onCategoriesLoaded(selectedCategories, getDetailsUseCase)
 
         binding.backButton.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            (requireActivity() as ActivitiesActivity).replaceFragment(CategoryFragment())
         }
 
         binding.eventsTextView.setOnClickListener {
             (requireActivity() as ActivitiesActivity).replaceFragment(EventsListFragment())
+        }
+        binding.placesTextView.setOnClickListener {
+            (requireActivity() as ActivitiesActivity).replaceFragment(PlacesListFragment())
+        }
+        binding.foodTextView.setOnClickListener {
+            (requireActivity() as ActivitiesActivity).replaceFragment(FoodListFragment())
         }
     }
 
