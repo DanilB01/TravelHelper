@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/filterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Фильтр"
+        android:textStyle="bold"
+        android:textSize="48sp"
+        android:paddingTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Общая информация -->
+    <TextView
+        android:id="@+id/generalInfoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Общая информация"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/filterTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupGeneral"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:singleSelection="false"
+        app:layout_constraintTop_toBottomOf="@id/generalInfoLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp">
+
+        <!-- Чипы для выбора -->
+        <com.google.android.material.chip.Chip
+            android:text="Бизнес-ланч"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="175dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Завтрак"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Еда на вынос"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="175dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Доставка"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Кофе с собой"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="175dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Оплата картой"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="190dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Детская комната"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="225dp"
+            android:textAlignment="center"/>
+        <com.google.android.material.chip.Chip
+            android:text="Wi-Fi"
+            android:textSize="22dp"
+            android:checkable="true"
+            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:textAlignment="center"/>
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Кухня -->
+    <TextView
+        android:id="@+id/kitchenLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кухня"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        app:layout_constraintTop_toBottomOf="@id/chipGroupGeneral"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/kitchenRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/kitchenLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/localKitchen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Местная"
+            android:textSize="20sp"
+            android:checked="true" />
+    </RadioGroup>
+
+    <android.widget.Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="136dp"
+        android:height="55dp"
+        android:background="@drawable/shape_rounded_back_button_flight_tickets"
+        android:text="Назад"
+        android:textAllCaps="false"
+        android:textColor="@color/flight_tickets_button_back_text"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975" />
+
+    <android.widget.Button
+        android:id="@+id/nextButton"
+        android:layout_width="132dp"
+        android:layout_height="57dp"
+        android:width="136dp"
+        android:height="55dp"
+        android:background="@drawable/shape_rounded_init_button"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.979" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

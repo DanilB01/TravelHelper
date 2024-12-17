@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    id("androidx.navigation.safeargs.kotlin") version "2.7.1"
 }
 
 android {
@@ -54,6 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.navigation.ui.ktx)
 
+
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
 
@@ -62,4 +65,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }
