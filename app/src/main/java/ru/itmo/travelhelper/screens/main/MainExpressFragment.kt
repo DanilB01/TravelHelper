@@ -56,7 +56,7 @@ class MainExpressFragment : Fragment(), MainExpressView {
     override fun getInterestingPlaceData(interestingPlaceData: List<InterestingPlaceModel>) {
         this.interestingPlaceData = interestingPlaceData
             .map { inter_place_item -> listOf(inter_place_item.placeName, inter_place_item.placeLocation,
-                inter_place_item.placeDescription, inter_place_item.placeRating) }
+                inter_place_item.placeDescription, inter_place_item.placeRating, inter_place_item.pictureName) }
     }
 
 }

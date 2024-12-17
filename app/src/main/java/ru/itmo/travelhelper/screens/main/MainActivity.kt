@@ -26,30 +26,5 @@ class MainActivity : AppCompatActivity(), MainView {
 
 
 
-//        navView.setOnNavigationItemSelectedListener { item ->
-//            when (item.itemId) {
-//                R.id.timetableItem -> {
-//                    val action = MainTimetableFragment.actionToProfileFragment()
-//                    action.arg1 = "user_id"
-//                    action.arg2 = "username"
-//                    findNavController().navigate(action)
-//                    true
-//                }
-//                R.id.expressItem -> {
-//                    val action = MainExpressFragment.actionHomeFragmentToSettingsFragment()
-//                    action.arg3 = "setting_value"
-//                    findNavController().navigate(action)
-//                    true
-//                }
-//                R.id.expressItem -> {
-//                    val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-//                    action.arg3 = "setting_value"
-//                    findNavController().navigate(action)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-
     }
 }

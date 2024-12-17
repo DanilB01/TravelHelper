@@ -5,4 +5,5 @@ data class InterestingPlaceApiModel(
     val place_location: String,
     val place_description: String,
     val place_rating: String,
+    val picture_name: String,
 )

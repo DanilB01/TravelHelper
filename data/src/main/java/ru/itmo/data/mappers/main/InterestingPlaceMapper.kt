@@ -9,7 +9,8 @@ class InterestingPlaceMapper {
             placeName = apiModel.place_name,
             placeLocation = apiModel.place_location,
             placeDescription = apiModel.place_description,
-            placeRating = apiModel.place_rating
+            placeRating = apiModel.place_rating,
+            pictureName = apiModel.picture_name,
         )
     }
 }

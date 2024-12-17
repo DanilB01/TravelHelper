@@ -5,4 +5,5 @@ data class InterestingPlaceModel(
     val placeLocation: String,
     val placeDescription: String,
     val placeRating: String,
+    val pictureName: String,
 )
