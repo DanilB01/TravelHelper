@@ -18,9 +18,6 @@ class DetailsFragment : Fragment(), DetailsView {
     private lateinit var presenter: DetailsPresenter
     private lateinit var getDetailsUseCase: GetDetailsUseCase
 
-
-    private var event: Event? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,13 +40,31 @@ class DetailsFragment : Fragment(), DetailsView {
         }
 
         binding.eventsTextView.setOnClickListener {
-            (requireActivity() as ActivitiesActivity).replaceFragment(EventsListFragment())
+            val selectedCategories = arguments?.getStringArray(ARG_SELECTED_CATEGORIES)
+            val eventsListFragment = EventsListFragment().apply {
+                arguments = Bundle().apply {
+                    putStringArray(DetailsFragment.ARG_SELECTED_CATEGORIES, selectedCategories)
+                }
+            }
+            (requireActivity() as ActivitiesActivity).replaceFragment(eventsListFragment)
         }
         binding.placesTextView.setOnClickListener {
-            (requireActivity() as ActivitiesActivity).replaceFragment(PlacesListFragment())
+            val selectedCategories = arguments?.getStringArray(ARG_SELECTED_CATEGORIES)
+            val placesListFragment = PlacesListFragment().apply {
+                arguments = Bundle().apply {
+                    putStringArray(DetailsFragment.ARG_SELECTED_CATEGORIES, selectedCategories)
+                }
+            }
+            (requireActivity() as ActivitiesActivity).replaceFragment(placesListFragment)
         }
         binding.foodTextView.setOnClickListener {
-            (requireActivity() as ActivitiesActivity).replaceFragment(FoodListFragment())
+            val selectedCategories = arguments?.getStringArray(ARG_SELECTED_CATEGORIES)
+            val foodListFragment = FoodListFragment().apply {
+                arguments = Bundle().apply {
+                    putStringArray(DetailsFragment.ARG_SELECTED_CATEGORIES, selectedCategories)
+                }
+            }
+            (requireActivity() as ActivitiesActivity).replaceFragment(foodListFragment)
         }
     }
 
@@ -74,7 +89,7 @@ class DetailsFragment : Fragment(), DetailsView {
     }
 
     companion object {
-        private const val ARG_SELECTED_CATEGORIES = "selectedCategories"
+        const val ARG_SELECTED_CATEGORIES = "selectedCategories"
 
         fun newInstance(selectedCategories: Array<String>): DetailsFragment {
             val fragment = DetailsFragment()

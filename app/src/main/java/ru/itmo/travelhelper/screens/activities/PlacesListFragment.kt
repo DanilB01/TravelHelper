@@ -54,7 +54,8 @@ class PlacesListFragment : Fragment(), EventsListView {
     }
 
     private fun onEventSelected(event: Event) {
-        val detailsFragment = DetailsFragment()
+        val selectedCategories = arguments?.getStringArray(DetailsFragment.ARG_SELECTED_CATEGORIES)
+        val detailsFragment = DetailsFragment.newInstance(selectedCategories ?: emptyArray())
         (requireActivity() as ActivitiesActivity).replaceFragment(detailsFragment)
     }
 
