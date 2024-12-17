@@ -17,7 +17,8 @@
             android:exported="false" />
         <activity
             android:name=".screens.InitActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TravelHelper.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +32,9 @@
             android:name=".screens.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.HotelActivity"
-            android:exported="false" />
+            android:name=".screens.hotels.HotelActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

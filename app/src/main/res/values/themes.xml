@@ -18,5 +18,7 @@
         <item name="colorPrimary">@color/init_button_bg</item>
     </style>
 
-
+    <style name="Theme.TravelHelper.Splash" parent="Base.Theme.TravelHelper">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>
