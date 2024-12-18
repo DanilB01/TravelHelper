@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.screens.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.databinding.FragmentDetailsBinding
 import ru.itmo.travelhelper.presenter.activities.DetailsPresenter
 import ru.itmo.domain.usecases.activities.GetDetailsUseCase
+import ru.itmo.travelhelper.screens.totalinfo.TotalInfoActivity
 import ru.itmo.travelhelper.view.activities.DetailsView
 
 class DetailsFragment : Fragment(), DetailsView {
@@ -64,6 +66,10 @@ class DetailsFragment : Fragment(), DetailsView {
                 }
             }
             (requireActivity() as ActivitiesActivity).replaceFragment(filterFoodFragment)
+        }
+
+        binding.nextButton.setOnClickListener {
+            startActivity(Intent(context, TotalInfoActivity::class.java))
         }
     }
 

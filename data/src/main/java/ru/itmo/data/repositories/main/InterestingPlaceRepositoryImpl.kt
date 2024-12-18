@@ -13,11 +13,12 @@ class InterestingPlaceRepositoryImpl: InterestingPlaceRepository {
 
     // TODO: Add service implementation
     private val dataList: List<InterestingPlaceApiModel> = listOf(
-        InterestingPlaceApiModel("Мак","около Набережной","Круглосуточно","5+"),
-        InterestingPlaceApiModel("Театр","около Дома","Круглосуточно","4+"),
-        InterestingPlaceApiModel("Музей","около Улицы","Возраст: 6+","5"),
-        InterestingPlaceApiModel("Кино","там!","Новые фильмы появились","5++"),
-        InterestingPlaceApiModel("Университет","ломо","Выживание","5+++"))
+        //тут бы поменять на норм названия))
+        InterestingPlaceApiModel("Мак","около Набережной","Круглосуточно","5+", "init_picture_1"),
+        InterestingPlaceApiModel("Театр","около Дома","Круглосуточно","4+", "init_picture_2"),
+        InterestingPlaceApiModel("Музей","около Улицы","Возраст: 6+","5", "init_picture_3"),
+        InterestingPlaceApiModel("Кино","там!","Новые фильмы появились","5++", "init_picture_4"),
+        InterestingPlaceApiModel("Университет","ломо","Выживание","5+++", "error_name_pic"))
 
     private val dataList2: List<InterestingPlaceApiModel> = listOf()
 

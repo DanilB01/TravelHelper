@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.totalinfo.TravelInfoFragment">
+
+    <TextView
+        android:id="@+id/fieldPlaceTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Австралия, Беннала"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="25sp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_marginHorizontal="25dp"/>
+
+    <TextView
+        android:id="@+id/fieldTimeTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="16.12.2024 - 01.06.2025"
+        app:layout_constraintTop_toBottomOf="@id/fieldPlaceTotalInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="21sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="25dp"/>
+
+    <TextView
+        android:id="@+id/fieldHotelTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Отель - Benalla Tourist Park 3 "
+        app:layout_constraintTop_toBottomOf="@id/fieldTimeTotalInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="21sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEditTotalInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fieldHotelTotalInfo" />
+
+    <android.widget.Button
+        android:id="@+id/buttonEditTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginHorizontal="28dp"
+        android:background="@drawable/shape_rounded_init_button"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Редактировать"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

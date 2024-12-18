@@ -2,6 +2,7 @@ package ru.itmo.travelhelper.screens.hotels
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,9 @@ import ru.itmo.domain.models.hotel.Hotel
 import ru.itmo.domain.models.hotel.Room
 import ru.itmo.travelhelper.databinding.ActivityHotelBinding
 import ru.itmo.travelhelper.presenter.hotels.HotelPresenter
+import ru.itmo.travelhelper.screens.activities.ActivitiesActivity
 import ru.itmo.travelhelper.screens.main.MainActivity
+import ru.itmo.travelhelper.screens.totalinfo.TotalInfoActivity
 import ru.itmo.travelhelper.view.hotel.HotelView
 
 class HotelActivity : AppCompatActivity(), HotelView {
@@ -19,6 +22,8 @@ class HotelActivity : AppCompatActivity(), HotelView {
     private lateinit var binding: ActivityHotelBinding
     private var currentFragmentNumber: Int = 0
     private var maxFragmentNumber: Int = 4
+    private var isRoomChosen: Boolean = false
+    private var isEditableMode: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +31,16 @@ class HotelActivity : AppCompatActivity(), HotelView {
         binding = ActivityHotelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        openFragment(HotelSkipSelectionFragment.newInstance())
+        isEditableMode = intent.getBooleanExtra("isEditableMode", false)
+
+        if (isEditableMode) {
+            openNextFragment()
+        }
+        else {
+            openFragment(HotelSkipSelectionFragment.newInstance())
+        }
+
+
         binding.buttonBack.setOnClickListener {
 
             openPrevFragment()
@@ -62,6 +76,7 @@ class HotelActivity : AppCompatActivity(), HotelView {
             )
             toast.show()
             binding.buttonNext.isEnabled = true
+            isRoomChosen = false
             openNextFragment()
 
         }
@@ -76,6 +91,8 @@ class HotelActivity : AppCompatActivity(), HotelView {
                 this, room.getRoomName(), Toast.LENGTH_SHORT
             )
             toast.show()
+            isRoomChosen = true
+
 
         }
     }
@@ -88,10 +105,13 @@ class HotelActivity : AppCompatActivity(), HotelView {
                 binding.buttonBack.setVisibility(View.VISIBLE)
             }
             openFragment(chooseFragment(currentFragmentNumber))
+//
+        } else if (currentFragmentNumber == 4 && !isRoomChosen) {
+            Toast.makeText(this, "Пожалуйста, выберите комнату", Toast.LENGTH_SHORT).show()
+            }
 
-        } else {
-            openNextActivity()
-        }
+        else {   openNextActivity()    }
+
     }
 
     override fun openPrevFragment() {
@@ -107,8 +127,12 @@ class HotelActivity : AppCompatActivity(), HotelView {
     }
 
     private fun openNextActivity() {
-        val intentMainActivity = Intent(this, MainActivity::class.java)
-        startActivity(intentMainActivity)
+        if (isEditableMode) {
+            startActivity(Intent(this, TotalInfoActivity::class.java))
+        }
+        else {
+            startActivity(Intent(this, ActivitiesActivity::class.java))
+        }
 
     }
 
@@ -132,7 +156,7 @@ class HotelActivity : AppCompatActivity(), HotelView {
 
 
     override fun openFragment(fragment: Fragment) {
-        binding.buttonNext.isEnabled = (currentFragmentNumber == 3)
+        binding.buttonNext.isEnabled = (currentFragmentNumber == 3 || currentFragmentNumber == 4)
 
         supportFragmentManager
             .beginTransaction()

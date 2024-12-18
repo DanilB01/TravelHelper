@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.totalinfo.WarningInfoFragment">
+
+    <TextView
+        android:id="@+id/titleWarningTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="55dp"
+        android:layout_marginTop="110dp"
+        android:background="@color/total_info_warning_title"
+        android:fontFamily="@font/roboto_medium"
+        android:text="ВНИМАНИЕ"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textChangeWarningTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="При изменении страны или города настройки отеля и мероприятий сбросятся"
+        android:textAlignment="center"
+        android:textSize="33sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleWarningTotalInfo" />
+
+    <TextView
+        android:id="@+id/textChangeWishTotalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="43dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Желаете изменить настройки?"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textChangeWarningTotalInfo" />
+
+
+    <android.widget.Button
+        android:id="@+id/buttonNoFragmentTotalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textChangeWishTotalInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Нет"
+        android:textSize="15sp"
+        android:layout_marginStart="50dp"
+        android:paddingVertical="17dp"
+        android:layout_marginTop="50dp"
+        android:paddingHorizontal="47dp"
+        android:textAllCaps="false"
+        android:textColor="@color/flight_tickets_button_back_text"
+        android:background="@drawable/shape_rounded_back_button_flight_tickets"/>
+
+    <android.widget.Button
+        android:id="@+id/buttonYesFragmentTotalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Да"
+        android:textSize="20sp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintTop_toBottomOf="@id/textChangeWishTotalInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_marginTop="50dp"
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="49dp"
+        android:background="@drawable/shape_rounded_init_button"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

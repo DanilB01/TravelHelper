@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import ru.itmo.travelhelper.R
-import ru.itmo.travelhelper.databinding.ActivityFlightTicketsMainBinding
+import ru.itmo.travelhelper.databinding.ActivityFlightMainBinding
 import ru.itmo.travelhelper.presenter.flight.FlightPresenter
+import ru.itmo.travelhelper.screens.WelcomeActivity
+import ru.itmo.travelhelper.screens.hotels.HotelActivity
 import ru.itmo.travelhelper.screens.main.MainActivity
 import ru.itmo.travelhelper.view.flight.FlightView
 
@@ -15,7 +17,7 @@ class FlightActivity() : AppCompatActivity(), FlightView {
 
 
 
-    private val binding by lazy { ActivityFlightTicketsMainBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityFlightMainBinding.inflate(layoutInflater) }
     private val presenter: FlightPresenter by lazy { FlightPresenter(this) }
 
 
@@ -144,7 +146,8 @@ class FlightActivity() : AppCompatActivity(), FlightView {
 
 
             else if ((currentFragmentNumber == 3 && !presenter.getIsReturnBoxChecked()) || currentFragmentNumber == 4) {
-                // TODO intent переход на отели
+                //intent переход на отели
+                startActivity(Intent(this, HotelActivity::class.java))
             }
 
 
@@ -202,7 +205,7 @@ class FlightActivity() : AppCompatActivity(), FlightView {
     }
 
     fun chooseFragment(idFragment: Int): Fragment {
-        return when (FlightFragments.values()[idFragment]) {
+        return when (FlightFragments.entries[idFragment]) {
             FlightFragments.DEPARTURE -> FlightDepartureFragment.newInstance()
             FlightFragments.ARRIVAL -> FlightArrivalFragment.newInstance()
             FlightFragments.DATE -> FlightDateFragment.newInstance()
