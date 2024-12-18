@@ -1,5 +1,6 @@
 package ru.itmo.travelhelper.screens.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import ru.itmo.travelhelper.databinding.FragmentMainHistoryBinding
 import ru.itmo.travelhelper.presenter.main.MainHistoryPresenter
 import ru.itmo.travelhelper.screens.main.adapter.MainHistoryListAdapter
 import ru.itmo.travelhelper.screens.main.adapter.MainHistoryOnItemClickListener
+import ru.itmo.travelhelper.screens.totalinfo.TotalInfoActivity
 import ru.itmo.travelhelper.view.main.MainHistoryView
 
 class MainHistoryFragment : Fragment(), MainHistoryView {
@@ -50,7 +52,7 @@ class MainHistoryFragment : Fragment(), MainHistoryView {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         adapterHistory = MainHistoryListAdapter(emptyList(), object : MainHistoryOnItemClickListener {
             override fun onItemClicked(position: Int) {
-
+                startActivity(Intent(activity, TotalInfoActivity::class.java))
             }
         })
 

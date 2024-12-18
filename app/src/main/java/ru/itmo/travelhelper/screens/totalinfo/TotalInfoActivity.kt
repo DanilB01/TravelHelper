@@ -10,6 +10,7 @@ import ru.itmo.travelhelper.databinding.ActivityTotalInfoBinding
 import ru.itmo.travelhelper.screens.activities.ActivitiesActivity
 import ru.itmo.travelhelper.screens.flight.FlightActivity
 import ru.itmo.travelhelper.screens.hotels.HotelActivity
+import ru.itmo.travelhelper.screens.main.MainActivity
 import ru.itmo.travelhelper.screens.totalinfo.model.EnumChangeActivities
 import ru.itmo.travelhelper.screens.totalinfo.model.EnumTotalInfoFragments
 import ru.itmo.travelhelper.view.totalinfo.TotalInfoView
@@ -41,6 +42,12 @@ class TotalInfoActivity : AppCompatActivity(), TotalInfoView {
 
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
 
